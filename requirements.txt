@@ -1,0 +1,7 @@
+yfinance
+openai
+streamlit
+streamlit_chat
+prophet
+plotly
+scikit-learn
