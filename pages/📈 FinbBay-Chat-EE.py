@@ -10,6 +10,10 @@ from streamlit_chat import message
 from dotenv import load_dotenv
 from langchain.llms import OpenAI
 
+st.set_page_config(
+    page_title="Finbay AI",
+    page_icon="data/finbay-logo.jpg",
+)
 # Load environment variables from .env file
 load_dotenv()
 # Access the API key
