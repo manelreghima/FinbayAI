@@ -5,3 +5,4 @@ streamlit_chat
 prophet
 plotly
 scikit-learn
+python-dotenv
