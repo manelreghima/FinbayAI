@@ -1,0 +1,7 @@
+target/
+dbt_modules/
+logs/
+.env
+.venv
+venv
+.vscode
