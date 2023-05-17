@@ -6,3 +6,4 @@ prophet
 plotly
 scikit-learn
 python-dotenv
+langchain
