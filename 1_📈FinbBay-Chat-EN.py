@@ -85,22 +85,6 @@ def get_graph(ticker_symbol):
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
 
-with container:
-    for question in questions:
-        if st.button(question):
-            process_question(question)
-    
-    if st.button("Start a New Chat"):
-        st.session_state.past.clear()
-        st.session_state.generated.clear()
-
-    with st.form(key='my_form', clear_on_submit=True):
-        user_input = st.text_input("Ask a question:", key='input')
-        submit_button = st.form_submit_button(label='Send')
-
-    if submit_button and user_input:
-        process_question(user_input)
-
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
     
@@ -116,3 +100,18 @@ if st.session_state['generated']:
         if i < len(st.session_state['past']):
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
         
+with container:
+    for question in questions:
+        if st.button(question):
+            process_question(question)
+    
+    if st.button("Start a New Chat"):
+        st.session_state.past.clear()
+        st.session_state.generated.clear()
+
+    with st.form(key='my_form', clear_on_submit=True):
+        user_input = st.text_input("Ask a question:", key='input')
+        submit_button = st.form_submit_button(label='Send')
+
+    if submit_button and user_input:
+        process_question(user_input)
