@@ -1,7 +1,6 @@
 import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
-import openai 
 import yfinance as yf
 import re
 import os
@@ -23,14 +22,14 @@ openai.api_key = os.environ["OPENAI_API_KEY"]
 llm = OpenAI(temperature=0)
 
 def extract_symbol(input):
-        # Generate a response
+    # Generate a response
     prompt =  'Extract ticker symbol from this text:' + input
-    return llm(prompt)  
+    return llm(prompt)
 
 def chat_query(prompt_prefix, text):
-        # Generate a response
+    # Generate a response
     prompt =  prompt_prefix + ': ' + text
-    return llm(prompt) 
+    return llm(prompt)
 
 st.title("Welcome to FinbayAI")
 
@@ -40,8 +39,6 @@ if 'generated' not in st.session_state:
 
 if 'past' not in st.session_state:
     st.session_state['past'] = []
-
-
 
 # container for text box
 container = st.container()
@@ -59,7 +56,6 @@ def process_question(question):
     output = chat_query(user_input, text)
     # Store the output
     st.session_state.past.append(user_input)
-    #st.session_state.generated.append(question)  # Append the question
     st.session_state.generated.append(output)
 
 def extract_ticker_symbol(input_text):
