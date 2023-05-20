@@ -1,6 +1,7 @@
 import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
+import openai 
 import yfinance as yf
 import re
 import os
@@ -8,6 +9,7 @@ from datetime import datetime
 from streamlit_chat import message
 from dotenv import load_dotenv
 from langchain.llms import OpenAI
+
 
 st.set_page_config(
     page_title="Finbay AI",
