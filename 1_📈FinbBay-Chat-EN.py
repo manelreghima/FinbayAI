@@ -89,7 +89,7 @@ with container:
     for question in questions:
         if st.button(question):
             process_question(question)
-            
+    
     if st.button("Start a New Chat"):
         st.session_state.past.clear()
         st.session_state.generated.clear()
@@ -104,13 +104,12 @@ with container:
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
     
-    for i in range(num_responses):
+    for i in reversed(range(num_responses)):
         if i < len(st.session_state['past']):
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
         if i < len(st.session_state['generated']):
             message(st.session_state['generated'][i], key=str(i))  # Display the answer
 
-             # Display the graph
+            # Display the graph
             symbol = extract_ticker_symbol(st.session_state['past'][i])
             get_graph(symbol)
-
