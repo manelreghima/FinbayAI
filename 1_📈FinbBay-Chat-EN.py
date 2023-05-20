@@ -105,11 +105,14 @@ if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
     
     for i in reversed(range(num_responses)):
-        if i < len(st.session_state['past']):
-            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
         if i < len(st.session_state['generated']):
-            message(st.session_state['generated'][i], key=str(i))  # Display the answer
-
             # Display the graph
             symbol = extract_ticker_symbol(st.session_state['past'][i])
             get_graph(symbol)
+            message(st.session_state['generated'][i], key=str(i))  # Display the answer
+
+            
+            
+        if i < len(st.session_state['past']):
+            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
+        
