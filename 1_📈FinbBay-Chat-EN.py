@@ -85,6 +85,19 @@ def get_graph(ticker_symbol):
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
 
+if st.session_state['generated']:
+    num_responses = len(st.session_state['generated'])
+    
+    for i in reversed(range(num_responses)):
+        if i < len(st.session_state['generated']):
+            # Display the graph
+            symbol = extract_ticker_symbol(st.session_state['past'][i])
+            get_graph(symbol)
+            message(st.session_state['generated'][i], key=str(i))  # Display the answer
+
+        if i < len(st.session_state['past']):
+            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
+
 with container:
     for question in questions:
         if st.button(question):
@@ -100,19 +113,3 @@ with container:
 
     if submit_button and user_input:
         process_question(user_input)
-
-if st.session_state['generated']:
-    num_responses = len(st.session_state['generated'])
-    
-    for i in reversed(range(num_responses)):
-        if i < len(st.session_state['generated']):
-            # Display the graph
-            symbol = extract_ticker_symbol(st.session_state['past'][i])
-            get_graph(symbol)
-            message(st.session_state['generated'][i], key=str(i))  # Display the answer
-
-            
-            
-        if i < len(st.session_state['past']):
-            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
-        
