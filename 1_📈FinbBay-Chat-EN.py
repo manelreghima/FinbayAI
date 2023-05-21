@@ -74,12 +74,12 @@ def get_graph(ticker_symbol):
     data = yf.download(ticker_symbol, interval = '1mo', start="2023-01-01", end=formatted_today)
     fig1 = go.Figure()
     fig1.add_trace(go.Scatter(x=data.index, y=data['Adj Close'], fill='tozeroy', name='Adj Close'))
-    fig1.update_layout(title=symbol, xaxis_title='Date', yaxis_title='Price')
+    fig1.update_layout(title=str(ticker_symbol)+' Historical Close Prices', xaxis_title='Date', yaxis_title='Price')
 
     fig2 = go.Figure()
     fig2.add_trace(go.Scatter(x=data.index, y=data['Volume'], fill='tozeroy', name='Volume'))
-    fig2.update_layout(title=symbol, xaxis_title='Date', yaxis_title='Volume')
-
+    fig2.update_layout(title=str(ticker_symbol)+' Historical Volume', xaxis_title='Date', yaxis_title='Volume')
+    
 
     # Display charts using Streamlit
     st.plotly_chart(fig1)
