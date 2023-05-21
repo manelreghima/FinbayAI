@@ -72,14 +72,14 @@ def get_graph(ticker_symbol):
     today = datetime.now()
     formatted_today = today.strftime('%Y-%m-%d')
     data = yf.download(ticker_symbol, interval = '1mo', start="2023-01-01", end=formatted_today)
-    fig1 = px.line(data_frame=data, x=data.index, y='Adj Close', title=str(ticker_symbol)+' Historical Close Prices')
-    fig1.update_xaxes(title='Date')
-    fig1.update_yaxes(title='Price')
+    fig1 = go.Figure()
+    fig1.add_trace(go.Scatter(x=data.index, y=data['Adj Close'], fill='tozeroy', name='Adj Close'))
+    fig1.update_layout(title=symbol, xaxis_title='Date', yaxis_title='Price')
 
-    # Create figure for "Volume"
-    fig2 = px.line(data_frame=data, x=data.index, y='Volume', title=str(ticker_symbol)+' Historical Volume')
-    fig2.update_xaxes(title='Date')
-    fig2.update_yaxes(title='Volume')
+    fig2 = go.Figure()
+    fig2.add_trace(go.Scatter(x=data.index, y=data['Volume'], fill='tozeroy', name='Volume'))
+    fig2.update_layout(title=symbol, xaxis_title='Date', yaxis_title='Volume')
+
 
     # Display charts using Streamlit
     st.plotly_chart(fig1)
