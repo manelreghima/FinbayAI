@@ -108,8 +108,8 @@ if st.session_state['generated']:
         if i < len(st.session_state['generated']):
             # Display the graph
             symbol = extract_ticker_symbol(st.session_state['past'][i])
-            get_graph(symbol)
             message(st.session_state['generated'][i], key=str(i))  # Display the answer
+            get_graph(symbol)
 
             
             
