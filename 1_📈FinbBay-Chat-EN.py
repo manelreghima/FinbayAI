@@ -10,6 +10,7 @@ from streamlit_chat import message
 from dotenv import load_dotenv
 from langchain.llms import OpenAI
 import numpy as np
+import pandas as pd
 
 st.set_page_config(
     page_title="Finbay AI",
