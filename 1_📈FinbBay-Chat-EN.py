@@ -56,7 +56,7 @@ questions=["What is the market cap of DGR1R.RG?","What is the forward PE of AUG1
 
 def process_question(question):
     user_input = question
-    symbol = extract_company_name(input)
+    company_name = extract_company_name(input)
     company_name = str(company_name).strip()
 
     if symbol not in data['symbol1'].values and symbol not in data['symbol2'].values:
