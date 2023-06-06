@@ -21,7 +21,7 @@ load_dotenv()
 # Access the API key
 api_key = os.environ["OPENAI_API_KEY"]
 openai.api_key = os.environ["OPENAI_API_KEY"]
-
+data = pd.read_csv('data/company_ticker.csv')
 llm = OpenAI(temperature=0)
 
 def extract_symbol(input):
@@ -56,7 +56,13 @@ questions=["What is the market cap of DGR1R.RG?","What is the forward PE of AUG1
 
 def process_question(question):
     user_input = question
-    symbol = extract_symbol(user_input)
+    symbol = extract_company_name(input)
+    company_name = str(company_name).strip()
+
+    if symbol not in data['symbol1'].values and symbol not in data['symbol2'].values:
+        df_company = data[data['company'].str.contains(company_name)]
+        symbol = str(df_company['symbol1'].iloc[0])
+    
     if symbol is not None:
         symbol = symbol.strip()
     ticker_symbol = symbol 
@@ -93,7 +99,7 @@ def get_graph(ticker_symbol):
 
 
 def get_market_data():
-    data = pd.read_csv('data/company_ticker.csv')
+    
     column_list = data['symbol1'].values.tolist()
 
     company_list = []
