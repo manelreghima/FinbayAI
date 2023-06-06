@@ -9,6 +9,7 @@ from datetime import datetime
 from streamlit_chat import message
 from dotenv import load_dotenv
 from langchain.llms import OpenAI
+import numpy as np
 
 st.set_page_config(
     page_title="Finbay AI",
@@ -89,9 +90,6 @@ def get_graph(ticker_symbol):
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
 
-import yfinance as yf
-import pandas as pd
-import numpy as np
 
 def get_market_data():
     data = pd.read_csv('data/company_ticker.csv')
@@ -148,24 +146,21 @@ if st.session_state['generated']:
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
             # Display the graph
-            color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])
-
-            # Create the treemap figure
-            fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
-                            color='price_change', hover_data=['company_name'],
-                            color_continuous_scale='RdBu',
-                            color_continuous_midpoint=color_midpoint)
-
-            # Display the figure in Streamlit
-            st.plotly_chart(fig)
             symbol = extract_ticker_symbol(st.session_state['past'][i])
             message(st.session_state['generated'][i], key=str(i))  # Display the answer
-            
-
-
             
             
         if i < len(st.session_state['past']):
             get_graph(symbol)
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
         
+color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])
+
+            # Create the treemap figure
+fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
+                            color='price_change', hover_data=['company_name'],
+                            color_continuous_scale='RdBu',
+                            color_continuous_midpoint=color_midpoint)
+
+            # Display the figure in Streamlit
+st.plotly_chart(fig)
