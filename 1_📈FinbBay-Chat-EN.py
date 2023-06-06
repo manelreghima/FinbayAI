@@ -32,6 +32,11 @@ def chat_query(prompt_prefix, text):
     prompt =  prompt_prefix + ': ' + text
     return llm(prompt) 
 
+def extract_company_name(input):
+        # Generate a response
+    prompt =  'Extract company name from this text:' + input
+    return llm(prompt) 
+
 st.title("Welcome to FinbayAI")
 
 # Storing the chat
@@ -85,6 +90,43 @@ def get_graph(ticker_symbol):
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
 
+import yfinance as yf
+import pandas as pd
+import numpy as np
+
+def get_market_data():
+    data = pd.read_csv('data/company_ticker.csv')
+    column_list = data['symbol1'].values.tolist()
+
+    company_list = []
+    sector_list = []
+    market_cap_list = []
+
+    for symbol in column_list:
+        ticker = yf.Ticker(symbol)
+        company_info = ticker.info
+
+        market_cap = company_info.get("marketCap")
+        sector = company_info.get("sector")
+        company_name = company_info.get("longName")
+
+        market_cap_list.append(market_cap)
+        sector_list.append(sector)
+        company_list.append(company_name)
+
+    market_data = pd.DataFrame({
+        'symbol': column_list,
+        'company_name': company_list,
+        'sector': sector_list,
+        'market_cap': market_cap_list,
+        'price_change': np.random.random(size=len(column_list))
+    })
+    
+    return market_data
+
+
+market_data=get_market_data()
+
 with container:
     for question in questions:
         if st.button(question):
@@ -109,6 +151,22 @@ if st.session_state['generated']:
             # Display the graph
             symbol = extract_ticker_symbol(st.session_state['past'][i])
             message(st.session_state['generated'][i], key=str(i))  # Display the answer
+            color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])
+
+            # Create the treemap figure
+            fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
+                            color='price_change', hover_data=['company_name'],
+                            color_continuous_scale='RdBu',
+                            color_continuous_midpoint=color_midpoint)
+
+            # Display the figure in Streamlit
+            st.plotly_chart(fig)
+
+
+
+
+
+
 
             
             
