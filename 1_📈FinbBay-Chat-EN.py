@@ -59,7 +59,7 @@ def process_question(question):
     company_name = extract_company_name(user_input)
     company_name = str(company_name).strip()
 
-    if symbol not in data['symbol1'].values and symbol not in data['symbol2'].values:
+    if company_name not in data['symbol1'].values and company_name not in data['symbol2'].values:
         df_company = data[data['company'].str.contains(company_name)]
         symbol = str(df_company['symbol1'].iloc[0])
     
