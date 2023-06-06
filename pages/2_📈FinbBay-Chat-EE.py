@@ -9,6 +9,8 @@ from datetime import datetime
 from streamlit_chat import message
 from dotenv import load_dotenv
 from langchain.llms import OpenAI
+import numpy as np
+import pandas as pd
 
 # Load environment variables from .env file
 load_dotenv()
@@ -26,6 +28,11 @@ def extract_symbol(input):
 def chat_query(prompt_prefix, text):
         # Generate a response
     prompt =  prompt_prefix + ': ' + text
+    return llm(prompt) 
+
+def extract_company_name(input):
+        # Generate a response
+    prompt =  'Väljavõte ettevõtte nimi sellest tekstist:' + input
     return llm(prompt) 
 
 st.title("Tere tulemast FinbayAI")
@@ -82,6 +89,37 @@ def get_graph(ticker_symbol):
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
 
+def get_market_data():
+    data = pd.read_csv('data/company_ticker.csv')
+    column_list = data['symbol1'].values.tolist()
+
+    company_list = []
+    sector_list = []
+    market_cap_list = []
+
+    for symbol in column_list:
+        ticker = yf.Ticker(symbol)
+        company_info = ticker.info
+
+        market_cap = company_info.get("marketCap")
+        sector = company_info.get("sector")
+        company_name = company_info.get("longName")
+
+        market_cap_list.append(market_cap)
+        sector_list.append(sector)
+        company_list.append(company_name)
+
+    market_data = pd.DataFrame({
+        'symbol': column_list,
+        'company_name': company_list,
+        'sector': sector_list,
+        'market_cap': market_cap_list,
+        'price_change': np.random.random(size=len(column_list))
+    })
+    
+    return market_data
+market_data=get_market_data()
+
 with container:
     for question in questions:
         if st.button(question):
@@ -101,13 +139,24 @@ with container:
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
     
-    for i in range(num_responses):
-        if i < len(st.session_state['past']):
-            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
+    for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
-            message(st.session_state['generated'][i], key=str(i))  # Display the answer
-
-             # Display the graph
+            # Display the graph
             symbol = extract_ticker_symbol(st.session_state['past'][i])
+            message(st.session_state['generated'][i], key=str(i))  # Display the answer
+            
+            
+        if i < len(st.session_state['past']):
             get_graph(symbol)
+            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
+        
+color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])
 
+            # Create the treemap figure
+fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
+                            color='price_change', hover_data=['company_name'],
+                            color_continuous_scale='RdBu',
+                            color_continuous_midpoint=color_midpoint)
+
+            # Display the figure in Streamlit
+st.plotly_chart(fig)
