@@ -75,7 +75,7 @@ def process_question(question):
     st.session_state.generated.append(output)
 
 def extract_ticker_symbol(input_text):
-    prompt = 'Extract ticker symbol from this text: ' + input_text
+    prompt = 'Extract company name from this text: ' + input_text
     response = llm(prompt)
     ticker_symbol = response.split(": ")[-1].strip()  # Extract the ticker symbol from the response
     return ticker_symbol
@@ -152,7 +152,7 @@ if st.session_state['generated']:
     
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
-            symbol = extract_company_name(st.session_state['past'][i])
+            symbol = extract_ticker_symbol(st.session_state['past'][i])
             message(st.session_state['generated'][i], key=str(i))  # Display the answer
             
             
