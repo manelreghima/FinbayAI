@@ -65,6 +65,9 @@ def process_question(question):
     elif symbol in data['symbol1'].values:
         df_company = data[data['company'].str.contains(symbol)]
         symbol = df_company['symbol1'].iloc[0]
+    else:
+        output = 'Sorry, there is currently no data available for the company requested.'
+    
 
     ticker = yf.Ticker(symbol)
     text = str(ticker.info)
