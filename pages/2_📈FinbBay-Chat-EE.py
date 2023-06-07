@@ -77,18 +77,23 @@ def extract_ticker_symbol(input_text):
     prompt = 'Ekstrakt ticker sümbol sellest tekstist: ' + input_text
     response = llm(prompt)
     ticker_symbol = response.split(": ")[-1].strip()  # Extract the ticker symbol from the response
+    for index, row in data.iterrows():
+    # Check if the symbol is found in symbol2
+        if ticker_symbol in row['symbol2']:
+        # Update the value symbol to the corresponding value in 'symbol1'
+            ticker_symbol=row['symbol1']
     return ticker_symbol
 
-def get_graph(ticker_symbol):
+def get_graph(symbol):
     today = datetime.now()
     formatted_today = today.strftime('%Y-%m-%d')
-    data = yf.download(ticker_symbol, interval = '1mo', start="2023-01-01", end=formatted_today)
-    fig1 = px.line(data_frame=data, x=data.index, y='Adj Close', title=str(ticker_symbol)+' Ajaloolised sulgemishinnad')
+    data = yf.download(symbol, interval = '1mo', start="2023-01-01", end=formatted_today)
+    fig1 = px.line(data_frame=data, x=data.index, y='Adj Close', title=str(symbol)+' Ajaloolised sulgemishinnad')
     fig1.update_xaxes(title='Kuupäev')
     fig1.update_yaxes(title='Hind')
 
     # Create figure for "Volume"
-    fig2 = px.line(data_frame=data, x=data.index, y='Volume', title=str(ticker_symbol)+' Ajalooline maht')
+    fig2 = px.line(data_frame=data, x=data.index, y='Volume', title=str(symbol)+' Ajalooline maht')
     fig2.update_xaxes(title='Kuupäev')
     fig2.update_yaxes(title='Köide')
 
@@ -148,7 +153,6 @@ if st.session_state['generated']:
     
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
-            # Display the graph
             symbol = extract_ticker_symbol(st.session_state['past'][i])
             message(st.session_state['generated'][i], key=str(i))  # Display the answer
             
