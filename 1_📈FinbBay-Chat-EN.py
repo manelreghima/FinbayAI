@@ -63,9 +63,9 @@ def process_question(question):
         df_company = data[data['company'].str.contains(company_name)]
         symbol = str(df_company['symbol1'].iloc[0])
     
-    if symbol is not None:
-        symbol = symbol.strip()
-    ticker_symbol = symbol 
+    #if symbol is not None:
+    symbol = symbol.strip()
+    #ticker_symbol = symbol 
     ticker = yf.Ticker(symbol)    
     text = str(ticker.info)
     output = chat_query(user_input, text)
