@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from langchain.llms import OpenAI
 import numpy as np
 import pandas as pd
+from requests.exceptions import HTTPError
 
 st.set_page_config(
     page_title="Finbay AI",
@@ -65,11 +66,21 @@ def process_question(question):
     elif symbol in data['symbol1'].values:
         df_company = data[data['company'].str.contains(symbol)]
         symbol = df_company['symbol1'].iloc[0]
-    else:
-        output = 'Sorry, there is currently no data available for the company requested.'
     
-
     ticker = yf.Ticker(symbol)
+    try:
+        ticker_info = ticker.info
+        
+        if 'error' in ticker_info:
+            print(f"An error occurred for ticker symbol '{symbol}': {ticker_info['error']}")
+        else:
+            print(f"Ticker symbol '{symbol}' does not have an error in the info.")
+    except HTTPError as e:
+        print(f"Sorry, there is currently no data available for the company requested")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+    
     text = str(ticker.info)
     output = chat_query(user_input, text)
 
