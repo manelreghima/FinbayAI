@@ -177,7 +177,10 @@ if st.session_state['generated']:
             
             
         if i < len(st.session_state['past']):
-            get_graph(symbol)
+            ticker = yf.Ticker(symbol)
+            if ticker.info is not None:
+                get_graph(symbol)
+            
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
         
 color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])
