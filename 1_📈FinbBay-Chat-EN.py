@@ -59,14 +59,14 @@ def process_question(question):
     company_name = extract_company_name(user_input)
     symbol = str(company_name).strip()
 
-    if symbol not in data['symbol1'].values and symbol not in data['symbol2'].values:
+    if symbol in data['symbol2'].values: 
         for index, row in data.iterrows():
-    # Check if the symbol is found in symbol2
-            if symbol in row['symbol2']:
-        # Update the value symbol to the corresponding value in 'symbol1'
                 symbol=row['symbol1']
-        df_company = data[data['company'].str.contains(symbol)]
-        symbol = str(df_company['symbol1'].iloc[0])
+      
+    else:
+        if symbol in data['symbol1'].values:
+            df_company = data[data['company'].str.contains(symbol)]
+            symbol = str(df_company['symbol1'].iloc[0])
     
     #if symbol is not None:
     #symbol = symbol.strip()
