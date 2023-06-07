@@ -65,7 +65,7 @@ def process_question(question):
     
     #if symbol is not None:
     #symbol = symbol.strip()
-    ticker_symbol = symbol 
+    
     ticker = yf.Ticker(symbol)    
     text = str(ticker.info)
     output = chat_query(user_input, text)
@@ -80,17 +80,17 @@ def extract_ticker_symbol(input_text):
     ticker_symbol = response.split(": ")[-1].strip()  # Extract the ticker symbol from the response
     return ticker_symbol
 
-def get_graph(ticker_symbol):
+def get_graph(symbol):
     today = datetime.now()
     formatted_today = today.strftime('%Y-%m-%d')
-    data = yf.download(ticker_symbol, interval = '1mo', start="2023-01-01", end=formatted_today)
+    data = yf.download(symbol, interval = '1mo', start="2023-01-01", end=formatted_today)
     fig1 = go.Figure()
     fig1.add_trace(go.Scatter(x=data.index, y=data['Adj Close'], fill='tozeroy', name='Adj Close'))
-    fig1.update_layout(title=str(ticker_symbol)+' Historical Close Prices', xaxis_title='Date', yaxis_title='Price')
+    fig1.update_layout(title=str(symbol)+' Historical Close Prices', xaxis_title='Date', yaxis_title='Price')
 
     fig2 = go.Figure()
     fig2.add_trace(go.Scatter(x=data.index, y=data['Volume'], fill='tozeroy', name='Volume'))
-    fig2.update_layout(title=str(ticker_symbol)+' Historical Volume', xaxis_title='Date', yaxis_title='Volume')
+    fig2.update_layout(title=str(symbol)+' Historical Volume', xaxis_title='Date', yaxis_title='Volume')
     
 
     # Display charts using Streamlit
@@ -152,8 +152,7 @@ if st.session_state['generated']:
     
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
-            # Display the graph
-            symbol = extract_ticker_symbol(st.session_state['past'][i])
+            symbol = extract_company_name(st.session_state['past'][i])
             message(st.session_state['generated'][i], key=str(i))  # Display the answer
             
             
