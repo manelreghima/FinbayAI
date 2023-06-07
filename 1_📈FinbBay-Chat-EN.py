@@ -63,9 +63,7 @@ def process_question(question):
 
     if symbol in data['symbol2'].values:
         symbol = data.loc[data['symbol2'] == symbol, 'symbol1'].iloc[0]
-    elif symbol in data['symbol1'].values:
-        df_company = data[data['company'].str.contains(symbol)]
-        symbol = df_company['symbol1'].iloc[0]
+    
     
     ticker = yf.Ticker(symbol)
     try:
@@ -80,7 +78,6 @@ def process_question(question):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-    
     text = str(ticker.info)
     output = chat_query(user_input, text)
 
