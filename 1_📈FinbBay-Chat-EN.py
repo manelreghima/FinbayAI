@@ -178,8 +178,12 @@ if st.session_state['generated']:
             
         if i < len(st.session_state['past']):
             ticker = yf.Ticker(symbol)
-            if ticker.info is not None:
+            try:
+                ticker_info = ticker.info
                 get_graph(symbol)
+            except HTTPError as e:
+                print("An HTTPError occurred:", e)
+                
             
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
         
