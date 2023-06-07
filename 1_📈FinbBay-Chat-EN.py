@@ -65,7 +65,7 @@ def process_question(question):
     
     #if symbol is not None:
     #symbol = symbol.strip()
-    #ticker_symbol = symbol 
+    ticker_symbol = symbol 
     ticker = yf.Ticker(symbol)    
     text = str(ticker.info)
     output = chat_query(user_input, text)
