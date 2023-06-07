@@ -147,7 +147,7 @@ with container:
 
     with st.form(key='my_form', clear_on_submit=True):
         user_input = st.text_input("Esita küsimus:", key='input')
-        submit_button = st.form_submit_button(label='Send')
+        submit_button = st.form_submit_button(label='Saada')
 
     if submit_button and user_input:
         process_question(user_input)
