@@ -60,6 +60,11 @@ def process_question(question):
     symbol = str(company_name).strip()
 
     if symbol not in data['symbol1'].values and symbol not in data['symbol2'].values:
+        for index, row in data.iterrows():
+    # Check if the symbol is found in symbol2
+            if symbol in row['symbol2']:
+        # Update the value symbol to the corresponding value in 'symbol1'
+                symbol=row['symbol1']
         df_company = data[data['company'].str.contains(symbol)]
         symbol = str(df_company['symbol1'].iloc[0])
     
