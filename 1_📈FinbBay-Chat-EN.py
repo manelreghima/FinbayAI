@@ -54,26 +54,22 @@ container = st.container()
 questions=["What is the market cap of DGR1R.RG?","What is the forward PE of AUG1LS.VS?",
            "Who is the CEO of LHV1T.TL?","What is the profit margin of TSLA? "]
 
+
 def process_question(question):
     user_input = question
     company_name = extract_company_name(user_input)
     symbol = str(company_name).strip()
 
-    if symbol in data['symbol2'].values: 
-        for index, row in data.iterrows():
-                symbol=row['symbol1']
-      
-    else:
-        if symbol in data['symbol1'].values:
-            df_company = data[data['company'].str.contains(symbol)]
-            symbol = str(df_company['symbol1'].iloc[0])
-    
-    #if symbol is not None:
-    #symbol = symbol.strip()
-    
-    ticker = yf.Ticker(symbol)    
+    if symbol in data['symbol2'].values:
+        symbol = data.loc[data['symbol2'] == symbol, 'symbol1'].iloc[0]
+    elif symbol in data['symbol1'].values:
+        df_company = data[data['company'].str.contains(symbol)]
+        symbol = df_company['symbol1'].iloc[0]
+
+    ticker = yf.Ticker(symbol)
     text = str(ticker.info)
     output = chat_query(user_input, text)
+
     # Store the output
     st.session_state.past.append(user_input)
     #st.session_state.generated.append(question)  # Append the question
