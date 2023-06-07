@@ -78,6 +78,11 @@ def extract_ticker_symbol(input_text):
     prompt = 'Extract ticker symbol from this text: ' + input_text
     response = llm(prompt)
     ticker_symbol = response.split(": ")[-1].strip()  # Extract the ticker symbol from the response
+    for index, row in data.iterrows():
+    # Check if the symbol is found in symbol2
+        if ticker_symbol in row['symbol2']:
+        # Update the value symbol to the corresponding value in 'symbol1'
+            ticker_symbol=row['symbol1']
     return ticker_symbol
 
 def get_graph(symbol):
