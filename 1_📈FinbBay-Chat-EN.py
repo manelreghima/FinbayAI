@@ -121,7 +121,7 @@ def get_graph(symbol):
 
 def get_market_data():
     data=read_data()
-    column_list = data['symbol1'].values.tolist()
+    column_list = data['symbol2'].values.tolist()
 
     company_list = []
     sector_list = []
