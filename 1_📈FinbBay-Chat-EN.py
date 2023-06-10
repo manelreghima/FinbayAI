@@ -65,8 +65,8 @@ def process_question(question):
     company_name = extract_company_name(user_input)
     symbol = str(company_name).strip()
 
-    if symbol in data['symbol2'].values:
-        symbol = data.loc[data['symbol2'] == symbol, 'symbol1'].iloc[0]
+    if symbol in data['symbol1'].values:
+        symbol = data.loc[data['symbol1'] == symbol, 'symbol2'].iloc[0]
     
     
     ticker = yf.Ticker(symbol)
@@ -96,10 +96,10 @@ def extract_ticker_symbol(input_text):
     response = llm(prompt)
     ticker_symbol = response.split(": ")[-1].strip()  # Extract the ticker symbol from the response
     for index, row in data.iterrows():
-    # Check if the symbol is found in symbol2
-        if ticker_symbol in row['symbol2']:
-        # Update the value symbol to the corresponding value in 'symbol1'
-            ticker_symbol=row['symbol1']
+    # Check if the symbol is found in symbol1
+        if ticker_symbol in row['symbol1']:
+        # Update the value symbol to the corresponding value in 'symbol2'
+            ticker_symbol=row['symbol2']
     return ticker_symbol
 
 def get_graph(symbol):
