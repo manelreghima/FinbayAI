@@ -23,6 +23,7 @@ load_dotenv()
 api_key = os.environ["OPENAI_API_KEY"]
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
+st.cache()
 def read_data():
     data = pd.read_csv('data/company_ticker.csv')
     return data
