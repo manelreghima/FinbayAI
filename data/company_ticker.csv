@@ -1,36 +1,36 @@
-"company","symbol1","symbol2"
-"APB Apranga","APG1L.VS","APG1L"
-"Arco Vara AS","ARC1T.TL","ARC1T"
-"Auga Group AB","AUG1L.VS","AUG1L"
-"AS Baltika","BLT1T.TL","BLT1T"
-"Coop Pank AS","CPA1T.TL","CPA1T"
-"DelfinGroup AS","DGR1R.RG","DGR1R"
-"AS Ekspress Grupp","EEG1T.TL","EEG"
-"EfTEN Real Estate Fund III AS","EFT1T.TL","EFT1T"
-"Enefit Green AS","EGR1T.TL","EGR1T"
-"Grigeo AB","GRG1L.VS","GRG1L"
-"AS Harju Elekter","HAE1T.TL","HAE1T"
-"AS HansaMatrix","HMX1R.RG","HMX1R"
-"Hepsor AS","HPR1T.TL","HPR1T"
-"IPAS Indexo AS","IDX1R.RG","IDX1R"
-"AB Ignitis grupe","IGN1L.VS","IGN1L"
-"AB Klaipedos nafta","KNF1L.VS","KNF1L"
-"AS LHV Group","LHV1T.TL","LHV"
-"AB Linas Agro Group","LNA1L.VS","LNA1L"
-"AS Merko Ehitus","MRK1T.TL","MERK"
-"Nordecon AS","NCN1T.TL","NCN1T"
-"Novaturas AB","NTU1L.VS","NTU1L"
-"AS Pro Kapital Grupp","PKG1T.TL","PKG1T"
-"AS PRFoods","PRF1T.TL","PRF1T"
-"AB Panevezio Statybos Trestas","PTR1L.VS","PTR1L"
-"AB Pieno Zvaigzdes","PZV1L.VS","PZV1L"
-"Rokiskio Suris AB","RSU1L.VS","RSU1L"
-"AB Siauliu Bankas","SAB1L.VS","SAB1L"
-"SAF Tehnika A/S","SAF1R.RG","SAF1R"
-"AS Silvano Fashion Group","SFG1T.TL","SFG1T"
-"AS Tallink Grupp","TAL1T.TL","TAL1T"
-"Telia Lietuva, AB","TEL1L.VS","TEL1L"
-"Tallinna Kaubamaja Grupp AS","TKM1T.TL","TKM1T"
-"AS Tallinna Sadam","TSM1T.TL","TSM1T"
-"AS Tallinna Vesi","TVE1T.TL","TVE1T"
-"AB Vilkyskiu pienine","VLP1L.VS","VLP1L"
+company,symbol1,symbol2
+APB Apranga,APG1L,APG1L.VS
+Arco Vara AS,ARC1T,ARC1T.TL
+Auga Group AB,AUG1L,AUG1L.VS
+AS Baltika,BLT1T,BLT1T.TL
+Coop Pank AS,CPA1T,CPA1T.TL
+DelfinGroup AS,DGR1R,DGR1R.RG
+AS Ekspress Grupp,EEG1T,EEG1T.TL
+EfTEN Real Estate Fund III AS,EFT1T,EFT1T.TL
+Enefit Green AS,EGR1T,EGR1T.TL
+Grigeo AB,GRG1L,GRG1L.VS
+AS Harju Elekter,HAE1T,HAE1T.TL
+AS HansaMatrix,HMX1R,HMX1R.RG
+Hepsor AS,HPR1T,HPR1T.TL
+IPAS Indexo AS,IDX1R,IDX1R.RG
+AB Ignitis grupe,IGN1L,IGN1L.VS
+AB Klaipedos nafta,KNF1L,KNF1L.VS
+AS LHV Group,LHV1T,LHV1T.TL
+AB Linas Agro Group,LNA1L,LNA1L.VS
+AS Merko Ehitus,MERK,MRK1T.TL
+Nordecon AS,NCN1T,NCN1T.TL
+Novaturas AB,NTU1L,NTU1L.VS
+AS Pro Kapital Grupp,PKG1T,PKG1T.TL
+AS PRFoods,PRF1T,PRF1T.TL
+AB Panevezio Statybos Trestas,PTR1L,PTR1L.VS
+AB Pieno Zvaigzdes,PZV1L,PZV1L.VS
+Rokiskio Suris AB,RSU1L,RSU1L.VS
+AB Siauliu Bankas,SAB1L,SAB1L.VS
+SAF Tehnika A/S,SAF1R,SAF1R.RG
+AS Silvano Fashion Group,SFG1T,SFG1T.TL
+AS Tallink Grupp,TAL1T,TAL1T.TL
+"Telia Lietuva, AB",TEL1L,TEL1L.VS
+Tallinna Kaubamaja Grupp AS,TKM1T,TKM1T.TL
+AS Tallinna Sadam,TSM1T,TSM1T.TL
+AS Tallinna Vesi,TVE1T,TVE1T.TL
+AB Vilkyskiu pienine,VLP1L,VLP1L.VS
