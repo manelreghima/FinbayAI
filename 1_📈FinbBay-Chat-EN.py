@@ -64,10 +64,14 @@ def process_question(question):
     user_input = question
     company_name = extract_company_name(user_input)
     symbol = str(company_name).strip()
+    company_list = data['company'].values.tolist()
+    symbol_list = data['symbol1'].values.tolist()+data['symbol2'].values.tolist()
 
-    if symbol in data['symbol1'].values:
-        symbol = data.loc[data['symbol1'] == symbol, 'symbol2'].iloc[0]
-    
+    if symbol in data['company'].values:
+        symbol = data.loc[data['company'] == symbol, 'symbol2'].iloc[0]
+    elif symbol in data['symbol1'].values:
+        symbol = data.loc[data['company'].str.contains(symbol), 'symbol2'].iloc[0]
+
     
     ticker = yf.Ticker(symbol)
     try:
