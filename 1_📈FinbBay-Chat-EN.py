@@ -55,7 +55,7 @@ if 'past' not in st.session_state:
 
 # container for text box
 container = st.container()
-questions=["What is the market cap of DGR1R.RG?","What is the forward PE of AUG1LS.VS?",
+questions=["What is the market cap of DGR1R.RG?","What is the forward PE of PKG1T?",
            "Who is the CEO of LHV1T.TL?","What is the profit margin of TSLA? "]
 
 
