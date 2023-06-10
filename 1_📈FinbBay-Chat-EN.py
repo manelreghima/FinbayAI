@@ -22,9 +22,12 @@ load_dotenv()
 # Access the API key
 api_key = os.environ["OPENAI_API_KEY"]
 openai.api_key = os.environ["OPENAI_API_KEY"]
-data = pd.read_csv('data/company_ticker.csv')
-llm = OpenAI(temperature=0)
 
+@st.cache()
+def read_data():
+    data = pd.read_csv('data/company_ticker.csv')
+    return data
+llm = OpenAI(temperature=0)
 def extract_symbol(input):
         # Generate a response
     prompt =  'Extract ticker symbol from this text:' + input
@@ -57,6 +60,7 @@ questions=["What is the market cap of DGR1R.RG?","What is the forward PE of AUG1
 
 
 def process_question(question):
+    data=read_data()
     user_input = question
     company_name = extract_company_name(user_input)
     symbol = str(company_name).strip()
@@ -87,6 +91,7 @@ def process_question(question):
     st.session_state.generated.append(output)
 
 def extract_ticker_symbol(input_text):
+    data=read_data()
     prompt = 'Extract ticker symbol from this text: ' + input_text
     response = llm(prompt)
     ticker_symbol = response.split(": ")[-1].strip()  # Extract the ticker symbol from the response
@@ -116,7 +121,7 @@ def get_graph(symbol):
 
 
 def get_market_data():
-    
+    data=read_data()
     column_list = data['symbol1'].values.tolist()
 
     company_list = []
