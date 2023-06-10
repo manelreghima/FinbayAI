@@ -123,7 +123,7 @@ def get_graph(symbol):
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
 
-
+@st.cache()
 def get_market_data():
     data=read_data()
     column_list = data['symbol2'].values.tolist()
