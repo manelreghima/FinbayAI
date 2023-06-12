@@ -157,48 +157,30 @@ def get_market_data():
 
 market_data=get_market_data()
 
-# Add HTML and CSS for button styling
-st.markdown(
-    """
-    <style>
-    .button-wrapper {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
-    .button-wrapper button {
-        background-color: black;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 4px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# Add the button in a centered wrapper
-button_wrapper = st.empty()
-button_wrapper.markdown(
-    """
-    <div class="button-wrapper">
-        <button onClick="location.href='?new_chat=true'">Start a New Chat</button>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-
-
-
-with container:
+with st.sidebar.container():
+    st.write("")  # Add an empty line for spacing
+    
+    # Center the button using CSS
+    st.markdown("""
+        <style>
+        .sidebar .css-17eq0hr.e19owgy8 {
+            display: flex;
+            justify-content: center;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+    
+    # Set the button color to black
+    st.button("Start a New Chat", key="new_chat_button", key_suffix="sidebar", help="Start a new chat", style="color: black;")
+    
     for question in questions:
         if st.button(question):
             process_question(question)
-    
-    if "new_chat" in st.experimental_get_query_params():
+
+    if st.session_state.get("new_chat_button_sidebar"):
         st.session_state.past.clear()
         st.session_state.generated.clear()
+
 
     with st.form(key='my_form', clear_on_submit=True):
         user_input = st.text_input("Ask a question:", key='input')
