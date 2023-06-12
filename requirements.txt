@@ -7,3 +7,4 @@ plotly
 scikit-learn
 python-dotenv
 langchain
+streamlit-option-menu
