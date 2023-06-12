@@ -162,17 +162,6 @@ with container:
         if st.button(question):
             process_question(question)
     
-    st.markdown(
-    """
-    <style>
-    .sidebar .block-container {
-        display: flex;
-        justify-content: center;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
     if st.sidebar.button("Start a New Chat"):
         st.session_state.past.clear()
         st.session_state.generated.clear()
