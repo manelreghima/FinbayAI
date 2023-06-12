@@ -208,7 +208,7 @@ from streamlit_option_menu import option_menu
 
 with st.sidebar:
     choose = option_menu("App Gallery", ["About", "Photo Editing", "Project Planning", "Python e-Course", "Contact"],
-                         icons=['house', 'camera fill', 'kanban', 'book','person lines fill'],
+                         icons=['Tesla', 'camera fill', 'kanban', 'book','person lines fill'],
                          menu_icon="app-indicator", default_index=0,
                          styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
