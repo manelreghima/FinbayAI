@@ -157,27 +157,14 @@ def get_market_data():
 
 market_data=get_market_data()
 
-with st.sidebar.container():
-    st.write("")  # Add an empty line for spacing
-    
-    # Center the button using CSS
-    st.markdown("""
-        <style>
-        .sidebar .css-17eq0hr.e19owgy8 {
-            display: flex;
-            justify-content: center;
-        }
-        </style>
-        """, unsafe_allow_html=True)
-    
-    # Set the button color to black
-    st.sidebar.button("Start a New Chat", style="color: black;")
-    
+with container:
     for question in questions:
         if st.button(question):
             process_question(question)
+    
+    st.sidebar.markdown("<h1 style='text-align: center;'>Start a New Chat</h1>", unsafe_allow_html=True)
 
-    if st.session_state.get("new_chat_button_sidebar"):
+    if st.sidebar.button(""):
         st.session_state.past.clear()
         st.session_state.generated.clear()
 
