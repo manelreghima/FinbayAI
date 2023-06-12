@@ -169,11 +169,15 @@ with container:
         display: flex;
         justify-content: center;
     }
+    .css-1tr9fke {
+        background-color: black;
+        color: white;
+    }
     </style>
     """,
     unsafe_allow_html=True
 )
-    if st.sidebar.button("Start a New Chat"):
+    if st.sidebar.button("Start a New Chat", key="new_chat_button"):
         st.session_state.past.clear()
         st.session_state.generated.clear()
 
