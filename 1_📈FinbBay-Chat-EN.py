@@ -171,7 +171,7 @@ with st.sidebar.container():
         """, unsafe_allow_html=True)
     
     # Set the button color to black
-    st.button("Start a New Chat", key="new_chat_button", key_suffix="sidebar", help="Start a new chat", style="color: black;")
+    st.sidebar.button("Start a New Chat", style="color: black;")
     
     for question in questions:
         if st.button(question):
