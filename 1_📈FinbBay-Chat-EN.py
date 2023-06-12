@@ -157,29 +157,46 @@ def get_market_data():
 
 market_data=get_market_data()
 
+# Add HTML and CSS for button styling
 st.markdown(
     """
     <style>
-    .sidebar .css-17eq0hr button {
+    .button-wrapper {
         display: flex;
         justify-content: center;
-        align-items: center;
+        margin-top: 20px;
+    }
+    .button-wrapper button {
         background-color: black;
         color: white;
-        width: 100%;
-        height: 50px;
-        margin-top: 20px;
+        padding: 10px 20px;
+        border-radius: 4px;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
+
+# Add the button in a centered wrapper
+button_wrapper = st.empty()
+button_wrapper.markdown(
+    """
+    <div class="button-wrapper">
+        <button onClick="location.href='?new_chat=true'">Start a New Chat</button>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
+
+
 with container:
     for question in questions:
         if st.button(question):
             process_question(question)
     
-    if st.sidebar.button("Start a New Chat"):
+    if "new_chat" in st.experimental_get_query_params():
         st.session_state.past.clear()
         st.session_state.generated.clear()
 
