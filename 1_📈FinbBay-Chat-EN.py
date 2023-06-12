@@ -12,6 +12,7 @@ from langchain.llms import OpenAI
 import numpy as np
 import pandas as pd
 from requests.exceptions import HTTPError
+from streamlit_option_menu import option_menu
 
 st.set_page_config(
     page_title="Finbay AI",
@@ -204,7 +205,6 @@ fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
             # Display the figure in Streamlit
 st.plotly_chart(fig)
 
-from streamlit_option_menu import option_menu
 #change EN chat
 with st.sidebar:
     choose = option_menu("Companies you can currently ask Finbay AI about.", ["APB Apranga", "Arco Vara AS", "Auga Group AB", "AS Baltika", "Coop Pank AS"],
@@ -213,7 +213,7 @@ with st.sidebar:
                          styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
         #"icon": {"color": "orange", "font-size": "30"}, 
-        "nav-link": {"font-size": "50", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
+        "nav-link": {"font-size": "20px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
         "nav-link-selected": {"background-color": "#02ab21"},
     }
     )
