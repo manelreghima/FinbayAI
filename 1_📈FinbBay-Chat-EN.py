@@ -207,9 +207,9 @@ st.plotly_chart(fig)
 from streamlit_option_menu import option_menu
 #change EN chat
 with st.sidebar:
-    choose = option_menu("800+ companies you can currently ask Finbay AI about.", ["About", "Photo Editing", "Project Planning", "Python e-Course", "Contact"],
+    choose = option_menu("Companies you can currently ask Finbay AI about.", ["About", "Photo Editing", "Project Planning", "Python e-Course", "Contact"],
                          #icons=['Tesla', 'camera fill', 'kanban', 'book','person lines fill'],
-                         menu_icon="app-indicator", default_index=0,
+                         #menu_icon="app-indicator", default_index=0,
                          styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
         "icon": {"color": "orange", "font-size": "30"}, 
