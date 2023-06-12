@@ -165,19 +165,25 @@ with container:
     st.markdown(
     """
     <style>
-    .sidebar .block-container {
+    .button-wrapper {
         display: flex;
         justify-content: center;
+        margin-top: 20px;
     }
-    .css-1tr9fke {
+    .button-wrapper button {
         background-color: black;
         color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
-    if st.sidebar.button("Start a New Chat")in st.experimental_get_query_params():
+
+# "Start a New Chat" button in the sidebar
+    button_wrapper = st.empty()
+    if button_wrapper.button("Start a New Chat"):
         st.session_state.past.clear()
         st.session_state.generated.clear()
 
