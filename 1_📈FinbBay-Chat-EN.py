@@ -162,7 +162,7 @@ with container:
         if st.button(question):
             process_question(question)
     
-    if st.button("Start a New Chat"):
+    if st.sidebar.button("Start a New Chat"):
         st.session_state.past.clear()
         st.session_state.generated.clear()
 
