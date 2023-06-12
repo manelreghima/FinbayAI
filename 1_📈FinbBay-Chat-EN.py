@@ -177,7 +177,7 @@ with container:
     """,
     unsafe_allow_html=True
 )
-    if st.sidebar.button("Start a New Chat", key="new_chat_button"):
+    if st.sidebar.button("Start a New Chat")in st.experimental_get_query_params():
         st.session_state.past.clear()
         st.session_state.generated.clear()
 
