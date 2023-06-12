@@ -161,13 +161,20 @@ with container:
     for question in questions:
         if st.button(question):
             process_question(question)
-    
-    st.sidebar.markdown("<h1 style='text-align: center;'>Start a New Chat</h1>", unsafe_allow_html=True)
-
-    if st.sidebar.button(""):
+    st.sidebar.markdown(
+    """
+    <style>
+    .sidebar .block-container {
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+    if st.sidebar.button("Start a New Chat"):
         st.session_state.past.clear()
         st.session_state.generated.clear()
-
 
     with st.form(key='my_form', clear_on_submit=True):
         user_input = st.text_input("Ask a question:", key='input')
