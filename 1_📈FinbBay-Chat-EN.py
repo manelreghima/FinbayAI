@@ -161,7 +161,8 @@ with container:
     for question in questions:
         if st.button(question):
             process_question(question)
-    st.sidebar.markdown(
+    
+    st.markdown(
     """
     <style>
     .sidebar .block-container {
