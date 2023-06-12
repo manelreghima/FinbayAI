@@ -157,6 +157,23 @@ def get_market_data():
 
 market_data=get_market_data()
 
+st.markdown(
+    """
+    <style>
+    .sidebar .css-17eq0hr button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        color: white;
+        width: 100%;
+        height: 50px;
+        margin-top: 20px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 with container:
     for question in questions:
         if st.button(question):
