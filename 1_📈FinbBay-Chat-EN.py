@@ -212,5 +212,5 @@ with st.sidebar:
                           index=0,
                           key="company_select",
                           help="Select a company")
-    symbol = extract_ticker_symbol(choose)
-    get_graph(symbol)
+symbol = extract_ticker_symbol(choose)
+get_graph(symbol)
