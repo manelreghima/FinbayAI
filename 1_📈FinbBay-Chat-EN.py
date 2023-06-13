@@ -66,13 +66,7 @@ def process_question(question):
     company_name = extract_company_name(user_input)
     company_name = str(company_name).strip()
     company_list = data['company'].values.tolist()
-    symbol_list = data['symbol1'].values.tolist()+data['symbol2'].values.tolist()
-
-    #if symbol in data['company'].values:
-    #    symbol = data.loc[data['company'] == symbol, 'symbol2'].iloc[0]
-    #elif symbol in data['symbol1'].values:
-    #    symbol = data.loc[data['company'].str.contains(symbol), 'symbol2'].iloc[0]
-
+   
     if company_name in company_list:
         df_company = data[data['company']==company_name]
         symbol = str(df_company['symbol2'].iloc[0])    
@@ -81,7 +75,6 @@ def process_question(question):
         if symbol in data['symbol1'].values:
             symbol = data.loc[data['company'].str.contains(symbol), 'symbol2'].iloc[0]
         
-
     ticker = yf.Ticker(symbol)
     try:
         ticker_info = ticker.info
@@ -186,7 +179,7 @@ if st.session_state['generated']:
     
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
-            symbol = extract_ticker_symbol(st.session_state['past'][i])
+            symbol = extract_company_name(st.session_state['past'][i])
             message(st.session_state['generated'][i], key=str(i))  # Display the answer
             
             
@@ -198,12 +191,10 @@ if st.session_state['generated']:
             except HTTPError as e:
                 print("An HTTPError occurred:", e)
                 
-            
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
         
-color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])
-
-            # Create the treemap figure
+# Create the treemap figure
+color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
 fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
                             color='price_change', hover_data=['company_name'],
                             color_continuous_scale='RdBu',
