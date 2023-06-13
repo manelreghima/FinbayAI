@@ -67,10 +67,13 @@ def process_question(question):
     company_name = str(company_name).strip()
     company_list = data['company'].values.tolist()
    
-    if company_name in data['symbol1'].values or company_name in company_list:
+    if company_name in data['symbol1'].values:
+      df_company = data[data['symbol1']==company_name]
+      symbol = str(df_company['symbol2'].iloc[0])  
+
+    if company_name in company_list:
       df_company = data[data['company']==company_name]
-      print(df_company)
-      symbol = str(df_company['symbol2'].iloc[0])    
+      symbol = str(df_company['symbol2'].iloc[0])     
         
     ticker = yf.Ticker(symbol)
     try:
