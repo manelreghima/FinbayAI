@@ -195,7 +195,7 @@ with container:
         submit_button = st.form_submit_button(label='Send')
 
     if submit_button and user_input:
-        process_question_chat(user_input)
+        process_question(user_input)
 
 data=read_data()
 if st.session_state['generated']:
