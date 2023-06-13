@@ -76,6 +76,9 @@ def process_question(question):
     if company_name in company_list:
         df_company = data[data['company']==company_name]
         symbol = str(df_company['symbol2'].iloc[0])
+
+    elif symbol in data['symbol1'].values:
+        symbol = data.loc[data['company'].str.contains(symbol), 'symbol2'].iloc[0]    
     else:  
         symbol=extract_symbol(user_input)
 
