@@ -59,44 +59,25 @@ container = st.container()
 questions=["What is the market cap of DGR1R.RG?","What is the forward PE of PKG1T?",
            "Who is the CEO of LHV1T.TL?","What is the profit margin of TSLA? "]
 
+
 def process_question(question):
     data=read_data()
     user_input = question
     company_name = extract_company_name(user_input)
-    symbol = str(company_name).strip()
+    company_name = str(company_name).strip()
     company_list = data['company'].values.tolist()
     symbol_list = data['symbol1'].values.tolist()+data['symbol2'].values.tolist()
 
-    if symbol in data['company'].values:
-        symbol = data.loc[data['company'] == symbol, 'symbol2'].iloc[0]
-    elif symbol in data['symbol1'].values:
-        symbol = data.loc[data['company'].str.contains(symbol), 'symbol2'].iloc[0]
+    #if symbol in data['company'].values:
+    #    symbol = data.loc[data['company'] == symbol, 'symbol2'].iloc[0]
+    #elif symbol in data['symbol1'].values:
+    #    symbol = data.loc[data['company'].str.contains(symbol), 'symbol2'].iloc[0]
 
-    
-    ticker = yf.Ticker(symbol)
-    try:
-        ticker_info = ticker.info
-        
-        if 'error' in ticker_info:
-            print(f"An error occurred for ticker symbol '{symbol}': {ticker_info['error']}")
-        else:
-            print(f"Ticker symbol '{symbol}' does not have an error in the info.")
-    except HTTPError as e:
-        print(f"Sorry, there is currently no data available for the company requested")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
-    text = str(ticker.info)
-    output = chat_query(user_input, text)
-
-    # Store the output
-    st.session_state.past.append(user_input)
-    #st.session_state.generated.append(question)  # Append the question
-    st.session_state.generated.append(output)
-
-def process_question_chat(question):
-    data=read_data()
-    user_input = question
+    if company_name in company_list:
+        df_company = data[data['company']==company_name]
+        symbol = str(df_company['symbol2'].iloc[0])
+    else:  
+        symbol=extract_symbol(user_input)
 
     ticker = yf.Ticker(symbol)
     try:
@@ -177,9 +158,9 @@ def get_market_data():
         'price_change': np.random.random(size=len(column_list))
     })
     
-    return market_data,company_list
+    return market_data
 
-market_data,company_list=get_market_data()
+market_data=get_market_data()
 
 with container:
     for question in questions:
@@ -197,20 +178,13 @@ with container:
     if submit_button and user_input:
         process_question(user_input)
 
-data=read_data()
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
     
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
-            company = extract_company_name(st.session_state['past'][i])
-            company = str(company).strip()
-            if company in company_list:
-                df_company = data[data['company']==company]
-                symbol = str(df_company['symbol2'].iloc[0])
-            else:  
-                symbol=extract_symbol(st.session_state['past'][i])
-            message(st.session_state['generated'][i], key=str(i))
+            symbol = extract_ticker_symbol(st.session_state['past'][i])
+            message(st.session_state['generated'][i], key=str(i))  # Display the answer
             
             
         if i < len(st.session_state['past']):
