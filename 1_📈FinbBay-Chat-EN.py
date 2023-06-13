@@ -59,7 +59,6 @@ container = st.container()
 questions=["What is the market cap of DGR1R.RG?","What is the forward PE of PKG1T?",
            "Who is the CEO of LHV1T.TL?","What is the profit margin of TSLA? "]
 
-
 def process_question(question):
     data=read_data()
     user_input = question
@@ -74,6 +73,31 @@ def process_question(question):
         symbol = data.loc[data['company'].str.contains(symbol), 'symbol2'].iloc[0]
 
     
+    ticker = yf.Ticker(symbol)
+    try:
+        ticker_info = ticker.info
+        
+        if 'error' in ticker_info:
+            print(f"An error occurred for ticker symbol '{symbol}': {ticker_info['error']}")
+        else:
+            print(f"Ticker symbol '{symbol}' does not have an error in the info.")
+    except HTTPError as e:
+        print(f"Sorry, there is currently no data available for the company requested")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+    text = str(ticker.info)
+    output = chat_query(user_input, text)
+
+    # Store the output
+    st.session_state.past.append(user_input)
+    #st.session_state.generated.append(question)  # Append the question
+    st.session_state.generated.append(output)
+
+def process_question_chat(question):
+    data=read_data()
+    user_input = question
+
     ticker = yf.Ticker(symbol)
     try:
         ticker_info = ticker.info
@@ -171,7 +195,7 @@ with container:
         submit_button = st.form_submit_button(label='Send')
 
     if submit_button and user_input:
-        process_question(user_input)
+        process_question_chat(user_input)
 
 data=read_data()
 if st.session_state['generated']:
@@ -186,7 +210,7 @@ if st.session_state['generated']:
                 symbol = str(df_company['symbol2'].iloc[0])
             else:  
                 symbol=extract_symbol(st.session_state['past'][i])
-            message(st.session_state['generated'][i], key=str(i))  # Display the answer
+            message(st.session_state['generated'][i], key=str(i))
             
             
         if i < len(st.session_state['past']):
@@ -210,5 +234,6 @@ fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
 
             # Display the figure in Streamlit
 st.plotly_chart(fig)
+
 
 
