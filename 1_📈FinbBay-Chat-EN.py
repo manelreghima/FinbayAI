@@ -185,7 +185,7 @@ if st.session_state['generated']:
                 df_company = data[data['company']==company]
                 symbol = str(df_company['symbol2'].iloc[0])
             else:  
-                symbol=extract_symbol(input)
+                symbol=extract_symbol(st.session_state['past'][i])
             message(st.session_state['generated'][i], key=str(i))  # Display the answer
             
             
