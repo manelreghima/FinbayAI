@@ -178,7 +178,8 @@ if st.session_state['generated']:
     
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
-            symbol = extract_ticker_symbol(st.session_state['past'][i])
+            company = extract_company_name(st.session_state['past'][i])
+            symbol = extract_ticker_symbol(company)
             message(st.session_state['generated'][i], key=str(i))  # Display the answer
             
             
@@ -203,7 +204,5 @@ fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
 
             # Display the figure in Streamlit
 st.plotly_chart(fig)
-
-#change EN chat
 
 
