@@ -50,8 +50,8 @@ with st.sidebar:
                              "nav-link": {"text-align": "left", "margin": "0px", "--hover-color": "#eee"},
                              "nav-link-selected": {"background-color": "#02ab21"},
                          })
-
-symbol = extract_ticker_symbol(choose)
-
+data=read_data()
+df_company = data[data['company'].str.contains(input)]
+symbol = str(df_company['symbol2'].iloc[0])
 # Move get_graph(symbol) outside the sidebar
 get_graph(symbol)
