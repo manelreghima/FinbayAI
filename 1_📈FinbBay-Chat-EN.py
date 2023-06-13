@@ -209,7 +209,7 @@ st.plotly_chart(fig)
 with st.sidebar:
     choose = option_menu("Companies you can currently ask Finbay AI about.", ["APB Apranga", "Arco Vara AS", "Auga Group AB", "AS Baltika", "Coop Pank AS"],
                          #icons=['Tesla', 'camera fill', 'kanban', 'book','person lines fill'],
-                         menu_icon=None, default_index=0,
+                         menu_icon="app", default_index=0,
                          styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
         #"icon": {"color": "orange", "font-size": "30"}, 
@@ -217,3 +217,5 @@ with st.sidebar:
         "nav-link-selected": {"background-color": "#02ab21"},
     }
     )
+    symbol = extract_ticker_symbol(choose)
+    get_graph(symbol)
