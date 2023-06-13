@@ -153,9 +153,9 @@ def get_market_data():
         'price_change': np.random.random(size=len(column_list))
     })
     
-    return market_data
+    return market_data,company_list
 
-market_data=get_market_data()
+market_data,company_list=get_market_data()
 
 with container:
     for question in questions:
@@ -173,13 +173,19 @@ with container:
     if submit_button and user_input:
         process_question(user_input)
 
+data=read_data()
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
     
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
-            company = extract_company_name(st.session_state['past'][i])
-            symbol = extract_ticker_symbol(company)
+            company = extract_company_name(input)
+            company = str(company).strip()
+            if company in company_list:
+                df_company = data[data['company']==company]
+                symbol = str(df_company['symbol2'].iloc[0])
+            else:  
+                symbol=extract_symbol(input)
             message(st.session_state['generated'][i], key=str(i))  # Display the answer
             
             
