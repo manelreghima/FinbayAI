@@ -88,7 +88,7 @@ def process_question(question):
         print(f"Sorry, there is currently no data available for the company requested")
     except Exception as e:
         print(f"An error occurred: {e}")
-    get_graph(symbol)
+    
     text = str(ticker.info)
     output = chat_query(user_input, text)
 
@@ -188,7 +188,7 @@ if st.session_state['generated']:
             ticker = yf.Ticker(symbol)
             try:
                 ticker_info = ticker.info
-                #get_graph(symbol)
+                get_graph(symbol)
             except HTTPError as e:
                 print("An HTTPError occurred:", e)
                 
