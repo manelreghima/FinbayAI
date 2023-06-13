@@ -88,13 +88,14 @@ def process_question(question):
         print(f"Sorry, there is currently no data available for the company requested")
     except Exception as e:
         print(f"An error occurred: {e}")
-    get_graph(symbol)
+    
     text = str(ticker.info)
     output = chat_query(user_input, text)
 
     # Store the output
     st.session_state.past.append(user_input)
     #st.session_state.generated.append(question)  # Append the question
+    get_graph(symbol)
     st.session_state.generated.append(output)
 
 def extract_ticker_symbol(input_text):
