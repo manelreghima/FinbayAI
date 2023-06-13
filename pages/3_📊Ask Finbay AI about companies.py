@@ -43,7 +43,7 @@ def get_graph(symbol):
 with st.sidebar:
     choose = option_menu(
                          ["APB Apranga", "Arco Vara AS", "Auga Group AB", "AS Baltika", "Coop Pank AS"],
-                         menu_icon="app",
+                         
                          default_index=0,
                          styles={
                              "container": {"padding": "5!important", "background-color": "#fafafa"},
