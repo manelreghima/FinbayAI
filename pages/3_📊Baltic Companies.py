@@ -9,19 +9,6 @@ import plotly.graph_objects as go
 def read_data():
     data = pd.read_csv('data/company_ticker.csv')
     return data
-llm = OpenAI(temperature=0)
-
-def extract_ticker_symbol(input_text):
-    data=read_data()
-    prompt = 'Extract ticker symbol from this text: ' + input_text
-    response = llm(prompt)
-    ticker_symbol = response.split(": ")[-1].strip()  # Extract the ticker symbol from the response
-    for index, row in data.iterrows():
-    # Check if the symbol is found in symbol1
-        if ticker_symbol in row['symbol1']:
-        # Update the value symbol to the corresponding value in 'symbol2'
-            ticker_symbol=row['symbol2']
-    return ticker_symbol
 
 def get_graph(symbol):
     today = datetime.now()
@@ -40,6 +27,7 @@ def get_graph(symbol):
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
 
+data=read_data()
 with st.sidebar:
     choose = option_menu("Companies you can currently ask Finbay AI about.",
                          ["APB Apranga", "Arco Vara AS", "Auga Group AB", "AS Baltika", "Coop Pank AS"],
@@ -50,7 +38,6 @@ with st.sidebar:
                              "nav-link": {"text-align": "left", "margin": "0px", "--hover-color": "#eee"},
                              "nav-link-selected": {"background-color": "#02ab21"},
                          })
-data=read_data()
 df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
 # Move get_graph(symbol) outside the sidebar
