@@ -41,7 +41,7 @@ def get_graph(symbol):
     st.plotly_chart(fig2)
 
 with st.sidebar:
-    choose = option_menu("Companies you can currently ask Finbay AI about.",
+    choose = option_menu(
                          ["APB Apranga", "Arco Vara AS", "Auga Group AB", "AS Baltika", "Coop Pank AS"],
                          menu_icon="app",
                          default_index=0,
