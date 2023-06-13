@@ -155,7 +155,6 @@ def get_market_data():
     
     return market_data
 
-
 market_data=get_market_data()
 
 with container:
@@ -207,20 +206,4 @@ st.plotly_chart(fig)
 
 #change EN chat
 
-with st.sidebar:
-    choose = option_menu("Companies you can currently ask Finbay AI about.",
-                         ["APB Apranga", "Arco Vara AS", "Auga Group AB", "AS Baltika", "Coop Pank AS"],
-                         menu_icon="app",
-                         default_index=0,
-                         styles={
-                             "container": {"padding": "5!important", "background-color": "#fafafa"},
-                             "nav-link": {"text-align": "left", "margin": "0px", "--hover-color": "#eee"},
-                             "nav-link-selected": {"background-color": "#02ab21"},
-                         })
 
-symbol = extract_ticker_symbol(choose)
-
-if symbol is not None:
-        st.experimental_rerun()
-# Move get_graph(symbol) outside the sidebar
-get_graph(symbol)
