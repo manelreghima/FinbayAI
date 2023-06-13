@@ -206,11 +206,19 @@ fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
 st.plotly_chart(fig)
 
 #change EN chat
+
 with st.sidebar:
-    choose = st.selectbox("Companies you can currently ask Finbay AI about.",
-                          ["APB Apranga", "Arco Vara AS", "Auga Group AB", "AS Baltika", "Coop Pank AS"],
-                          index=0,
-                          key="company_select",
-                          help="Select a company")
+    choose = option_menu("Companies you can currently ask Finbay AI about.",
+                         ["APB Apranga", "Arco Vara AS", "Auga Group AB", "AS Baltika", "Coop Pank AS"],
+                         menu_icon="app",
+                         default_index=0,
+                         styles={
+                             "container": {"padding": "5!important", "background-color": "#fafafa"},
+                             "nav-link": {"text-align": "left", "margin": "0px", "--hover-color": "#eee"},
+                             "nav-link-selected": {"background-color": "#02ab21"},
+                         })
+
 symbol = extract_ticker_symbol(choose)
+
+# Move get_graph(symbol) outside the sidebar
 get_graph(symbol)
