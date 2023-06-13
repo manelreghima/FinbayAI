@@ -179,7 +179,7 @@ if st.session_state['generated']:
     
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
-            company = extract_company_name(input)
+            company = extract_company_name(st.session_state['past'][i])
             company = str(company).strip()
             if company in company_list:
                 df_company = data[data['company']==company]
