@@ -219,6 +219,6 @@ with st.sidebar:
                          })
 
 symbol = extract_ticker_symbol(choose)
-
+st.empty()
 # Move get_graph(symbol) outside the sidebar
 get_graph(symbol)
