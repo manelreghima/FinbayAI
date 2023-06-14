@@ -78,7 +78,7 @@ with st.sidebar:
 df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
 # Move get_graph(symbol) outside the sidebar
-get_graph(symbol)
+#get_graph(symbol)
 
 
 llm = OpenAI(temperature=0)
