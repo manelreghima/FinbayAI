@@ -6,6 +6,7 @@ from datetime import datetime
 import yfinance as yf
 import plotly.graph_objects as go
 from requests.exceptions import HTTPError
+from streamlit_chat import message
 
 
 def read_data():
@@ -150,3 +151,20 @@ with container:
 
     if submit_button and user_input:
         process_question(user_input)
+
+if st.session_state['generated']:
+    num_responses = len(st.session_state['generated'])
+    
+    for i in reversed(range(num_responses)):
+        if i < len(st.session_state['generated']):
+            #symbol = extract_company_name(st.session_state['past'][i])
+            message(st.session_state['generated'][i], key=str(i))  # Display the answer
+            
+            
+        if i < len(st.session_state['past']):
+           
+            get_graph(symbol)
+            
+                
+            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
+ 
