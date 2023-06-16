@@ -173,27 +173,26 @@ logo_images = [
     "data/companies_logos/MERK.jpg"
 ]
 
-columns = st.columns(3)
+# Calculate the number of rows and columns for the table
+num_rows = (len(questions) + 2) // 3  # Round up division
+num_columns = min(len(questions), 3)
 
-for i in range(0, len(questions), 3):
-    with columns[0]:
-        st.image(logo_images[i], width=100, use_column_width='auto')
-        if st.button(questions[i]):
-            process_question(questions[i])
+# Display the questions and logos in a table format
+with st.container():
+    for row in range(num_rows):
+        with st.columns(num_columns):
+            for col in range(num_columns):
+                index = row * num_columns + col
+                if index < len(questions):
+                    # Display the logo image centered
+                    st.image(logo_images[index], width=100, use_column_width='auto', output_format='auto')
 
-    with columns[1]:
-        if i + 1 < len(questions):
-            st.image(logo_images[i + 1], width=100, use_column_width='auto')
-            if st.button(questions[i + 1]):
-                process_question(questions[i + 1])
+                    # Display the question centered
+                    st.markdown(f"<p align='center'>{questions[index]}</p>", unsafe_allow_html=True)
 
-    with columns[2]:
-        if i + 2 < len(questions):
-            st.image(logo_images[i + 2], width=100, use_column_width='auto')
-            if st.button(questions[i + 2]):
-                process_question(questions[i + 2])
-
-
+                    # Process the question when the button is clicked
+                    if st.button("Answer"):
+                        process_question(questions[index])
 container = st.container()
 with container:
 
