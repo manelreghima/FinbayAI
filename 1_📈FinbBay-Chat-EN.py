@@ -153,6 +153,7 @@ def get_market_data():
 market_data=get_market_data()
 
 # container for text box
+
 questions = [
     "What is the market cap of DGR1R.RG?",
     "What is the forward PE of PKG1T?",
@@ -174,12 +175,24 @@ logo_images = [
 
 columns = st.columns(3)
 
-for i, question in enumerate(questions):
-    # Display the logo image for each question
-    columns[i % 3].image(logo_images[i], width=5, use_column_width='auto')
+for i in range(0, len(questions), 3):
+    with columns[0]:
+        st.image(logo_images[i], width=100, use_column_width='auto')
+        if st.button(questions[i]):
+            process_question(questions[i])
 
-    if columns[i % 3].button(question):
-        process_question(question)
+    with columns[1]:
+        if i + 1 < len(questions):
+            st.image(logo_images[i + 1], width=100, use_column_width='auto')
+            if st.button(questions[i + 1]):
+                process_question(questions[i + 1])
+
+    with columns[2]:
+        if i + 2 < len(questions):
+            st.image(logo_images[i + 2], width=100, use_column_width='auto')
+            if st.button(questions[i + 2]):
+                process_question(questions[i + 2])
+
 
 container = st.container()
 with container:
