@@ -167,15 +167,16 @@ market_data=get_market_data()
 columns = st.columns(3)
 
 # Iterate over the questions and create buttons
-for i, question in enumerate(questions):
-    if columns[i % 3].button(question):
-        process_question(question)
+
 
 with container:
     #for question in questions:
     #    if st.button(question):
     #        process_question(question)
-    
+    for i, question in enumerate(questions):
+        if columns[i % 3].button(question):
+            process_question(question)
+
     if st.sidebar.button("Start a New Chat"):
         st.session_state.past.clear()
         st.session_state.generated.clear()
