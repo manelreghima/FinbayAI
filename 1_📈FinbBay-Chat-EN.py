@@ -174,12 +174,12 @@ logo_images = [
 
 columns = st.columns(3)
 
-container1 = st.container()
-
 for i, question in enumerate(questions):
-    # Display the logo image in a centered layout
-    with container1:
-        st.image(logo_images[i], use_column_width=True, caption=question)
+    # Display the logo image for each question
+    columns[i % 3].image(logo_images[i], use_column_width=True, width=20)
+
+    if columns[i % 3].button(question):
+        process_question(question)
 
 container = st.container()
 with container:
