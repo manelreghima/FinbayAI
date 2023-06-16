@@ -153,7 +153,6 @@ def get_market_data():
 market_data=get_market_data()
 
 # container for text box
-container = st.container()
 questions = [
     "What is the market cap of DGR1R.RG?",
     "What is the forward PE of PKG1T?",
@@ -196,6 +195,8 @@ fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
                             color_continuous_midpoint=color_midpoint)
 
 st.plotly_chart(fig)
+container = st.container()
+
 with container:
 
     if st.sidebar.button("Start a New Chat"):
