@@ -163,13 +163,13 @@ questions = [
     "How has the stock price of AS LHV Group performed over the past year?"
 ]
 columns = st.columns(3)
-
-with container:
-
-    for i, question in enumerate(questions):
+for i, question in enumerate(questions):
         if columns[i % 3].button(question):
             process_question(question)
-            
+with container:
+
+    
+
     if st.sidebar.button("Start a New Chat"):
         st.session_state.past.clear()
         st.session_state.generated.clear()
