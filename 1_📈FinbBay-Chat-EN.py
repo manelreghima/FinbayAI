@@ -164,8 +164,7 @@ def get_market_data():
 
 market_data=get_market_data()
 
-container = st.beta_container()
-columns = st.beta_columns(3)
+columns = st.columns(3)
 
 # Iterate over the questions and create buttons
 for i, question in enumerate(questions):
