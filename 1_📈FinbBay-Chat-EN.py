@@ -153,7 +153,6 @@ def get_market_data():
 market_data=get_market_data()
 
 # container for text box
-
 questions = [
     "What is the market cap of DGR1R.RG?",
     "What is the forward PE of PKG1T?",
@@ -173,26 +172,15 @@ logo_images = [
     "data/companies_logos/MERK.jpg"
 ]
 
-# Calculate the number of rows and columns for the table
-num_rows = (len(questions) + 2) // 3  # Round up division
-num_columns = min(len(questions), 3)
+columns = st.columns(3)
 
-# Display the questions and logos in a table format
-with st.container():
-    for row in range(num_rows):
-        cols = st.columns(num_columns)
-        for col in range(num_columns):
-            index = row * num_columns + col
-            if index < len(questions):
-                # Display the logo image centered
-                cols[col].image(logo_images[index], width=100, use_column_width='auto', output_format='auto')
+for i, question in enumerate(questions):
+    # Display the logo image for each question
+    columns[i % 3].image(logo_images[i], use_column_width=True)
 
-                # Display the question centered
-                cols[col].markdown(f"<p align='center'>{questions[index]}</p>", unsafe_allow_html=True)
+    if columns[i % 3].button(question):
+        process_question(question)
 
-                # Process the question when the button is clicked
-                if cols[col].button("Answer"):
-                    process_question(questions[index])
 container = st.container()
 with container:
 
