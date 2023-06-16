@@ -180,19 +180,19 @@ num_columns = min(len(questions), 3)
 # Display the questions and logos in a table format
 with st.container():
     for row in range(num_rows):
-        with st.columns(num_columns):
-            for col in range(num_columns):
-                index = row * num_columns + col
-                if index < len(questions):
-                    # Display the logo image centered
-                    st.image(logo_images[index], width=100, use_column_width='auto', output_format='auto')
+        cols = st.columns(num_columns)
+        for col in range(num_columns):
+            index = row * num_columns + col
+            if index < len(questions):
+                # Display the logo image centered
+                cols[col].image(logo_images[index], width=100, use_column_width='auto', output_format='auto')
 
-                    # Display the question centered
-                    st.markdown(f"<p align='center'>{questions[index]}</p>", unsafe_allow_html=True)
+                # Display the question centered
+                cols[col].markdown(f"<p align='center'>{questions[index]}</p>", unsafe_allow_html=True)
 
-                    # Process the question when the button is clicked
-                    if st.button("Answer"):
-                        process_question(questions[index])
+                # Process the question when the button is clicked
+                if cols[col].button("Answer"):
+                    process_question(questions[index])
 container = st.container()
 with container:
 
