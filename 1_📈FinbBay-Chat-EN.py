@@ -56,8 +56,18 @@ if 'past' not in st.session_state:
 
 # container for text box
 container = st.container()
-questions=["What is the market cap of DGR1R.RG?","What is the forward PE of PKG1T?",
-           "Who is the CEO of LHV1T.TL?","What is the profit margin of TSLA? "]
+questions = [
+    "What is the market cap of DGR1R.RG?",
+    "What is the forward PE of PKG1T?",
+    "Who is the CEO of LHV1T.TL?",
+    "What is the profit margin of TSLA?",
+    "What is the dividend rate and yield for AS LHV Group?",
+    "How has the stock price of AS LHV Group performed over the past year?"
+]
+
+table_data = [questions[i:i+3] for i in range(0, len(questions), 3)]
+
+st.table(table_data)
 
 
 def process_question(question):
