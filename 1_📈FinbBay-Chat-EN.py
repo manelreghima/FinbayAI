@@ -170,12 +170,6 @@ columns = st.columns(3)
 
 
 with container:
-    #for question in questions:
-    #    if st.button(question):
-    #        process_question(question)
-    for i, question in enumerate(questions):
-        if columns[i % 3].button(question):
-            process_question(question)
 
     if st.sidebar.button("Start a New Chat"):
         st.session_state.past.clear()
@@ -187,6 +181,10 @@ with container:
 
     if submit_button and user_input:
         process_question(user_input)
+    
+    for i, question in enumerate(questions):
+        if columns[i % 3].button(question):
+            process_question(question)
 
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
@@ -214,7 +212,6 @@ fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
                             color_continuous_scale='RdBu',
                             color_continuous_midpoint=color_midpoint)
 
-            # Display the figure in Streamlit
 st.plotly_chart(fig)
 
 
