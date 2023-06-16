@@ -53,18 +53,6 @@ if 'generated' not in st.session_state:
 if 'past' not in st.session_state:
     st.session_state['past'] = []
 
-
-# container for text box
-container = st.container()
-questions = [
-    "What is the market cap of DGR1R.RG?",
-    "What is the forward PE of PKG1T?",
-    "Who is the CEO of LHV1T.TL?",
-    "What is the profit margin of TSLA?",
-    "What is the dividend rate and yield for AS LHV Group?",
-    "How has the stock price of AS LHV Group performed over the past year?"
-]
-
 def process_question(question):
     data=read_data()
     user_input = question
@@ -164,13 +152,24 @@ def get_market_data():
 
 market_data=get_market_data()
 
+# container for text box
+container = st.container()
+questions = [
+    "What is the market cap of DGR1R.RG?",
+    "What is the forward PE of PKG1T?",
+    "Who is the CEO of LHV1T.TL?",
+    "What is the profit margin of TSLA?",
+    "What is the dividend rate and yield for AS LHV Group?",
+    "How has the stock price of AS LHV Group performed over the past year?"
+]
 columns = st.columns(3)
-
-# Iterate over the questions and create buttons
-
 
 with container:
 
+    for i, question in enumerate(questions):
+        if columns[i % 3].button(question):
+            process_question(question)
+            
     if st.sidebar.button("Start a New Chat"):
         st.session_state.past.clear()
         st.session_state.generated.clear()
@@ -182,9 +181,7 @@ with container:
     if submit_button and user_input:
         process_question(user_input)
     
-    for i, question in enumerate(questions):
-        if columns[i % 3].button(question):
-            process_question(question)
+    
 
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
