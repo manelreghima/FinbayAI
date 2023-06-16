@@ -176,7 +176,7 @@ columns = st.columns(3)
 
 for i, question in enumerate(questions):
     # Display the logo image for each question
-    columns[i % 3].image(logo_images[i], width=20, use_column_width='auto')
+    columns[i % 3].image(logo_images[i], width=5, use_column_width='auto')
 
     if columns[i % 3].button(question):
         process_question(question)
