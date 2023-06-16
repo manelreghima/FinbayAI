@@ -173,11 +173,10 @@ logo_images = [
 ]
 
 columns = st.columns(3)
-from streamlit_components import stc
 
 for i, question in enumerate(questions):
     # Display the logo image for each question
-    columns[i % 3].markdown(stc.html(f'<i class="{logo_images[i]}"></i>'), unsafe_allow_html=True)
+    columns[i % 3].image(logo_images[i], use_column_width=True)
 
     if columns[i % 3].button(question):
         process_question(question)
