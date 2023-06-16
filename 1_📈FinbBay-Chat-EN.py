@@ -65,11 +65,6 @@ questions = [
     "How has the stock price of AS LHV Group performed over the past year?"
 ]
 
-table_data = [questions[i:i+3] for i in range(0, len(questions), 3)]
-
-st.table(table_data)
-
-
 def process_question(question):
     data=read_data()
     user_input = question
@@ -169,10 +164,18 @@ def get_market_data():
 
 market_data=get_market_data()
 
+container = st.beta_container()
+columns = st.beta_columns(3)
+
+# Iterate over the questions and create buttons
+for i, question in enumerate(questions):
+    if columns[i % 3].button(question):
+        process_question(question)
+
 with container:
-    for question in questions:
-        if st.button(question):
-            process_question(question)
+    #for question in questions:
+    #    if st.button(question):
+    #        process_question(question)
     
     if st.sidebar.button("Start a New Chat"):
         st.session_state.past.clear()
