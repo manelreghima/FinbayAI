@@ -166,20 +166,6 @@ columns = st.columns(3)
 for i, question in enumerate(questions):
         if columns[i % 3].button(question):
             process_question(question)
-with container:
-
-    
-
-    if st.sidebar.button("Start a New Chat"):
-        st.session_state.past.clear()
-        st.session_state.generated.clear()
-
-    with st.form(key='my_form', clear_on_submit=True):
-        user_input = st.text_input("Ask a question:", key='input')
-        submit_button = st.form_submit_button(label='Send')
-
-    if submit_button and user_input:
-        process_question(user_input)
     
     
 
@@ -210,6 +196,18 @@ fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
                             color_continuous_midpoint=color_midpoint)
 
 st.plotly_chart(fig)
+with container:
+
+    if st.sidebar.button("Start a New Chat"):
+        st.session_state.past.clear()
+        st.session_state.generated.clear()
+
+    with st.form(key='my_form', clear_on_submit=True):
+        user_input = st.text_input("Ask a question:", key='input')
+        submit_button = st.form_submit_button(label='Send')
+
+    if submit_button and user_input:
+        process_question(user_input)
 
 
 
