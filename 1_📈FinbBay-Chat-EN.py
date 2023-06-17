@@ -195,17 +195,14 @@ for i in range(num_questions):
     row_index = i // num_columns
 
     with columns[col_index]:
-        image_bytes = io.BytesIO()
-        small_logo_images[i].save(image_bytes, format='PNG')
-        st.image(image_bytes, width=30, caption=None, use_column_width=False)
-        
-        # Center the logo image using CSS
         st.markdown(
-            f'<style>div.stImage > img {{ display: block; margin-left: auto; margin-right: auto; }}</style>',
+            f'<div style="display: flex; flex-direction: column; align-items: center;">'
+            f'<img src="{small_logo_images[i]}" style="width:30px;height:30px;">'
+            f'<br>'
+            f'<button>{questions[i]}</button>'
+            f'</div>',
             unsafe_allow_html=True
         )
-        
-        st.button(questions[i])
 
 container = st.container()
 with container:
