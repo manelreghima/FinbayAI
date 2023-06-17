@@ -194,14 +194,9 @@ for i in range(num_questions):
     row_index = i // num_columns
 
     with columns[col_index]:
-        image_path = os.path.join("data", "companies_logos", "DGR1R.png")
-        image_exists = os.path.isfile(image_path)
-
-        if image_exists:
-            st.image(image_path, width=10, use_column_width=True)
-        else:
-            st.write("Image not found")
-
+        
+        st.image(small_logo_images[i], width=10, use_column_width=True)
+        
         st.button(questions[i])
 
 container = st.container()
