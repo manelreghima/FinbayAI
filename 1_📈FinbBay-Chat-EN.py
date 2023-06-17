@@ -174,7 +174,7 @@ logo_images = [
 
 
 
-columns = st.rows(4)
+columns = st.columns(4)
 
 for i, question in enumerate(questions):
     
