@@ -260,4 +260,5 @@ def handle_click(trace, points, selector):
     # Add more conditions for other companies as needed
 
 # Register the callback function for the plotly_click event
-chart.plotly_chart.on("plotly_click", handle_click)
+chart.on("plotly_click", handle_click)
+
