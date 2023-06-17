@@ -184,7 +184,7 @@ for image_path in logo_images:
     small_logo_images.append(resized_image)
 
 # Create a 2x2 table
-table = [[None, None], [None, None]]
+table = [[None, None, None], [None, None, None]]
 
 # Add small_logo_images to the table
 table[0][0] = st.image(small_logo_images[0])
