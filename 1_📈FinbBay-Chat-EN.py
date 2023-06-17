@@ -175,11 +175,14 @@ logo_images = [
 columns = st.columns(3)
 
 for i, question in enumerate(questions):
-    # Display the logo image for each question
-    columns[i % 3].image(logo_images[i], use_column_width=True)
+    row = i // 3  # Calculate the row number based on the index
 
-    if columns[i % 3].button(question):
+    # Display the logo image for each question in the corresponding row
+    columns[row].image(logo_images[i], use_column_width=True)
+
+    if columns[row].button(question):
         process_question(question)
+
 
 container = st.container()
 with container:
