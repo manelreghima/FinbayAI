@@ -178,7 +178,7 @@ for i, question in enumerate(questions):
         columns[i].image(questions[i], use_column_width=True)
 
     else:
-        #columns[i].button(question)
+        columns[i]=question
         process_question(question)
 
 container = st.container()
