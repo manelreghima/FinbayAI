@@ -177,7 +177,7 @@ logo_images = [
 rows = 2
 cols = 3
 
-for row in range(rows):
+for row in [0,1]:
     columns = st.columns(cols)
     start_index = row * cols
     end_index = start_index + cols
