@@ -198,7 +198,10 @@ for i in range(num_questions):
         image_exists = os.path.isfile(image_path)
 
         if image_exists:
-            st.image(image_path, width=30)
+            st.empty()
+            col_center = st.container()
+            col_center.image(image_path, width=30)
+            col_center.empty()
         else:
             st.write("Image not found")
 
