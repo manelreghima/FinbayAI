@@ -182,7 +182,7 @@ for image_path in logo_images:
     small_logo_images.append(resized_image)
 
 # Create two columns using st.beta_columns
-col1, col2, col3 = st.beta_columns(3)
+col1, col2, col3 = st.columns(3)
 
 # Add small_logo_images and buttons to the columns
 with col1:
