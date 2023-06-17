@@ -237,20 +237,23 @@ if st.session_state['generated']:
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
         
 # Create the treemap figure
-color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
-fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
-                            color='price_change', hover_data=['company_name'],
-                            color_continuous_scale='RdBu',
-                            color_continuous_midpoint=color_midpoint)
 
-st.plotly_chart(fig)
+
+# Assuming you have the necessary data and variables defined
+color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])
+fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
+                 color='price_change', hover_data=['company_name'],
+                 color_continuous_scale='RdBu',
+                 color_continuous_midpoint=color_midpoint)
 
 # Render the plotly chart
 chart = st.plotly_chart(fig)
+
+# Define the callback function for the plotly_click event
 def handle_click(trace, points, selector):
     company_name = points.point_data.data['hovertext']
     # Redirect the user to another page based on the company name
-    if company_name == 'IGN1L.VS':
+    if company_name == 'LHV1T.TL':
         st.markdown("[Link to Company A](https://finbayai.streamlit.app/Baltic_Companies)")
     elif company_name == 'Company B':
         st.markdown("[Link to Company B](https://www.example.com/company-b)")
