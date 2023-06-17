@@ -182,7 +182,20 @@ class SquareContainer:
     def __init__(self, image, button):
         self.image = image
         self.button = button
-
+    def display(self):
+        container_style = "padding: 10px; border: 1px solid black; width: 100px; height: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;"
+        image_style = "width: 50px; height: 50px;"
+        button_style = "margin-top: 10px;"
+        
+        st.markdown(
+            f"""
+            <div style="{container_style}">
+                <div style="{image_style}">{self.image}</div>
+                <div style="{button_style}">{self.button}</div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 # Resize images in logo_images
 small_logo_images = []
 for image_path in logo_images:
