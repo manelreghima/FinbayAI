@@ -174,7 +174,7 @@ logo_images = [
 ]
 
 
-table = []
+table = [[]]
 
 from PIL import Image
 
