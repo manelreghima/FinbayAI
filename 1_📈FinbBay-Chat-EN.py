@@ -197,7 +197,7 @@ for i in range(num_questions):
         
         st.markdown(
             f'<div style="display: flex; flex-direction: column; align-items: center;">'
-            f'<img src="{small_logo_images[i]}">'
+            f'<img src="{{ small_logo_images[i] }}" style="width:30px;height:30px;">'
             
             f'</div>',
             unsafe_allow_html=True
