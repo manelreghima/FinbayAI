@@ -198,6 +198,13 @@ for i in range(num_questions):
         image_bytes = io.BytesIO()
         small_logo_images[i].save(image_bytes, format='PNG')
         st.image(image_bytes, width=30, caption=None, use_column_width=False)
+        
+        # Center the logo image using CSS
+        st.markdown(
+            f'<style>div.stImage > img {{ display: block; margin-left: auto; margin-right: auto; }}</style>',
+            unsafe_allow_html=True
+        )
+        
         st.button(questions[i])
 
 container = st.container()
