@@ -195,11 +195,11 @@ for i in range(num_questions):
 
     with columns[col_index]:
         st.markdown(
-            f'<div style="display: flex; justify-content: center;">'
-            f'<img src="{logo_images[i]}" style="width:30px;height:30px;">'
-            f'</div>',
-            unsafe_allow_html=True
-        )
+        f'<div style="display: flex; justify-content: center;">'
+        f'<img src="{small_logo_images[i]}" alt="Logo" style="width:30px;height:30px;">'
+        f'</div>',
+        unsafe_allow_html=True
+    )
         st.button(questions[i])
 
 container = st.container()
