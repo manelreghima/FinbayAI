@@ -15,6 +15,14 @@ from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
 
+st.markdown("# This is a header")
+
+# Alternatively, use the title function
+st.title("This is also a header")
+
+# You can customize the header's level by specifying the `heading_level` argument
+st.title("Header level 3", heading_level=3)
+
 st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
