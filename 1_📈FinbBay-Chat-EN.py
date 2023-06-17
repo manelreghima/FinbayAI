@@ -186,7 +186,7 @@ for image_path in logo_images:
 num_columns = 3
 num_questions = len(questions)
 num_rows = (num_questions + num_columns - 1) // num_columns
-columns = st.beta_columns(num_columns)
+columns = st.columns(num_columns)
 
 # Add small_logo_images and buttons to the columns
 for i in range(num_questions):
