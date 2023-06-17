@@ -152,7 +152,9 @@ def get_market_data():
 
 market_data=get_market_data()
 
-# container for text box
+import streamlit as st
+
+# Container for text box
 questions = [
     "What is the market cap of DGR1R.RG?",
     "What is the forward PE of PKG1T?",
@@ -172,16 +174,17 @@ logo_images = [
     "data/companies_logos/MERK.jpg"
 ]
 
+# Create two columns for logos and questions
+col_logos, col_questions = st.columns(2)
 
+# Display logos in the first column
+for logo_image in logo_images:
+    col_logos.image(logo_image, use_column_width=True)
 
-columns = st.columns(3)
+# Display questions in the second column
+for question in questions:
+    col_questions.write(question)
 
-for i, question in enumerate(questions):
-    
-    columns[i % 3].image(logo_images[i], use_column_width=True)
-
-    if columns[i % 3].button(question):
-        process_question(question)
 
 container = st.container()
 with container:
