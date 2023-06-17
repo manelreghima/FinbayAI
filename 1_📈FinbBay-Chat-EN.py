@@ -174,14 +174,17 @@ logo_images = [
 
 columns = st.columns(3)
 
-for i, question in enumerate(questions):
-    row = i // 3  # Calculate the row number based on the index
+# Reshape the questions and logo_images into a 4x3 grid
+questions_grid = np.reshape(questions, (4, 3))
+logo_images_grid = np.reshape(logo_images, (4, 3))
 
-    # Display the logo image for each question in the corresponding row
-    columns[row].image(logo_images[i], use_column_width=True)
+for row in range(4):
+    for col in range(3):
+        # Display the logo image for each question in the corresponding row and column
+        columns[col].image(logo_images_grid[row, col], use_column_width=True)
 
-    if columns[row].button(question):
-        process_question(question)
+        if columns[col].button(questions_grid[row, col]):
+            process_question(questions_grid[row, col])
 
 
 container = st.container()
