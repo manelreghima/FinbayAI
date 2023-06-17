@@ -182,65 +182,26 @@ for image_path in logo_images:
     small_logo_images.append(resized_image)
 
 
-# Create two columns using st.beta_columns
-col1, col2, col3 = st.columns(3)
-col4, col5, col6 = st.columns(3)
+# Create columns dynamically
+num_columns = 3
+num_questions = len(questions)
+num_rows = (num_questions + num_columns - 1) // num_columns
+columns = st.beta_columns(num_columns)
 
 # Add small_logo_images and buttons to the columns
-with col1:
-    st.markdown(
-        f'<div style="display: flex; justify-content: center;">'
-        f'<img src="{small_logo_images[0]}" style="width:30px;height:30px;">'
-        f'</div>',
-        unsafe_allow_html=True
-    )
-    st.button(questions[0])
+for i in range(num_questions):
+    col_index = i % num_columns
+    row_index = i // num_columns
 
-with col2:
-    st.markdown(
-        f'<div style="display: flex; justify-content: center;">'
-        f'<img src="{small_logo_images[1]}" style="width:30px;height:30px;">'
-        f'</div>',
-        unsafe_allow_html=True
-    )
-    st.button(questions[1])
+    with columns[col_index]:
+        st.markdown(
+            f'<div style="display: flex; justify-content: center;">'
+            f'<img src="{small_logo_images[i]}" style="width:30px;height:30px;">'
+            f'</div>',
+            unsafe_allow_html=True
+        )
+        st.button(questions[i])
 
-with col3:
-    st.markdown(
-        f'<div style="display: flex; justify-content: center;">'
-        f'<img src="{small_logo_images[2]}" style="width:30px;height:30px;">'
-        f'</div>',
-        unsafe_allow_html=True
-    )
-    st.button(questions[2])
-
-
-with col4:
-    st.markdown(
-        f'<div style="display: flex; justify-content: center;">'
-        f'<img src="{small_logo_images[0]}" style="width:30px;height:30px;">'
-        f'</div>',
-        unsafe_allow_html=True
-    )
-    st.button(questions[3])
-
-with col5:
-    st.markdown(
-        f'<div style="display: flex; justify-content: center;">'
-        f'<img src="{small_logo_images[1]}" style="width:30px;height:30px;">'
-        f'</div>',
-        unsafe_allow_html=True
-    )
-    st.button(questions[4])
-
-with col6:
-    st.markdown(
-        f'<div style="display: flex; justify-content: center;">'
-        f'<img src="{small_logo_images[2]}" style="width:30px;height:30px;">'
-        f'</div>',
-        unsafe_allow_html=True
-    )
-    st.button(questions[5])
 container = st.container()
 with container:
 
