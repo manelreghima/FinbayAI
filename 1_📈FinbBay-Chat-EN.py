@@ -154,15 +154,19 @@ market_data=get_market_data()
 
 # container for text box
 questions = [
-    "data/companies_logos/DGR1R.png",
-    "data/companies_logos/PKG1T.jpg",
-    "data/companies_logos/HPR1T.png",
     "What is the market cap of DGR1R.RG?",
     "What is the forward PE of PKG1T?",
     "Who is the CEO of HPR1T.TL?",
     "What is the profit margin of TSLA?",
     "What is the dividend rate and yield for GRG1L?",
-    "How has the stock price of AS Merko Ehitus performed over the past year?",
+    "How has the stock price of AS Merko Ehitus performed over the past year?"
+]
+
+# Define your logo images for each question
+logo_images = [
+    "data/companies_logos/DGR1R.png",
+    "data/companies_logos/PKG1T.jpg",
+    "data/companies_logos/HPR1T.png",
     "data/companies_logos/TSLA.png",
     "data/companies_logos/GRG1L.jpg",
     "data/companies_logos/MERK.jpg"
@@ -170,15 +174,13 @@ questions = [
 
 
 
-columns = st.columns(3)
+columns = st.rows(4)
 
 for i, question in enumerate(questions):
-    if i in [0,1,2,6,7,8]:
-    # Display the logo image for each question
-        columns[i].image(questions[i], use_column_width=True)
+    
+    columns[i % 2].image(logo_images[i], use_column_width=True)
 
-    else:
-        columns[i]=question
+    if columns[i % 2].button(question):
         process_question(question)
 
 container = st.container()
