@@ -181,18 +181,18 @@ for image_path in logo_images:
     resized_image = image.resize((30, 30))  # Adjust the dimensions as per your preference
     small_logo_images.append(resized_image)
 
-# Create a 2x3 table
-table = [[None, None, None], [None, None, None]]
+# Create two columns using st.beta_columns
+col1, col2, col3 = st.columns(3)
 
-# Add small_logo_images to the table
-table[0][0] = st.image(small_logo_images[0])
-table[1][0] = st.button(questions[0])
+# Add small_logo_images and buttons to the columns
+col1.image(small_logo_images[0])
+col1.button(questions[0])
 
-table[0][1] = st.image(small_logo_images[1])
-table[1][1] = st.button(questions[1])
+col2.image(small_logo_images[1])
+col2.button(questions[1])
 
-table[0][2] = st.image(small_logo_images[2])
-table[1][2] = st.button(questions[2])
+col3.image(small_logo_images[2])
+col3.button(questions[2])
 
 
 container = st.container()
