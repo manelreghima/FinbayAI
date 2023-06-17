@@ -198,7 +198,7 @@ for i in range(num_questions):
         image_exists = os.path.isfile(image_path)
 
         if image_exists:
-            st.image(image_path, width=30, use_column_width=True)
+            st.image(image_path, width=10, use_column_width=True)
         else:
             st.write("Image not found")
 
