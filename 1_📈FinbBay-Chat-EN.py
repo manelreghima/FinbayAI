@@ -173,20 +173,20 @@ logo_images = [
     #"data/companies_logos/MERK.jpg"
 ]
 
+
 table = [
     [],
     []
 ]
 
-table[0,0].image(logo_images[0], use_column_width=True)
-table[0,1].image(logo_images[1], use_column_width=True)
-table[0,2].image(logo_images[2], use_column_width=True)
+table[0].append(st.image(logo_images[0], use_column_width=True))
+table[0].append(st.image(logo_images[1], use_column_width=True))
+table[0].append(st.image(logo_images[2], use_column_width=True))
 
+table[1].append(st.button(questions[0]))
+table[1].append(st.button(questions[1]))
+table[1].append(st.button(questions[2]))
 
-
-table[1,0].button(questions[0])
-table[1,1].button(questions[1])
-table[1,2].button(questions[2])
 
 container = st.container()
 with container:
