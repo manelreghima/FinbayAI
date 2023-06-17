@@ -177,7 +177,8 @@ for i, question in enumerate(questions):
     # Display the logo image for each question
         columns[i].image(questions[i], use_column_width=True)
 
-    if columns[i].button(question):
+    else:
+        columns[i].button(question)
         process_question(question)
 
 container = st.container()
