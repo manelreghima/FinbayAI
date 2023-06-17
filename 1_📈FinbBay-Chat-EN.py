@@ -174,8 +174,6 @@ logo_images = [
 ]
 
 
-table = [[]]
-
 from PIL import Image
 
 # Resize images in logo_images
@@ -185,15 +183,18 @@ for image_path in logo_images:
     resized_image = image.resize((30, 30))  # Adjust the dimensions as per your preference
     small_logo_images.append(resized_image)
 
+# Create a 2x2 table
+table = [[None, None], [None, None]]
+
 # Add small_logo_images to the table
-table[0][0]=(st.image(small_logo_images[0]))
-table[1][0]=(st.button(questions[0]))
+table[0][0] = st.image(small_logo_images[0])
+table[1][0] = st.button(questions[0])
 
-#table[1].append(st.image(small_logo_images[1]))
-#table[1].append(st.button(questions[1]))
+table[0][1] = st.image(small_logo_images[1])
+table[1][1] = st.button(questions[1])
 
-#table[2].append(st.image(small_logo_images[2]))
-#table[2].append(st.button(questions[2]))
+table[2][0] = st.image(small_logo_images[2])
+table[2][1] = st.button(questions[2])
 
 container = st.container()
 with container:
