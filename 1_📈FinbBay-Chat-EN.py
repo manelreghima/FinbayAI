@@ -197,7 +197,7 @@ with col1:
 with col2:
     st.markdown(
         f'<div style="display: flex; justify-content: center;">'
-        f'<img src="{small_logo_images[1]}" style="width:30px;height:30px;">'
+        f'<img src="data/companies_logos/DGR1R.png" style="width:30px;height:30px;">'
         f'</div>',
         unsafe_allow_html=True
     )
