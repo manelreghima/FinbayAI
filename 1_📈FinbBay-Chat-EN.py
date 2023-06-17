@@ -179,9 +179,19 @@ table = [
     []
 ]
 
-table[0].append(st.image(logo_images[0], use_column_width=True))
-table[0].append(st.image(logo_images[1], use_column_width=True))
-table[0].append(st.image(logo_images[2], use_column_width=True))
+from PIL import Image
+
+# Resize images in logo_images
+small_logo_images = []
+for image_path in logo_images:
+    image = Image.open(image_path)
+    resized_image = image.resize((50, 50))  # Adjust the dimensions as per your preference
+    small_logo_images.append(resized_image)
+
+# Add small_logo_images to the table
+table[0].append(st.image(small_logo_images[0], use_column_width=True))
+table[0].append(st.image(small_logo_images[1], use_column_width=True))
+table[0].append(st.image(small_logo_images[2], use_column_width=True))
 
 table[1].append(st.button(questions[0]))
 table[1].append(st.button(questions[1]))
