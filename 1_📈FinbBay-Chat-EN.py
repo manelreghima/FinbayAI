@@ -152,39 +152,45 @@ def get_market_data():
 
 market_data=get_market_data()
 
-import streamlit as st
 
 # Container for text box
 questions = [
     "What is the market cap of DGR1R.RG?",
     "What is the forward PE of PKG1T?",
-    "Who is the CEO of HPR1T.TL?",
-    "What is the profit margin of TSLA?",
-    "What is the dividend rate and yield for GRG1L?",
-    "How has the stock price of AS Merko Ehitus performed over the past year?"
+    "Who is the CEO of HPR1T.TL?"
+    #"What is the profit margin of TSLA?",
+    #"What is the dividend rate and yield for GRG1L?",
+    #"How has the stock price of AS Merko Ehitus performed over the past year?"
 ]
 
 # Define your logo images for each question
 logo_images = [
     "data/companies_logos/DGR1R.png",
     "data/companies_logos/PKG1T.jpg",
-    "data/companies_logos/HPR1T.png",
-    "data/companies_logos/TSLA.png",
-    "data/companies_logos/GRG1L.jpg",
-    "data/companies_logos/MERK.jpg"
+    "data/companies_logos/HPR1T.png"
+    #"data/companies_logos/TSLA.png",
+    #"data/companies_logos/GRG1L.jpg",
+    #"data/companies_logos/MERK.jpg"
 ]
 
 # Create 2 rows and 6 columns
 rows = 2
-cols = 6
+cols = 3
 
 for row in range(rows):
-    for col in range(cols):
-        index = row * cols + col
-        if row == 0:
-            st.image(logo_images[index], use_column_width=True)
-        else:
-            st.write(questions[index])
+    columns = st.columns(cols)
+    start_index = row * cols
+    end_index = start_index + cols
+
+    # Display logos in the first row
+    if row == 0:
+        for i, logo_image in enumerate(logo_images[start_index:end_index]):
+            columns[i].image(logo_image, use_column_width=True)
+
+    # Display questions in the second row
+    if row == 1:
+        for i, question in enumerate(questions[start_index:end_index]):
+            columns[i].write(question)
 
 
 container = st.container()
