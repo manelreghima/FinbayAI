@@ -174,13 +174,13 @@ logo_images = [
 
 
 
-columns = st.columns(4)
+columns = st.columns(3)
 
 for i, question in enumerate(questions):
     
-    columns[i % 2].image(logo_images[i], use_column_width=True)
+    columns[i % 3].image(logo_images[i], use_column_width=True)
 
-    if columns[i % 2].button(question):
+    if columns[i % 3].button(question):
         process_question(question)
 
 container = st.container()
