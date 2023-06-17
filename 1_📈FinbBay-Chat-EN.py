@@ -186,21 +186,21 @@ col1, col2, col3 = st.columns(3)
 
 # Add small_logo_images and buttons to the columns
 with col1:
-    col1_center = st.container()
-    with col1_center:
-        st.image(small_logo_images[0], use_column_width=True)
+    st.markdown(
+        f'<div style="display: flex; justify-content: center;">'
+        f'<img src="{small_logo_images[0]}" style="width:30px;height:30px;">'
+        f'</div>',
+        unsafe_allow_html=True
+    )
+    st.image(small_logo_images[0],width=30, use_column_width=False)
     st.button(questions[0])
 
 with col2:
-    col2_center = st.container()
-    with col2_center:
-        st.image(small_logo_images[1], use_column_width=True)
+    st.image(small_logo_images[1],width=30, use_column_width=False)
     st.button(questions[1])
 
 with col3:
-    col3_center = st.container()
-    with col3_center:
-        st.image(small_logo_images[2], use_column_width=True)
+    st.image(small_logo_images[2],width=30, use_column_width=False)
     st.button(questions[2])
 
 
