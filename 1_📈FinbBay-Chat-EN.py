@@ -189,8 +189,8 @@ for image_path in logo_images:
     small_logo_images.append(resized_image)
 
 # Add small_logo_images to the table
-table[0,0]=(st.image(small_logo_images[0]))
-table[1,0]=(st.button(questions[0]))
+table[0][0]=(st.image(small_logo_images[0]))
+table[1][0]=(st.button(questions[0]))
 
 #table[1].append(st.image(small_logo_images[1]))
 #table[1].append(st.button(questions[1]))
