@@ -199,8 +199,9 @@ for i in range(num_questions):
             f'</div>',
             unsafe_allow_html=True
         )
-        st.button(questions[i])
-        process_question(questions[i])
+        if columns[col_index].button(questions[i]):
+                process_question(questions[i])
+        
 
 container = st.container()
 with container:
