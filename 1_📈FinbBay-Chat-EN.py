@@ -153,28 +153,26 @@ def get_market_data():
 market_data=get_market_data()
 
 
-# Container for text box
+from PIL import Image
+
 questions = [
     "What is the market cap of DGR1R.RG?",
     "What is the forward PE of PKG1T?",
-    "Who is the CEO of HPR1T.TL?"
-    #"What is the profit margin of TSLA?",
-    #"What is the dividend rate and yield for GRG1L?",
-    #"How has the stock price of AS Merko Ehitus performed over the past year?"
+    "Who is the CEO of HPR1T.TL?",
+    "What is the profit margin of TSLA?",
+    "What is the dividend rate and yield for GRG1L?",
+    "How has the stock price of AS Merko Ehitus performed over the past year?"
 ]
 
 # Define your logo images for each question
 logo_images = [
     "data/companies_logos/DGR1R.png",
     "data/companies_logos/PKG1T.jpg",
-    "data/companies_logos/HPR1T.png"
-    #"data/companies_logos/TSLA.png",
-    #"data/companies_logos/GRG1L.jpg",
-    #"data/companies_logos/MERK.jpg"
+    "data/companies_logos/HPR1T.png",
+    "data/companies_logos/TSLA.png",
+    "data/companies_logos/GRG1L.jpg",
+    "data/companies_logos/MERK.jpg"
 ]
-
-
-from PIL import Image
 
 # Resize images in logo_images
 small_logo_images = []
@@ -183,7 +181,7 @@ for image_path in logo_images:
     resized_image = image.resize((30, 30))  # Adjust the dimensions as per your preference
     small_logo_images.append(resized_image)
 
-# Create a 2x2 table
+# Create a 2x3 table
 table = [[None, None, None], [None, None, None]]
 
 # Add small_logo_images to the table
@@ -195,6 +193,7 @@ table[1][1] = st.button(questions[1])
 
 table[0][2] = st.image(small_logo_images[2])
 table[1][2] = st.button(questions[2])
+
 
 container = st.container()
 with container:
