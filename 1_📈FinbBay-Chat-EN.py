@@ -190,7 +190,8 @@ for row in range(rows):
     # Display questions in the second row
     if row == 1:
         for i, question in enumerate(questions[start_index:end_index]):
-            columns[i].write(question)
+            if columns[i % 3].button(question):
+                process_question(question)
 
 
 container = st.container()
