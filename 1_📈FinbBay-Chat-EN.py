@@ -194,12 +194,14 @@ for i in range(num_questions):
     row_index = i // num_columns
 
     with columns[col_index]:
-        st.markdown(
-        f'<div style="display: flex; justify-content: center;">'
-        f'<img src="data/companies_logos/DGR1R.png" style="width:30px;height:30px;">'
-        f'</div>',
-        unsafe_allow_html=True
-    )
+        image_path = os.path.join("data", "companies_logos", "DGR1R.png")
+        image_exists = os.path.isfile(image_path)
+
+        if image_exists:
+            st.image(image_path, width=30)
+        else:
+            st.write("Image not found")
+
         st.button(questions[i])
 
 container = st.container()
