@@ -194,7 +194,7 @@ for i in range(num_questions):
     row_index = i // num_columns
 
     with columns[col_index]:
-        st.image(small_logo_images[i], use_column_width=True)
+        st.image(small_logo_images[i])
         st.button(questions[i])
 
 container = st.container()
