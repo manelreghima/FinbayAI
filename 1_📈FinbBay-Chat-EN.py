@@ -186,15 +186,15 @@ col1, col2, col3 = st.columns(3)
 
 # Add small_logo_images and buttons to the columns
 with col1:
-    st.image(small_logo_images[0], use_column_width=True)
+    st.image(small_logo_images[0],width=30, use_column_width=False)
     st.button(questions[0])
 
 with col2:
-    st.image(small_logo_images[1], use_column_width=True)
+    st.image(small_logo_images[1],width=30, use_column_width=False)
     st.button(questions[1])
 
 with col3:
-    st.image(small_logo_images[2], use_column_width=True)
+    st.image(small_logo_images[2],width=30, use_column_width=False)
     st.button(questions[2])
 
 
