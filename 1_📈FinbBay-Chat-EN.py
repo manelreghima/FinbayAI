@@ -173,7 +173,7 @@ questions = [
 columns = st.columns(3)
 
 for i, question in enumerate(questions):
-    if i in [1,2,3,7,8,9]:
+    if i in [0,1,2,6,7,8]:
     # Display the logo image for each question
         columns[i].image(questions[i], use_column_width=True)
 
