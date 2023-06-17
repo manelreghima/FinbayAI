@@ -193,8 +193,8 @@ table[1][0] = st.button(questions[0])
 table[0][1] = st.image(small_logo_images[1])
 table[1][1] = st.button(questions[1])
 
-table[2][0] = st.image(small_logo_images[2])
-table[2][1] = st.button(questions[2])
+table[0][2] = st.image(small_logo_images[2])
+table[1][2] = st.button(questions[2])
 
 container = st.container()
 with container:
