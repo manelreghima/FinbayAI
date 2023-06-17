@@ -245,5 +245,16 @@ fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
 
 st.plotly_chart(fig)
 
+# Render the plotly chart
+chart = st.plotly_chart(fig)
+def handle_click(trace, points, selector):
+    company_name = points.point_data.data['hovertext']
+    # Redirect the user to another page based on the company name
+    if company_name == 'IGN1L.VS':
+        st.markdown("[Link to Company A](https://finbayai.streamlit.app/Baltic_Companies)")
+    elif company_name == 'Company B':
+        st.markdown("[Link to Company B](https://www.example.com/company-b)")
+    # Add more conditions for other companies as needed
 
-
+# Register the callback function for the plotly_click event
+chart.plotly_chart.on("plotly_click", handle_click)
