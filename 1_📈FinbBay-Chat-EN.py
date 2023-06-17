@@ -195,7 +195,7 @@ for i in range(num_questions):
 
     with columns[col_index]:
         
-        st.image(small_logo_images[i], width=10, use_column_width=True)
+        st.image(small_logo_images[i], use_column_width=True)
         
         st.button(questions[i])
 
