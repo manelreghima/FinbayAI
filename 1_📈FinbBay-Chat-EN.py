@@ -15,29 +15,6 @@ from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
 
-st.markdown(
-    """
-    <style>
-    .app-bar {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        background-color: #f8f9fa;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .app-bar-title {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 0 10px;
-    }
-    </style>
-    """
-, unsafe_allow_html=True)
-
-# Create the app bar
-st.markdown('<div class="app-bar"><span class="app-bar-title">My Streamlit App</span></div>', unsafe_allow_html=True)
-
-
 st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
