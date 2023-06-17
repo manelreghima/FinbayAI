@@ -174,24 +174,14 @@ logo_images = [
 ]
 
 # Create 2 rows and 6 columns
-rows = 2
-cols = 3
+columns = st.columns(3)
 
-for row in [0,1]:
-    columns = st.columns(cols)
-    start_index = row * cols
-    end_index = start_index + cols
+for i, question in enumerate(questions):
+    # Display the logo image for each question
+    columns[i % 3].image(logo_images[i], use_column_width=True)
 
-    # Display logos in the first row
-    if row == 0:
-        for i, logo_image in enumerate(logo_images[start_index:end_index]):
-            columns[i].image(logo_image, use_column_width=True)
-
-    # Display questions in the second row
-    if row == 1:
-        for i, question in enumerate(questions[start_index:end_index]):
-            if columns[i % 3].button(question):
-                process_question(question)
+    if columns[i % 3].button(question):
+        process_question(question)
 
 
 container = st.container()
