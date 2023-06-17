@@ -179,19 +179,12 @@ rows = 2
 cols = 6
 
 for row in range(rows):
-    columns = st.columns(cols)
-    start_index = row * cols
-    end_index = start_index + cols
-
-    # Display logos in the first row
-    if row == 0:
-        for i, logo_image in enumerate(logo_images[start_index:end_index]):
-            columns[i].image(logo_image, use_column_width=True)
-
-    # Display questions in the second row
-    if row == 1:
-        for i, question in enumerate(questions[start_index:end_index]):
-            columns[i].write(question)
+    for col in range(cols):
+        index = row * cols + col
+        if row == 0:
+            st.image(logo_images[index], use_column_width=True)
+        else:
+            st.write(questions[index])
 
 
 container = st.container()
