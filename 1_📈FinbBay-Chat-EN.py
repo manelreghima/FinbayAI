@@ -181,6 +181,7 @@ for image_path in logo_images:
     resized_image = image.resize((30, 30))  # Adjust the dimensions as per your preference
     small_logo_images.append(resized_image)
 
+
 # Create two columns using st.beta_columns
 col1, col2, col3 = st.columns(3)
 
@@ -192,15 +193,24 @@ with col1:
         f'</div>',
         unsafe_allow_html=True
     )
-    st.image(small_logo_images[0],width=30, use_column_width=False)
     st.button(questions[0])
 
 with col2:
-    st.image(small_logo_images[1],width=30, use_column_width=False)
+    st.markdown(
+        f'<div style="display: flex; justify-content: center;">'
+        f'<img src="{small_logo_images[1]}" style="width:30px;height:30px;">'
+        f'</div>',
+        unsafe_allow_html=True
+    )
     st.button(questions[1])
 
 with col3:
-    st.image(small_logo_images[2],width=30, use_column_width=False)
+    st.markdown(
+        f'<div style="display: flex; justify-content: center;">'
+        f'<img src="{small_logo_images[2]}" style="width:30px;height:30px;">'
+        f'</div>',
+        unsafe_allow_html=True
+    )
     st.button(questions[2])
 
 
