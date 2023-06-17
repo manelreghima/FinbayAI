@@ -176,6 +176,7 @@ logo_images = [
 
 table = [
     [],
+    [],
     []
 ]
 
