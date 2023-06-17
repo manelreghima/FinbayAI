@@ -13,6 +13,7 @@ import numpy as np
 import pandas as pd
 from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
+from PIL import Image
 
 st.set_page_config(
     page_title="Finbay AI",
@@ -152,9 +153,6 @@ def get_market_data():
 
 market_data=get_market_data()
 
-
-from PIL import Image
-
 questions = [
     "What is the market cap of DGR1R.RG?",
     "What is the forward PE of PKG1T?",
@@ -197,8 +195,7 @@ for i in range(num_questions):
         
         st.markdown(
             f'<div style="display: flex; flex-direction: column; align-items: center;">'
-            f'<img src="{{ small_logo_images[i] }}" style="width:30px;height:30px;">'
-            
+            f'<img src="{small_logo_images[i]}" style="width:30px;height:30px;">'
             f'</div>',
             unsafe_allow_html=True
         )
