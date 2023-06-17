@@ -174,16 +174,24 @@ logo_images = [
     "data/companies_logos/MERK.jpg"
 ]
 
-# Create two columns for logos and questions
-col_logos, col_questions = st.columns(2)
+# Create 2 rows and 6 columns
+rows = 2
+cols = 6
 
-# Display logos in the first column
-for logo_image in logo_images:
-    col_logos.image(logo_image, use_column_width=True)
+for row in range(rows):
+    columns = st.columns(cols)
+    start_index = row * cols
+    end_index = start_index + cols
 
-# Display questions in the second column
-for question in questions:
-    col_questions.write(question)
+    # Display logos in the first row
+    if row == 0:
+        for i, logo_image in enumerate(logo_images[start_index:end_index]):
+            columns[i].image(logo_image, use_column_width=True)
+
+    # Display questions in the second row
+    if row == 1:
+        for i, question in enumerate(questions[start_index:end_index]):
+            columns[i].write(question)
 
 
 container = st.container()
