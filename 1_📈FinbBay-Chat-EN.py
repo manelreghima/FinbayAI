@@ -154,6 +154,7 @@ market_data=get_market_data()
 
 
 from PIL import Image
+import io
 
 questions = [
     "What is the market cap of DGR1R.RG?",
@@ -194,12 +195,9 @@ for i in range(num_questions):
     row_index = i // num_columns
 
     with columns[col_index]:
-        st.markdown(
-            f'<div style="display: flex; justify-content: center;">'
-            f'<img src="{small_logo_images[i]}" style="width:30px;height:30px;">'
-            f'</div>',
-            unsafe_allow_html=True
-        )
+        image_bytes = io.BytesIO()
+        small_logo_images[i].save(image_bytes, format='PNG')
+        st.image(image_bytes, width=30, caption=None, use_column_width=False)
         st.button(questions[i])
 
 container = st.container()
