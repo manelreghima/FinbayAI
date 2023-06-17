@@ -184,6 +184,7 @@ for image_path in logo_images:
 
 # Create two columns using st.beta_columns
 col1, col2, col3 = st.columns(3)
+col4, col5, col6 = st.columns(3)
 
 # Add small_logo_images and buttons to the columns
 with col1:
@@ -214,7 +215,32 @@ with col3:
     st.button(questions[2])
 
 
+with col4:
+    st.markdown(
+        f'<div style="display: flex; justify-content: center;">'
+        f'<img src="{small_logo_images[0]}" style="width:30px;height:30px;">'
+        f'</div>',
+        unsafe_allow_html=True
+    )
+    st.button(questions[3])
 
+with col5:
+    st.markdown(
+        f'<div style="display: flex; justify-content: center;">'
+        f'<img src="{small_logo_images[1]}" style="width:30px;height:30px;">'
+        f'</div>',
+        unsafe_allow_html=True
+    )
+    st.button(questions[4])
+
+with col6:
+    st.markdown(
+        f'<div style="display: flex; justify-content: center;">'
+        f'<img src="{small_logo_images[2]}" style="width:30px;height:30px;">'
+        f'</div>',
+        unsafe_allow_html=True
+    )
+    st.button(questions[5])
 container = st.container()
 with container:
 
