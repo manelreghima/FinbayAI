@@ -200,6 +200,7 @@ for i in range(num_questions):
             unsafe_allow_html=True
         )
         st.button(questions[i])
+        process_question(questions[i])
 
 container = st.container()
 with container:
