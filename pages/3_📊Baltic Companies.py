@@ -73,7 +73,7 @@ with st.sidebar:
                          default_index=0,
                          styles={
                              "container": {"padding": "5!important", "background-color": "#1D1D1D"},
-                             "nav-link": {"text-align": "left", "margin": "0px", "--hover-color": "#eee"},
+                             "nav-link": {"text-align": "left", "margin": "0px", "--hover-color": "#262626"},
                              "nav-link-selected": {"background-color": "#00A767"},
                          })
 df_company = data[data['company']==choose]
