@@ -31,6 +31,16 @@ def get_graph(symbol):
     st.plotly_chart(fig2)
 
 data=read_data()
+custom_css = """
+<style>
+.option_menu {
+  background-color: #1D1D1D; /* Replace with your desired color */
+  color: #FFFFFF; /* Replace with the desired text color */
+}
+</style>
+"""
+
+st.markdown(custom_css, unsafe_allow_html=True)
 with st.sidebar:
     choose = option_menu("Companies you can currently ask Finbay AI about.",
                          ['APB Apranga',
