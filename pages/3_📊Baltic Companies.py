@@ -31,16 +31,7 @@ def get_graph(symbol):
     st.plotly_chart(fig2)
 
 data=read_data()
-custom_css = """
-<style>
-.option_menu {
-  background-color: #1D1D1D; /* Replace with your desired color */
-  color: #FFFFFF; /* Replace with the desired text color */
-}
-</style>
-"""
 
-st.markdown(custom_css, unsafe_allow_html=True)
 with st.sidebar:
     choose = option_menu("Companies you can currently ask Finbay AI about.",
                          ['APB Apranga',
@@ -81,9 +72,9 @@ with st.sidebar:
                          
                          default_index=0,
                          styles={
-                             "container": {"padding": "5!important", "background-color": "#fafafa"},
+                             "container": {"padding": "5!important", "background-color": "#1D1D1D"},
                              "nav-link": {"text-align": "left", "margin": "0px", "--hover-color": "#eee"},
-                             "nav-link-selected": {"background-color": "#02ab21"},
+                             "nav-link-selected": {"background-color": "#262626"},
                          })
 df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
