@@ -253,6 +253,5 @@ sidebar_container = st.sidebar.container()
 
 # Add content to the container
 with sidebar_container:
-    with st.expander("Box"):
-        st.button("Companies")
-        st.button("Chat")
+        st.sidebar.button("Companies")
+        st.sidebar.button("Chat")
