@@ -249,9 +249,25 @@ st.plotly_chart(fig)
 
 
 
+import streamlit.components.v1 as components
+
 sidebar_container = st.sidebar.container()
 
 # Add content to the container
 with sidebar_container:
-        st.sidebar.button("Companies")
-        st.sidebar.button("Chat")
+    components.html(
+        """
+        <style>
+        .sidebar-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        </style>
+        """
+    )
+
+    st.markdown('<div class="sidebar-buttons">', unsafe_allow_html=True)
+    st.button("Companies")
+    st.button("Chat")
+    st.markdown('</div>', unsafe_allow_html=True)
