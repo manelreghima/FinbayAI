@@ -253,6 +253,6 @@ sidebar_container = st.sidebar.container()
 
 # Add content to the container
 with sidebar_container:
-    st.header("Window Title")
-    st.write("This is the content of the window.")
-    st.button("Click Me")
+    
+    st.button("Companies")
+    st.button("Chat")
