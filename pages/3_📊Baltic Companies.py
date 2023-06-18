@@ -74,7 +74,7 @@ with st.sidebar:
                          styles={
                              "container": {"padding": "5!important", "background-color": "#1D1D1D"},
                              "nav-link": {"text-align": "left", "margin": "0px", "--hover-color": "#eee"},
-                             "nav-link-selected": {"background-color": "#262626"},
+                             "nav-link-selected": {"background-color": "#00A767"},
                          })
 df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
