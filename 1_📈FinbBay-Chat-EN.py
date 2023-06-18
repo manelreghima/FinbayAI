@@ -15,13 +15,7 @@ from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
 
-sidebar_container = st.sidebar.container()
 
-# Add content to the container
-with sidebar_container:
-    st.header("Window Title")
-    st.write("This is the content of the window.")
-    st.button("Click Me")
 
 st.set_page_config(
     page_title="Finbay AI",
@@ -255,3 +249,10 @@ st.plotly_chart(fig)
 
 
 
+sidebar_container = st.sidebar.container()
+
+# Add content to the container
+with sidebar_container:
+    st.header("Window Title")
+    st.write("This is the content of the window.")
+    st.button("Click Me")
