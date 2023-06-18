@@ -247,11 +247,3 @@ fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
 
 st.plotly_chart(fig)
 
-
-
-sidebar_container = st.sidebar.container()
-
-# Add content to the container
-with sidebar_container:
-        st.sidebar.button("Companies")
-        st.button("Chat")
