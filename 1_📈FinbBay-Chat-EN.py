@@ -14,7 +14,6 @@ import pandas as pd
 from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
-import emoji
 
 
 
@@ -224,7 +223,7 @@ if st.session_state['generated']:
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
             symbol = extract_company_name(st.session_state['past'][i])
-            message(st.session_state['generated'][i].strip(),emoji.emojize(":robot_face:"), key=str(i))  # Display the answer without leading/trailing whitespace
+            message(st.session_state['generated'][i].strip(), key=str(i))  # Display the answer without leading/trailing whitespace
             
             if i < len(st.session_state['past']):
                 ticker = yf.Ticker(symbol)
