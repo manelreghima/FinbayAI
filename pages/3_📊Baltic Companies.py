@@ -160,10 +160,6 @@ for i in range(num_questions):
         if columns[col_index].button(questions[i]):
                 process_question(questions[i])
 with container:
-    for question in questions:
-        if st.button(question):
-            process_question(question)
-    
     if st.sidebar.button("Start a New Chat"):
         st.session_state.past.clear()
         st.session_state.generated.clear()
@@ -173,7 +169,7 @@ with container:
         submit_button = st.form_submit_button(label='Send')
 
     if submit_button and user_input:
-        process_question(user_input)
+        process_question(user_input) 
 
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
