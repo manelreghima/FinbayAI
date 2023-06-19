@@ -94,7 +94,6 @@ def extract_company_name(input):
     return llm(prompt) 
 
 # container for text box
-container = st.container()
 questions = [
     "What is the market cap of "+str(choose)+"?",
     "What is the forward PE of "+str(choose)+"?",
