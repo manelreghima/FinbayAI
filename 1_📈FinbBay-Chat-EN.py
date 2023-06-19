@@ -223,7 +223,7 @@ if st.session_state['generated']:
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
             symbol = extract_company_name(st.session_state['past'][i])
-            message(st.session_state['generated'][i].rstrip(), key=str(i))  # Display the answer without line break
+            message(st.session_state['generated'][i].strip(), key=str(i))  # Display the answer without leading/trailing whitespace
             
             if i < len(st.session_state['past']):
                 ticker = yf.Ticker(symbol)
@@ -234,7 +234,7 @@ if st.session_state['generated']:
                     print("An HTTPError occurred:", e)
                 
                 message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
-   
+  
 # Create the treemap figure
 color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
 fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
