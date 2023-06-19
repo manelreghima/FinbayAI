@@ -93,17 +93,6 @@ def extract_company_name(input):
     prompt =  'Extract company name from this text:' + input
     return llm(prompt) 
 
-# container for text box
-questions = [
-    "What is the market cap of "+str(choose)+"?",
-    "What is the forward PE of "+str(choose)+"?",
-    "Who is the CEO of "+str(choose)+"?",
-    "What is the profit margin of "+str(choose)+"?",
-    "What is the dividend rate and yield for "+str(choose)+"?",
-    "How has the stock price of "+str(choose)+" performed over the past year?"
-]
-
-
 
 def process_question(question):
     data=read_data()
@@ -143,6 +132,16 @@ def process_question(question):
     st.session_state.generated.append(output)
 
 
+# container for text box
+questions = [
+    "What is the market cap of "+str(choose)+"?",
+    "What is the forward PE of "+str(choose)+"?",
+    "Who is the CEO of "+str(choose)+"?",
+    "What is the profit margin of "+str(choose)+"?",
+    "What is the dividend rate and yield for "+str(choose)+"?",
+    "How has the stock price of "+str(choose)+" performed over the past year?"
+]
+
 # Create columns dynamically
 num_columns = 3
 num_questions = len(questions)
@@ -158,6 +157,8 @@ for i in range(num_questions):
         
         if columns[col_index].button(questions[i]):
                 process_question(questions[i])
+container = st.container()
+
 with container:
     if st.sidebar.button("Start a New Chat"):
         st.session_state.past.clear()
