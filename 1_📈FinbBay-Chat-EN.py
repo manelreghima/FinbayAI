@@ -238,6 +238,8 @@ if st.session_state['generated']:
                 
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
         
+
+
 import webbrowser
 import plotly.express as px
 import streamlit as st
@@ -260,10 +262,9 @@ def on_click(trace, points, selector):
         # Get the index of the clicked point
         idx = points.point_inds[0]
         # Retrieve the company information based on the index
-        company_name = points.trace.customdata[idx]
+        company_name = trace.customdata[idx]
         # Open the desired link based on the clicked company
-        if company_name == 'EGR1T.TL':
-            webbrowser.open('https://finbayai.streamlit.app/Baltic_Companies')
+        webbrowser.open('https://finbayai.streamlit.app/Baltic_Companies')
 
 # Assign the click event handler to the Treemap
 fig.for_each_trace(lambda trace: trace.on_click(on_click))
