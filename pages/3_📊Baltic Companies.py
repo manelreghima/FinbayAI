@@ -95,8 +95,15 @@ def extract_company_name(input):
 
 # container for text box
 container = st.container()
-questions=["What is the market cap of "+str(choose)+"?","What is the forward PE of "+str(choose)+"?",
-           "Who is the CEO of "+str(choose)+"?","What is the profit margin of "+str(choose)+"?"]
+questions = [
+    "What is the market cap of "+str(choose)+"?",
+    "What is the forward PE of "+str(choose)+"?",
+    "Who is the CEO of "+str(choose)+"?",
+    "What is the profit margin of "+str(choose)+"?",
+    "What is the dividend rate and yield for "+str(choose)+"?",
+    "How has the stock price of "+str(choose)+" performed over the past year?"
+]
+
 
 
 def process_question(question):
@@ -136,6 +143,22 @@ def process_question(question):
     #st.session_state.generated.append(question)  # Append the question
     st.session_state.generated.append(output)
 
+
+# Create columns dynamically
+num_columns = 3
+num_questions = len(questions)
+num_rows = (num_questions + num_columns - 1) // num_columns
+columns = st.columns(num_columns)
+
+# Add small_logo_images and buttons to the columns
+for i in range(num_questions):
+    col_index = i % num_columns
+    row_index = i // num_columns
+
+    with columns[col_index]:
+        
+        if columns[col_index].button(questions[i]):
+                process_question(questions[i])
 with container:
     for question in questions:
         if st.button(question):
@@ -158,7 +181,7 @@ if st.session_state['generated']:
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
             #symbol = extract_company_name(st.session_state['past'][i])
-            message(st.session_state['generated'][i], key=str(i))  # Display the answer
+            message(st.session_state['generated'][i].strip(), key=str(i)) # Display the answer
             
             
         if i < len(st.session_state['past']):
