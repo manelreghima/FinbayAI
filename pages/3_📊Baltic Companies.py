@@ -155,6 +155,7 @@ for i in range(num_questions):
 
     with columns[col_index]:
         
+
         if columns[col_index].button(questions[i]):
                 process_question(questions[i])
         
