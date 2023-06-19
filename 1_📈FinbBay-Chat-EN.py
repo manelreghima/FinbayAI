@@ -204,10 +204,8 @@ for i in range(num_questions):
         if columns[col_index].button(questions[i]):
                 process_question(questions[i])
         
-
 container = st.container()
 with container:
-
     if st.sidebar.button("Start a New Chat"):
         st.session_state.past.clear()
         st.session_state.generated.clear()
@@ -227,17 +225,16 @@ if st.session_state['generated']:
             symbol = extract_company_name(st.session_state['past'][i])
             message(st.session_state['generated'][i], key=str(i))  # Display the answer
             
-            
-        if i < len(st.session_state['past']):
-            ticker = yf.Ticker(symbol)
-            try:
-                ticker_info = ticker.info
-                get_graph(symbol)
-            except HTTPError as e:
-                print("An HTTPError occurred:", e)
+            if i < len(st.session_state['past']):
+                ticker = yf.Ticker(symbol)
+                try:
+                    ticker_info = ticker.info
+                    get_graph(symbol)
+                except HTTPError as e:
+                    print("An HTTPError occurred:", e)
                 
-            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
-        
+                message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
+    
 # Create the treemap figure
 color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
 fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
