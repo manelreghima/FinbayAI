@@ -15,8 +15,6 @@ from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
 
-
-
 st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
