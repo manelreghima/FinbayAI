@@ -195,12 +195,7 @@ for i in range(num_questions):
 
     with columns[col_index]:
         
-        st.markdown(
-            f'<div style="display: flex; flex-direction: column; align-items: center;">'
-            f'<img src="{small_logo_images[i]}" style="width:30px;height:30px;">'
-            f'</div>',
-            unsafe_allow_html=True
-        )
+        st.image(small_logo_images[i])
         if columns[col_index].button(questions[i]):
                 process_question(questions[i])
         
