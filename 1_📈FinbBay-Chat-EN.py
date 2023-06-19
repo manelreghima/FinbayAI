@@ -238,7 +238,6 @@ if st.session_state['generated']:
                 
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
         
-# Create the treemap figure
 import webbrowser
 import plotly.express as px
 import streamlit as st
@@ -253,7 +252,7 @@ fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
                  color_continuous_midpoint=color_midpoint)
 
 # Add click events to the Treemap
-fig.update_traces(clicktemplate='<b>%{label}</b><br>%{value}<extra></extra>')
+fig.update_traces(customdata=market_data['company_name'])
 
 # Define the click event handler
 def on_click(trace, points, selector):
@@ -261,13 +260,13 @@ def on_click(trace, points, selector):
         # Get the index of the clicked point
         idx = points.point_inds[0]
         # Retrieve the company information based on the index
-        company_name = market_data.loc[idx, 'company_name']
+        company_name = points.trace.customdata[idx]
         # Open the desired link based on the clicked company
         if company_name == 'EGR1T.TL':
             webbrowser.open('https://finbayai.streamlit.app/Baltic_Companies')
 
 # Assign the click event handler to the Treemap
-fig.on_click(on_click)
+fig.for_each_trace(lambda trace: trace.on_click(on_click))
 
 # Display the Treemap
 st.plotly_chart(fig)
