@@ -15,17 +15,7 @@ from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
 
-import gettext
-_ = gettext.gettext
 
-
-language = st.sidebar.selectbox('', ['en', 'ee'])
-try:
-  localizator = gettext.translation('base', localedir='locales', languages=[language])
-  localizator.install()
-  _ = localizator.gettext 
-except:
-    pass
 
 st.set_page_config(
     page_title="Finbay AI",
@@ -42,6 +32,17 @@ def read_data():
     data = pd.read_csv('data/company_ticker.csv')
     return data
 llm = OpenAI(temperature=0)
+import gettext
+_ = gettext.gettext
+
+
+language = st.sidebar.selectbox('', ['en', 'ee'])
+try:
+  localizator = gettext.translation('base', localedir='locales', languages=[language])
+  localizator.install()
+  _ = localizator.gettext 
+except:
+    pass
 def extract_symbol(input):
         # Generate a response
     prompt =  'Extract ticker symbol from this text:' + input
