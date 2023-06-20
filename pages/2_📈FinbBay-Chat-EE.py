@@ -12,6 +12,7 @@ from langchain.llms import OpenAI
 import numpy as np
 import pandas as pd
 
+
 st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
@@ -23,7 +24,17 @@ api_key = os.environ["OPENAI_API_KEY"]
 openai.api_key = os.environ["OPENAI_API_KEY"]
 data = pd.read_csv('data/company_ticker.csv')
 llm = OpenAI(temperature=0)
+import gettext
+_ = gettext.gettext
 
+
+language = st.sidebar.selectbox('', ['en', 'ee'])
+try:
+  localizator = gettext.translation('base', localedir='locales', languages=[language])
+  localizator.install()
+  _ = localizator.gettext 
+except:
+    pass
 def extract_symbol(input):
         # Generate a response
     prompt =  'Ekstrakt ticker sümbol sellest tekstist:' + input
