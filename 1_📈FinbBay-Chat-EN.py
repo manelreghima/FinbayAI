@@ -174,7 +174,7 @@ if language_code=='en':
 
     questions = [
         "What is the market cap of DGR1R.RG?",
-        "What is the forward PE of NCN1T?",
+        "What is the market capitalization of NCN1T?",
         "Who is the CEO of HPR1T.TL?",
         "What is the profit margin of TSLA?",
         "What is the dividend rate and yield for GRG1L?",
@@ -365,7 +365,7 @@ elif language_code=='et':
 
     questions = [
         "Milline on DGR1R.RG turukapitali suurus?",
-        "Milline on NCN1T edasine PE?",
+        "Mis on NCN1T turuväärtus?",
         "Kes on HPR1T.TL tegevjuht?",
         "Kui suur on TSLA kasumimarginaal?",
         "Milline on GRG1Li dividendimäär ja tootlus?",
