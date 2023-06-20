@@ -32,17 +32,28 @@ def read_data():
     data = pd.read_csv('data/company_ticker.csv')
     return data
 llm = OpenAI(temperature=0)
-import gettext
-_ = gettext.gettext
 
 
-language = st.sidebar.selectbox('', ['en', 'ee','de'])
-try:
-  localizator = gettext.translation('base', localedir='locales', languages=[language])
-  localizator.install()
-  _ = localizator.gettext 
-except:
-    pass
+# Define the language mapping dictionary
+language_mapping = {
+    'English': 'en',
+    'Spanish': 'es',
+    'French': 'fr',
+    'German': 'de',
+    'Estonian':'ee',
+    # Add more languages as needed
+}
+
+# Let the user select a language
+selected_language = st.selectbox('Select a language', list(language_mapping.keys()))
+
+# Get the language code based on the selected language
+language_code = language_mapping[selected_language]
+
+# Print the language code
+st.write(f'The language code for {selected_language} is {language_code}')
+
+
 def extract_symbol(input):
         # Generate a response
     prompt =  'Extract ticker symbol from this text:' + input
