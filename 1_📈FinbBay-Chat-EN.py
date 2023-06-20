@@ -50,8 +50,10 @@ selected_language = st.selectbox('Select a language', list(language_mapping.keys
 # Get the language code based on the selected language
 language_code = language_mapping[selected_language]
 
-# Print the language code
-st.write(f'The language code for {selected_language} is {language_code}')
+# Check if the language code is 'ee' for Estonian
+if language_code == 'ee':
+    # Set Streamlit app language to Estonian
+    st.set_page_config(language='et')
 
 
 def extract_symbol(input):
