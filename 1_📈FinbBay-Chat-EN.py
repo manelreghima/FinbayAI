@@ -36,7 +36,7 @@ import gettext
 _ = gettext.gettext
 
 
-language = st.sidebar.selectbox('', ['en', 'ee'])
+language = st.sidebar.selectbox('', ['en', 'ee','de'])
 try:
   localizator = gettext.translation('base', localedir='locales', languages=[language])
   localizator.install()
