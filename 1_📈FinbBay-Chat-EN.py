@@ -15,6 +15,18 @@ from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
 
+import gettext
+_ = gettext.gettext
+
+
+language = st.sidebar.selectbox('', ['en', 'ee'])
+try:
+  localizator = gettext.translation('base', localedir='locales', languages=[language])
+  localizator.install()
+  _ = localizator.gettext 
+except:
+    pass
+
 st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
