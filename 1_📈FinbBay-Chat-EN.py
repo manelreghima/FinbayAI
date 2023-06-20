@@ -162,23 +162,6 @@ questions = [
     "How has the stock price of AS Merko Ehitus performed over the past year?"
 ]
 
-# Define your logo images for each question
-logo_images = [
-    "data/companies_logos/DGR1R.png",
-    "data/companies_logos/PKG1T.jpg",
-    "data/companies_logos/HPR1T.png",
-    "data/companies_logos/TSLA.png",
-    "data/companies_logos/GRG1L.jpg",
-    "data/companies_logos/MERK.jpg"
-]
-
-# Resize images in logo_images
-small_logo_images = []
-for image_path in logo_images:
-    image = Image.open(image_path)
-    resized_image = image.resize((30, 30))  # Adjust the dimensions as per your preference
-    small_logo_images.append(resized_image)
-
 
 # Create columns dynamically
 num_columns = 3
@@ -193,12 +176,7 @@ for i in range(num_questions):
 
     with columns[col_index]:
         
-        st.markdown(
-            f'<div style="display: flex; flex-direction: column; align-items: center;">'
-            f'<img src="{small_logo_images[i]}" style="width:30px;height:30px;">'
-            f'</div>',
-            unsafe_allow_html=True
-        )
+    
         if columns[col_index].button(questions[i]):
                 process_question(questions[i])
         
