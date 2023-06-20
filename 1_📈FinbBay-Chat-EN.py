@@ -365,7 +365,7 @@ elif language_code=='et':
 
     questions = [
         "Milline on DGR1R.RG turukapitali suurus?",
-        "Milline on NCN1T tulevane rahaportfellväärtus?",
+        "Milline on NCN1T edasine PE?",
         "Kes on HPR1T.TL tegevjuht?",
         "Kui suur on TSLA kasumimarginaal?",
         "Milline on GRG1Li dividendimäär ja tootlus?",
