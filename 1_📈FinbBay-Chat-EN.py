@@ -49,11 +49,18 @@ selected_language = st.selectbox('Select a language', list(language_mapping.keys
 
 # Get the language code based on the selected language
 language_code = language_mapping[selected_language]
+from googletrans import Translator
 
-# Check if the language code is 'ee' for Estonian
-if language_code == 'ee':
-    # Set Streamlit app language to Estonian
-    st.set_page_config(language='et')
+# Create a translator object
+translator = Translator()
+
+# Check if the language code is 'et' for Estonian
+if language_code == 'et':
+    # Translate the selected language to Estonian
+    estonian_text = translator.translate(selected_language, dest='et').text
+    st.sidebar.write(f"Valitud keel: {estonian_text}")
+else:
+    st.sidebar.write(f"Selected language: {selected_language}")
 
 
 def extract_symbol(input):
