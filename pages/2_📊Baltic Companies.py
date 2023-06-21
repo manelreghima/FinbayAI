@@ -73,6 +73,9 @@ with st.sidebar:
                         'AB Vilkyskiu pienine'],
                          
                          default_index=0,
+                         index=0,
+                          key='company_select',
+                          help='Select a company',
                          on_change=clear_session_state,
                          styles={
                              "container": {"padding": "5!important", "background-color": "#1D1D1D"},
