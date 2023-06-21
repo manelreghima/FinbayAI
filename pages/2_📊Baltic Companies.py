@@ -35,7 +35,7 @@ def get_graph(symbol):
 data=read_data()
 def clear_session_state():
     st.session_state.past.clear()
-    #st.session_state.generated.clear()
+    st.session_state.generated.clear()
 
 with st.sidebar:
     choose = option_menu("Companies you can currently ask Finbay AI about.",
