@@ -33,7 +33,7 @@ def get_graph(symbol):
 data=read_data()
 def clear_session_state():
     st.session_state.past.clear()
-    st.session_state.generated.clear()
+    #st.session_state.generated.clear()
 
 with st.sidebar:
     choose = option_menu("Companies you can currently ask Finbay AI about.",
@@ -74,7 +74,7 @@ with st.sidebar:
                         'AB Vilkyskiu pienine'],
                          
                          default_index=0,
-                         on_change=st.session_state.past.clear(),
+                         on_change=clear_session_state,
                          styles={
                              "container": {"padding": "5!important", "background-color": "#1D1D1D"},
                              "nav-link": {"text-align": "left", "margin": "0px", "--hover-color": "#262626"},
