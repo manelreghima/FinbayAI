@@ -7,7 +7,9 @@ import yfinance as yf
 import plotly.graph_objects as go
 from requests.exceptions import HTTPError
 from streamlit_chat import message
-
+# Initialize st.session_state['generated'] dictionary
+if "generated" not in st.session_state:
+    st.session_state["generated"] = []
 
 def read_data():
     data = pd.read_csv('data/company_ticker.csv')
