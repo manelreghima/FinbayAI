@@ -30,10 +30,11 @@ def get_graph(symbol):
     st.plotly_chart(fig2)
 
 data=read_data()
-def clear_session_state(key):
-    st.session_state[key] = None
-    st.session_state.past.clear()
-    st.session_state.generated.clear()
+def clear_session_state():
+    if st.session_state.past or st.session_state.generated:  # Check if either 'past' or 'generated' is not empty
+        st.session_state.past.clear()
+        st.session_state.generated.clear()
+
 
 with st.sidebar:
     choose = option_menu("Companies you can currently ask Finbay AI about.",
@@ -74,7 +75,7 @@ with st.sidebar:
                         'AB Vilkyskiu pienine'],
                          
                          default_index=0,
-                         on_change=lambda: clear_session_state('generated'),
+                         on_change=clear_session_state(),
                          styles={
                              "container": {"padding": "5!important", "background-color": "#1D1D1D"},
                              "nav-link": {"text-align": "left", "margin": "0px", "--hover-color": "#262626"},
