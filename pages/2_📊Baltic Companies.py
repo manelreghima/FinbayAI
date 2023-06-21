@@ -78,7 +78,8 @@ with st.sidebar:
                              "container": {"padding": "5!important", "background-color": "#1D1D1D"},
                              "nav-link": {"text-align": "left", "margin": "0px", "--hover-color": "#262626"},
                              "nav-link-selected": {"background-color": "#00A767"},
-                         })
+                         },
+                         key="option_menu")
 df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
 # Move get_graph(symbol) outside the sidebar
