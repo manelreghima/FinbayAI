@@ -31,7 +31,7 @@ def get_graph(symbol):
 
 data=read_data()
 def clear_session_state():
-    if st.session_state.past:  # Check if either 'past' or 'generated' is not empty
+    if st.session_state.past or st.session_state.generated:  # Check if either 'past' or 'generated' is not empty
         st.session_state.past.clear()
         st.session_state.generated.clear()
 
@@ -166,10 +166,6 @@ for i in range(num_questions):
 container = st.container()
 
 with container:
-    if st.sidebar.button("Start a New Chat"):
-        st.session_state.past.clear()
-        st.session_state.generated.clear()
-
     with st.form(key='my_form', clear_on_submit=True):
         user_input = st.text_input("Ask a question:", key='input')
         submit_button = st.form_submit_button(label='Send')
