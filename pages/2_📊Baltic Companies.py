@@ -31,7 +31,7 @@ def get_graph(symbol):
 
 data=read_data()
 def clear_session_state():
-    if  st.session_state.generated:  # Check if either 'past' or 'generated' is not empty
+    if st.session_state.past:  # Check if either 'past' or 'generated' is not empty
         st.session_state.past.clear()
         st.session_state.generated.clear()
 
