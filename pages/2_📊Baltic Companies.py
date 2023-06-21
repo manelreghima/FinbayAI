@@ -156,6 +156,8 @@ for i in range(num_questions):
     with columns[col_index]:
         
         if columns[col_index].button(questions[i]):
+                st.session_state.past.clear()
+                st.session_state.generated.clear()
                 process_question(questions[i])
 container = st.container()
 
