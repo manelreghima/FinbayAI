@@ -247,6 +247,7 @@ if language_code=='en':
 
     # Add the disclaimer text at the bottom
     st.markdown("**Disclaimer:**")
+    st.markdown("DO YOUR OWN RESEARCH") 
     st.markdown("All content provided by Finbay Technology OÜ is for informational and educational purposes only and is not meant to represent trade or investment recommendations.")
 
 elif language_code=='et':
@@ -447,4 +448,5 @@ elif language_code=='et':
     
     st.markdown("---")
     st.markdown("**Disclaimer:**")
+    st.markdown("TEHKE OMAENDA UURINGUID")
     st.markdown("Kogu Finbay Technology OÜ poolt esitatud sisu on mõeldud ainult informatiivsetel ja hariduslikel eesmärkidel ning ei ole mõeldud kaubandus- või investeerimissoovituste esitamiseks.")
