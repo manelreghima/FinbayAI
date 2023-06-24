@@ -178,7 +178,11 @@ if language_code=='en':
         "Who is the CEO of HPR1T.TL?",
         "What is the profit margin of TSLA?",
         "What is the dividend rate and yield for GRG1L?",
-        "How has the stock price of AS Merko Ehitus performed over the past year?"
+        "How has the stock price of AS Merko Ehitus performed over the past year?",
+        "What is the return on assets for Hepsor AS?",
+        "What are the gross profits of PZV1L?",
+        "What is the total debt of TEL1L.VS?"
+
     ]
 
 
