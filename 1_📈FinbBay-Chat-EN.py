@@ -242,6 +242,13 @@ if language_code=='en':
                                 color_continuous_midpoint=color_midpoint)
 
     st.plotly_chart(fig)
+
+    st.markdown("---")
+
+    # Add the disclaimer text at the bottom
+    st.markdown("**Disclaimer:**")
+    st.markdown("All content provided by Finbay Technology OÜ is for informational and educational purposes only and is not meant to represent trade or investment recommendations.")
+
 elif language_code=='et':
 
     def extract_symbol(input):
