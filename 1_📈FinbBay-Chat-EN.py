@@ -373,7 +373,10 @@ elif language_code=='et':
         "Kes on HPR1T.TL tegevjuht?",
         "Kui suur on TSLA kasumimarginaal?",
         "Milline on GRG1Li dividendimäär ja tootlus?",
-        "Kuidas on AS Merko Ehitus aktsia hind viimase aasta jooksul arenenud?"
+        "Kuidas on AS Merko Ehitus aktsia hind viimase aasta jooksul arenenud?",
+        "Milline on Hepsor ASi varade tootlus?",
+        "Kui suur on PZV1Li brutokasum?",
+        "Kui suur on TEL1L.VS koguvõlg?"
     ]
 
 
