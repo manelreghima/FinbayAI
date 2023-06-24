@@ -444,4 +444,7 @@ elif language_code=='et':
                                 color_continuous_midpoint=color_midpoint)
 
     st.plotly_chart(fig)
-
+    
+    st.markdown("---")
+    st.markdown("**Disclaimer:**")
+    st.markdown("Kogu Finbay Technology OÜ poolt esitatud sisu on mõeldud ainult informatiivsetel ja hariduslikel eesmärkidel ning ei ole mõeldud kaubandus- või investeerimissoovituste esitamiseks.")
