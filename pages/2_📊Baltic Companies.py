@@ -73,7 +73,7 @@ with st.sidebar:
                         'AS Tallinna Sadam',
                         'AS Tallinna Vesi',
                         'AB Vilkyskiu pienine'],
-                         icons=['house', 'gear'],
+                         icons=['data/companies_logos/DGR1R.png', 'gear'],
                          default_index=0,
                          on_change=clear_session_state(),
                          styles={
