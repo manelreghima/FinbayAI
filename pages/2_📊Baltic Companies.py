@@ -173,6 +173,18 @@ with container:
     if submit_button and user_input:
         process_question(user_input) 
 
+df_company = data[data['company']==str(choose)]
+symbol = str(df_company['symbol2'].iloc[0])
+ticker = yf.Ticker(symbol)
+company_info=ticker.info
+company_description = company_info.get("longBusinessSummary")
+
+def create_description(input):
+        # Generate a response
+    prompt =  'make this description 2 sentences' + input
+    return llm(prompt)
+resp=create_description(company_description)
+
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
     
@@ -184,8 +196,7 @@ if st.session_state['generated']:
             
         if i < len(st.session_state['past']):
            
-            get_graph(symbol)
-            
-                
+            get_graph(symbol)  
+            message(resp.strip(), key=str(i))
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
  
