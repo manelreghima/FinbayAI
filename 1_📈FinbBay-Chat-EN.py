@@ -225,8 +225,8 @@ if language_code=='en':
                 formatted_date = now.strftime("%Y-%m-%d")
                 formatted_time = now.strftime("%H:%M")
                 
-                prompt = f"This data is from {formatted_date} {formatted_time}"
-                answer = prompt+ ". " + st.session_state['generated'][i].strip()
+                prompt = f"This data is from ({formatted_date} {formatted_time}), "
+                answer = prompt+ st.session_state['generated'][i].strip()
                 message(answer, key=str(i))
 
                 if i < len(st.session_state['past']):
