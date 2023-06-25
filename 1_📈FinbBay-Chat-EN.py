@@ -46,7 +46,7 @@ selected_language = st.sidebar.selectbox('Select a language', list(language_mapp
 
 # Get the language code based on the selected language
 language_code = language_mapping[selected_language]
-
+now = datetime.now()
 if language_code=='en':
 
     def extract_symbol(input):
@@ -57,6 +57,7 @@ if language_code=='en':
     def chat_query(prompt_prefix, text):
             # Generate a response
         prompt =  prompt_prefix + ': ' + text
+        prompt='This data is from'+now+prompt
         return llm(prompt) 
 
     def extract_company_name(input):
