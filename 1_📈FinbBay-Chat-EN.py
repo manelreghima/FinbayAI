@@ -57,7 +57,7 @@ if language_code=='en':
     def chat_query(prompt_prefix, text):
             # Generate a response
         prompt =  prompt_prefix + ': ' + text
-        prompt='This data is from'+now+prompt
+        prompt = 'This data is from ' + str(now) + ' ' + prompt
         return llm(prompt) 
 
     def extract_company_name(input):
