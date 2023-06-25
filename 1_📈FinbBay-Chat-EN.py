@@ -222,9 +222,13 @@ if language_code=='en':
         for i in reversed(range(num_responses)):
             if i < len(st.session_state['generated']):
                 symbol = extract_company_name(st.session_state['past'][i])
-                message("This data is from " + str(now), key=str(i) + '_date')  # Add the date message
-                message(st.session_state['generated'][i].strip(), key=str(i))  # Display the answer without leading/trailing whitespace
-        
+                formatted_date = now.strftime("%Y-%m-%d")
+                formatted_time = now.strftime("%H:%M")
+                
+                prompt = f"This data is from {formatted_date} {formatted_time}"
+                answer = prompt+ ". " + st.session_state['generated'][i].strip()
+                message(answer, key=str(i))
+
                 if i < len(st.session_state['past']):
                     ticker = yf.Ticker(symbol)
                     try:
