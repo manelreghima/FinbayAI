@@ -145,7 +145,10 @@ questions = [
     "Who is the CEO of "+str(choose)+"?",
     "What is the profit margin of "+str(choose)+"?",
     "What is the dividend rate and yield for "+str(choose)+"?",
-    "How has the stock price of "+str(choose)+" performed over the past year?"
+    "How has the stock price of "+str(choose)+" performed over the past year?",
+    "What is the return on assets for "+str(choose)+"?",
+    "What are the gross profits of "+str(choose)+"?",
+    "What is the total debt of "+str(choose)+"?"
 ]
 
 # Create columns dynamically
