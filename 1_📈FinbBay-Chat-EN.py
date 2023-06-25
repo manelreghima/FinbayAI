@@ -57,7 +57,6 @@ if language_code=='en':
     def chat_query(prompt_prefix, text):
             # Generate a response
         prompt =  prompt_prefix + ': ' + text
-        prompt = 'This data is from ' + str(now) + ' ' + prompt
         return llm(prompt) 
 
     def extract_company_name(input):
@@ -223,8 +222,9 @@ if language_code=='en':
         for i in reversed(range(num_responses)):
             if i < len(st.session_state['generated']):
                 symbol = extract_company_name(st.session_state['past'][i])
+                message("This data is from " + str(now), key=str(i) + '_date')  # Add the date message
                 message(st.session_state['generated'][i].strip(), key=str(i))  # Display the answer without leading/trailing whitespace
-                
+        
                 if i < len(st.session_state['past']):
                     ticker = yf.Ticker(symbol)
                     try:
