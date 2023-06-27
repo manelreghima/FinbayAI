@@ -7,28 +7,38 @@ import yfinance as yf
 import plotly.graph_objects as go
 from requests.exceptions import HTTPError
 from streamlit_chat import message
+import base64
+
 def add_logo():
-    st.markdown(
-        """
+    # Read the image file
+    with open('data/finbay-logo2.png', 'rb') as f:
+        image_data = f.read()
+    
+    # Encode the image data as base64
+    encoded_image = base64.b64encode(image_data).decode()
+    
+    # Create the CSS style with the encoded image as the background
+    css_style = f"""
         <style>
-            [data-testid="stSidebarNav"] {
-                background-image: url(https://private-user-images.githubusercontent.com/132573089/249078209-149c0629-900a-4c17-b19e-3accee1fa66e.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjg3OTA5NzQ1LCJuYmYiOjE2ODc5MDk0NDUsInBhdGgiOiIvMTMyNTczMDg5LzI0OTA3ODIwOS0xNDljMDYyOS05MDBhLTRjMTctYjE5ZS0zYWNjZWUxZmE2NmUucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQUlXTkpZQVg0Q1NWRUg1M0ElMkYyMDIzMDYyNyUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyMzA2MjdUMjM0NDA1WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9NDFhYTQ2MTNlMzBiNTA5MDIzNzdiOTQ2YTcwZjNhZjIwZGQzODk0MjYyYmFmYjU4NzRmZDQzMDFhOTkyMjQwYyZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmYWN0b3JfaWQ9MCZrZXlfaWQ9MCZyZXBvX2lkPTAifQ.VvOQBJGA1Lhygx8enqeovxbP8qoySpuGE9FPrTFn-yw);
+            [data-testid="stSidebarNav"] {{
+                background-image: url(data:image/png;base64,{encoded_image});
                 background-repeat: no-repeat;
                 padding-top: 120px;
                 background-position: 20px 20px;
-            }
-            [data-testid="stSidebarNav"]::before {
-                
+            }}
+            [data-testid="stSidebarNav"]::before {{
                 margin-left: 20px;
                 margin-top: 20px;
                 font-size: 30px;
                 position: relative;
                 top: 100px;
-            }
+            }}
         </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    """
+
+    # Apply the CSS style
+    st.markdown(css_style, unsafe_allow_html=True)
+
 add_logo()    
 def read_data():
     data = pd.read_csv('data/company_ticker.csv')
