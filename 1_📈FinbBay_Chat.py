@@ -21,6 +21,10 @@ st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
 )
+
+with st.sidebar.container():
+    image = Image.open('finbay-logo.jpg')
+    st.image(image,use_column_width=True)
 # Load environment variables from .env file
 load_dotenv()
 # Access the API key
