@@ -19,8 +19,8 @@ st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
 )
-image = Image.open('data/finbay-logo2.png')
-st.image(image, caption='Image Caption', use_column_width=True)
+st.image("data/finbay-logo2.png",width=200)
+
 
 # Load environment variables from .env file
 load_dotenv()
