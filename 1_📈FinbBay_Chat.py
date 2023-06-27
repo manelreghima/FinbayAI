@@ -22,7 +22,7 @@ import base64
 
 def add_logo():
     # Read the image file
-    with open('data/finbay-logo.png', 'rb') as f:
+    with open('data/finbay-logo.jpg', 'rb') as f:
         image_data = f.read()
     
     # Encode the image data as base64
