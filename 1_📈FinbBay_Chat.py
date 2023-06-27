@@ -15,13 +15,11 @@ from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
 
-
-
 st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
 )
-st.sidebar.image: st.sidebar.image("data/finbay-logo.jpg", use_column_width=True)
+#st.sidebar.image: st.sidebar.image("data/finbay-logo2.png", use_column_width=True)
 
 # Load environment variables from .env file
 load_dotenv()
