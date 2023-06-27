@@ -23,7 +23,7 @@ st.set_page_config(
 )
 
 with st.sidebar.container():
-    image = Image.open('finbay-logo.jpg')
+    image = Image.open('data/finbay-logo.jpg')
     st.image(image,use_column_width=True)
 # Load environment variables from .env file
 load_dotenv()
