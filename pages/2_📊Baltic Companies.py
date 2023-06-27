@@ -25,7 +25,7 @@ def add_logo():
                 background-repeat: no-repeat;
                 padding-top: 120px;
                 background-position: 50px 20px;
-                background-size: 200px;
+                background-size: 180px;
             }}
             [data-testid="stSidebarNav"]::before {{
                 margin-left: 20px;
