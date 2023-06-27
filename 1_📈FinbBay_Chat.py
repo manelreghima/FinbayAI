@@ -19,7 +19,7 @@ st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
 )
-st.image("data/finbay-logo2.png",width=100)
+st.sidebar.image("data/finbay-logo2.png",width=100)
 
 
 # Load environment variables from .env file
