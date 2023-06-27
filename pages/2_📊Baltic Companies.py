@@ -12,13 +12,13 @@ def add_logo():
         """
         <style>
             [data-testid="stSidebarNav"] {
-                background-image: url(http://placekitten.com/200/200);
+                background-image: data/finbay-logo2.png;
                 background-repeat: no-repeat;
                 padding-top: 120px;
                 background-position: 20px 20px;
             }
             [data-testid="stSidebarNav"]::before {
-                content: "My Company Name";
+                
                 margin-left: 20px;
                 margin-top: 20px;
                 font-size: 30px;
