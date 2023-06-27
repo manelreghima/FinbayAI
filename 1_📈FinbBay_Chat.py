@@ -23,7 +23,7 @@ def add_logo():
         """
         <style>
             [data-testid="stSidebarNav"] {
-                background-image: data/finbay-logo2.png;
+                background-image: url(https://private-user-images.githubusercontent.com/132573089/249078209-149c0629-900a-4c17-b19e-3accee1fa66e.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjg3OTA5NzQ1LCJuYmYiOjE2ODc5MDk0NDUsInBhdGgiOiIvMTMyNTczMDg5LzI0OTA3ODIwOS0xNDljMDYyOS05MDBhLTRjMTctYjE5ZS0zYWNjZWUxZmE2NmUucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQUlXTkpZQVg0Q1NWRUg1M0ElMkYyMDIzMDYyNyUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyMzA2MjdUMjM0NDA1WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9NDFhYTQ2MTNlMzBiNTA5MDIzNzdiOTQ2YTcwZjNhZjIwZGQzODk0MjYyYmFmYjU4NzRmZDQzMDFhOTkyMjQwYyZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmYWN0b3JfaWQ9MCZrZXlfaWQ9MCZyZXBvX2lkPTAifQ.VvOQBJGA1Lhygx8enqeovxbP8qoySpuGE9FPrTFn-yw);
                 background-repeat: no-repeat;
                 padding-top: 120px;
                 background-position: 20px 20px;
@@ -42,7 +42,6 @@ def add_logo():
     )
 add_logo()
 
-#st.sidebar.image("data/finbay-logo2.png",width=100)
 
 
 # Load environment variables from .env file
