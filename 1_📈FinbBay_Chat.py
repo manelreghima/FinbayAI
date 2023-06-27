@@ -35,7 +35,7 @@ def add_logo():
                 background-image: url(data:image/png;base64,{encoded_image});
                 background-repeat: no-repeat;
                 padding-top: 120px;
-                background-position: 20px 20px;
+                background-position: 50px 50px;
                 background-size: 150px;
             }}
             [data-testid="stSidebarNav"]::before {{
