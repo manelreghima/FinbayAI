@@ -14,12 +14,34 @@ import pandas as pd
 from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
-
+def add_logo():
+    st.markdown(
+        """
+        <style>
+            [data-testid="stSidebarNav"] {
+                background-image: url(http://placekitten.com/200/200);
+                background-repeat: no-repeat;
+                padding-top: 120px;
+                background-position: 20px 20px;
+            }
+            [data-testid="stSidebarNav"]::before {
+                content: "My Company Name";
+                margin-left: 20px;
+                margin-top: 20px;
+                font-size: 30px;
+                position: relative;
+                top: 100px;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+add_logo()
 st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
 )
-st.sidebar.image("data/finbay-logo2.png",width=100)
+#st.sidebar.image("data/finbay-logo2.png",width=100)
 
 
 # Load environment variables from .env file
