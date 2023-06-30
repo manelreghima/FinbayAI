@@ -118,6 +118,10 @@ if language_code=='en':
         company_name = str(company_name).strip()
         company_list = data['company'].values.tolist()
 
+        gratitude_keywords = ["thank you", "thanks", "grateful"]
+        if any(keyword in user_input.lower() for keyword in gratitude_keywords):
+            output="You're welcome! I'm glad I could help. If you have any more questions or need further assistance, feel free to ask."
+
         if company_name in data['symbol1'].values:
             df_company = data[data['symbol1'] == company_name]
             symbol = str(df_company['symbol2'].iloc[0])
