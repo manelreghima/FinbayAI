@@ -312,7 +312,11 @@ elif language_code=='et':
         prompt =  'Väljavõte ettevõtte nimi sellest tekstist:' + input
         return llm(prompt) 
 
-    st.title("Finbay AI vestlus: Aktsiaanalüüsi lihtsaks tegemine")
+    #st.title("Finbay AI vestlus: Aktsiaanalüüsi lihtsaks tegemine")
+    st.markdown(
+    f"<h1 style='text-align: center;'>Finbay AI vestlus: Aktsiaanalüüsi lihtsaks tegemine</h1>",
+    unsafe_allow_html=True
+)
 
     # Storing the chat
     if 'generated' not in st.session_state:
