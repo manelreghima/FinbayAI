@@ -97,7 +97,7 @@ if language_code=='en':
         prompt =  'Extract company name from this text:' + input
         return llm(prompt) 
 
-    st.title("Welcome to FinbayAI")
+    st.title("Finbay AI Chat: Making Stock Analysis Easy")
 
     # Storing the chat
     if 'generated' not in st.session_state:
@@ -312,7 +312,7 @@ elif language_code=='et':
         prompt =  'Väljavõte ettevõtte nimi sellest tekstist:' + input
         return llm(prompt) 
 
-    st.title("Tere tulemast FinbayAI")
+    st.title("Finbay AI vestlus: Aktsiaanalüüsi lihtsaks tegemine")
 
     # Storing the chat
     if 'generated' not in st.session_state:
