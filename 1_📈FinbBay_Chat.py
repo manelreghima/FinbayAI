@@ -97,7 +97,11 @@ if language_code=='en':
         prompt =  'Extract company name from this text:' + input
         return llm(prompt) 
 
-    st.title("Finbay AI Chat: Making Stock Analysis Easy")
+    
+    st.markdown(
+    f"<h1 style='text-align: center;'>Finbay AI Chat: Making Stock Analysis Easy</h1>",
+    unsafe_allow_html=True
+)
 
     # Storing the chat
     if 'generated' not in st.session_state:
