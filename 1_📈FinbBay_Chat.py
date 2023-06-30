@@ -176,29 +176,32 @@ if language_code=='en':
     def get_market_data():
         data=read_data()
         column_list = data['symbol2'].values.tolist()
-
         company_list = []
         sector_list = []
         market_cap_list = []
+        stock_price_list=[]
 
         for symbol in column_list:
             ticker = yf.Ticker(symbol)
             company_info = ticker.info
-
+            
             market_cap = company_info.get("marketCap")
             sector = company_info.get("sector")
             company_name = company_info.get("longName")
+            stock_price = company_info.get("currentPrice")
 
+            
             market_cap_list.append(market_cap)
             sector_list.append(sector)
             company_list.append(company_name)
+            stock_price_list.append(stock_price)
 
         market_data = pd.DataFrame({
             'symbol': column_list,
             'company_name': company_list,
             'sector': sector_list,
-            'market_cap': market_cap_list,
-            'price_change': np.random.random(size=len(column_list))
+            'stock_price':stock_price_list,
+            'market_cap': market_cap_list
         })
         
         return market_data
@@ -273,12 +276,16 @@ if language_code=='en':
                     message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
     
     # Create the treemap figure
-    color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
+    #color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
     fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
-                                color='price_change', hover_data=['company_name'],
-                                color_continuous_scale='RdBu',
-                                color_continuous_midpoint=color_midpoint)
+                 color='stock_price', hover_data=['sector', 'company_name', 'stock_price', 'market_cap'],
+                 color_continuous_scale='RdBu',
+                 color_continuous_midpoint=np.average(market_data['stock_price'], weights=market_data['market_cap']))
 
+    # Remove the 'id', 'parent', and 'label' from the hover tooltip for companies' symbols
+    fig.update_traces(hovertemplate='<b>%{customdata[0]}</b><br>%{label}<br>Stock Price: %{customdata[2]:.2f}<br>Market Cap: %{customdata[3]:,.2f}')
+
+    
     st.plotly_chart(fig)
 
     st.markdown("---")
@@ -388,26 +395,31 @@ elif language_code=='et':
         company_list = []
         sector_list = []
         market_cap_list = []
+        stock_price_list=[]
 
         for symbol in column_list:
             ticker = yf.Ticker(symbol)
             company_info = ticker.info
-
+            
             market_cap = company_info.get("marketCap")
             sector = company_info.get("sector")
             company_name = company_info.get("longName")
+            stock_price = company_info.get("currentPrice")
 
+            
             market_cap_list.append(market_cap)
             sector_list.append(sector)
             company_list.append(company_name)
+            stock_price_list.append(stock_price)
 
         market_data = pd.DataFrame({
             'symbol': column_list,
             'company_name': company_list,
             'sector': sector_list,
-            'market_cap': market_cap_list,
-            'price_change': np.random.random(size=len(column_list))
+            'stock_price':stock_price_list,
+            'market_cap': market_cap_list
         })
+
         
         return market_data
 
@@ -481,11 +493,14 @@ elif language_code=='et':
                     message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
     
     # Create the treemap figure
-    color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
+    #color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
     fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
-                                color='price_change', hover_data=['company_name'],
-                                color_continuous_scale='RdBu',
-                                color_continuous_midpoint=color_midpoint)
+                 color='stock_price', hover_data=['sector', 'company_name', 'stock_price', 'market_cap'],
+                 color_continuous_scale='RdBu',
+                 color_continuous_midpoint=np.average(market_data['stock_price'], weights=market_data['market_cap']))
+
+# Remove the 'id', 'parent', and 'label' from the hover tooltip for companies' symbols
+    fig.update_traces(hovertemplate='<b>%{customdata[0]}</b><br>%{label}<br>Stock Price: %{customdata[2]:.2f}<br>Market Cap: %{customdata[3]:,.2f}')
 
     st.plotly_chart(fig)
     
