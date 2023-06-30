@@ -73,27 +73,6 @@ def add_company_logo(company):
     with open('data/companies_logos/'+company+'.png', 'rb') as f:
         image_data = f.read()
 
-    # Encode the image data as base64
-    encoded_image = base64.b64encode(image_data).decode()
-
-    # Create the CSS style with the encoded image as the background
-    css_style = f"""
-        <style>
-            .center-image {{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                background-image: url(data:image/png;base64,{encoded_image});
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: contain;
-            }}
-        </style>
-    """
-
-    # Apply the CSS style
-    st.markdown(css_style, unsafe_allow_html=True)
     st.markdown('<div class="center-image"></div>', unsafe_allow_html=True)
 
 
