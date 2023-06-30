@@ -27,13 +27,7 @@ def add_logo():
                 background-position: 70px 20px;
                 background-size: 180px;
             }}
-            [data-testid="stSidebarNav"]::before {{
-                margin-left: 20px;
-                margin-top: 20px;
-                font-size: 30px;
-                position: relative;
-                top: 100px;
-            }}
+            
         </style>
     """
 
