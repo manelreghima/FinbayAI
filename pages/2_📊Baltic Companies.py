@@ -70,7 +70,7 @@ def clear_session_state():
 
 def add_company_logo(company):
     # Read the image file
-    with open('data/'+company+'.png', 'rb') as f:
+    with open('data/companies_logos/'+company+'.png', 'rb') as f:
         image_data = f.read()
 
     # Encode the image data as base64
