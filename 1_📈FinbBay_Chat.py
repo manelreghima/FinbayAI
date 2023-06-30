@@ -152,8 +152,8 @@ if language_code=='en':
 
             # Assuming 'st.session_state.past' and 'st.session_state.generated'
             # lists are already initialized
-            st.session_state.past.append(user_input)
-            st.session_state.generated.append(output)
+        st.session_state.past.append(user_input)
+        st.session_state.generated.append(output)
 
 
     def extract_ticker_symbol(input_text):
