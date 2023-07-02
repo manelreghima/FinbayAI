@@ -117,7 +117,9 @@ with st.sidebar:
                          key="option_menu")
 df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
+symbol1 = str(df_company['symbol1'].iloc[0])
 
+st.image('data/companies_logos/'+symbol1+'.png')
 
 
 llm = OpenAI(temperature=0)
