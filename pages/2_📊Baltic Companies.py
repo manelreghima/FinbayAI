@@ -118,8 +118,10 @@ with st.sidebar:
 df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
 symbol1 = str(df_company['symbol1'].iloc[0])
-
-st.image('data/companies_logos/'+symbol1+'.png', use_column_width=True)
+image_path='data/companies_logos/'+symbol1+'.png'
+centered_image = f'<div style="display: flex; justify-content: center;"><img src="{image_path}"></div>'
+st.markdown(centered_image, unsafe_allow_html=True)
+#st.image('data/companies_logos/'+symbol1+'.png')
 
 
 llm = OpenAI(temperature=0)
