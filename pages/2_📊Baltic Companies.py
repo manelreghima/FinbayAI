@@ -71,8 +71,35 @@ def clear_session_state():
 
 def add_company_logo(company):
     # Read the image file
-    st.image('data/companies_logos/'+company+'.png') 
+    with open('data/companies_logos/'+company+'.png', 'rb') as f:
+        image_data = f.read()
+
+    encoded_image = base64.b64encode(image_data).decode()
     
+    # Create the CSS style with the encoded image as the background
+    css_style = f"""
+        <style>
+            [data-testid="stSidebarNav"] {{
+                background-image: url(data:image/png;base64,{encoded_image});
+                background-repeat: no-repeat;
+                padding-top: 120px;
+                background-position: 70px 20px;
+                background-size: 180px;
+            }}
+            [data-testid="stSidebarNav"]::before {{
+                margin-left: 20px;
+                margin-top: 20px;
+                font-size: 30px;
+                position: relative;
+                top: 100px;
+            }}
+        </style>
+    """
+
+    # Apply the CSS style
+    st.markdown(css_style, unsafe_allow_html=True)
+
+
 
 with st.sidebar:
     choose = option_menu("Companies you can currently ask Finbay AI about.",
@@ -124,7 +151,7 @@ df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
 symbol1 = str(df_company['symbol1'].iloc[0])
 
-add_company_logo(symbol1)
+#add_company_logo(symbol1)
 
 
 llm = OpenAI(temperature=0)
