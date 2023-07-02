@@ -119,7 +119,7 @@ df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
 symbol1 = str(df_company['symbol1'].iloc[0])
 image_path='data/companies_logos/'+symbol1+'.png'
-centered_image = f'<div style="display: flex; justify-content: center;"><img src="{image_path}"></div>'
+centered_image = f'<img src="{image_path}" style="display: block; margin: 0 auto;">'
 st.markdown(centered_image, unsafe_allow_html=True)
 #st.image('data/companies_logos/'+symbol1+'.png')
 
