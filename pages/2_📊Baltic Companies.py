@@ -221,7 +221,7 @@ company_description = company_info.get("longBusinessSummary")
 
 def create_description(input):
         # Generate a response
-    prompt =  'make this description 2 sentences' + input
+    prompt =  'Correct and improve this text' + input
     return llm(prompt)
 resp=create_description(company_description)
 
