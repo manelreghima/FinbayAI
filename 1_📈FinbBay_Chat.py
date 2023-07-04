@@ -310,7 +310,7 @@ if language_code=='en':
     df_empty = pd.DataFrame()
     ticker = read_data()
     symbol_list = ticker['symbol1'].tolist()
-    now = datetime.datetime.now()
+    #now = datetime.datetime.now()
 
     # Iterate over each symbol
     for symbol in symbol_list:
