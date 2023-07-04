@@ -314,7 +314,7 @@ if language_code=='en':
     # Iterate over each symbol
     for symbol in symbol_list:
         # Download data with updated start and end dates
-        data = yf.download(symbol, interval='1d', start="2023-06-27", end=formatted_date)
+        data = yf.download(symbol, interval='1d', start="2023-06-27", end=now.strftime("%Y-%m-%d"))
         data['ticker'] = symbol
         df_sorted = data.sort_values(by='Date', ascending=False)
         df_head = df_sorted.head(2)
