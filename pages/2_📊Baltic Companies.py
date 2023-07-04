@@ -225,6 +225,7 @@ def create_description(input):
     return llm(prompt)
 resp=create_description(company_description)
 
+now = datetime.now()
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
     message(resp.strip(), key='company_description') 
@@ -232,7 +233,12 @@ if st.session_state['generated']:
         if i < len(st.session_state['generated']):
             #symbol = extract_company_name(st.session_state['past'][i])
             message(st.session_state['generated'][i].strip(), key=str(i)) # Display the answer
-            
+            formatted_date = now.strftime("%Y-%m-%d")
+            formatted_time = now.strftime("%H:%M")
+                
+            prompt = f", This data is from ({formatted_time} {formatted_date}). "
+            answer = st.session_state['generated'][i].strip()+prompt
+            message(answer, key=str(i))
             
         if i < len(st.session_state['past']):
            
