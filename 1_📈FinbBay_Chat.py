@@ -14,7 +14,7 @@ import pandas as pd
 from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
-
+now = datetime.now()
 st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
@@ -80,7 +80,7 @@ selected_language = st.sidebar.selectbox('Select a language', list(language_mapp
 
 # Get the language code based on the selected language
 language_code = language_mapping[selected_language]
-now = datetime.now()
+
 if language_code=='en':
 
     def extract_symbol(input):
