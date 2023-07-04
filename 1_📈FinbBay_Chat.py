@@ -329,7 +329,7 @@ if language_code=='en':
             df_head['change'] = None
 
         # Add df_head to the empty dataframe
-        df_empty = df_empty.append(df_head)
+        df_empty = pd.concat([df_empty, df_head])
 
     # Display the resulting dataframe in a table
     st.table(df_empty)
