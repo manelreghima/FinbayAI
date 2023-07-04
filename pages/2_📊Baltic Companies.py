@@ -236,7 +236,7 @@ if st.session_state['generated']:
             formatted_date = now.strftime("%Y-%m-%d")
             formatted_time = now.strftime("%H:%M")
                 
-            prompt = f", This data is from ({formatted_time} {formatted_date}). "
+            prompt = f"(This data is from {formatted_time} {formatted_date}). "
             answer = st.session_state['generated'][i].strip()+prompt
             message(answer, key=str(i))
             
