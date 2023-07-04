@@ -296,7 +296,7 @@ if language_code=='en':
                  color_continuous_midpoint=np.average(market_data['stock_price'], weights=market_data['market_cap']))
 
     # Remove the 'id', 'parent', and 'label' from the hover tooltip for companies' symbols
-    fig.update_traces(hovertemplate='<b>%{customdata[0]}</b><br>%{label}<br>Stock Price: %{customdata[2]:.2f}(EUR)<br>Market Cap: %{customdata[3]:,.2f}(EUR)')
+    fig.update_traces(hovertemplate='<b>%{customdata[0]}</b><br>%{label}<br>Stock Price(EUR): %{customdata[2]:.2f}(EUR)<br>Market Cap(EUR): %{customdata[3]:,.2f}(EUR)')
 
     
     st.plotly_chart(fig)
