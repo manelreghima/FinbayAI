@@ -14,7 +14,6 @@ import pandas as pd
 from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
-import datetime
 
 st.set_page_config(
     page_title="Finbay AI",
@@ -306,11 +305,6 @@ if language_code=='en':
 
 
 
-    # Get today's date
-    today = datetime.date.today()
-
-    # Convert the dates to string format
-    today_str = today.strftime("%Y-%m-%d")
 
     # Create an empty dataframe
     df_empty = pd.DataFrame()
@@ -319,7 +313,7 @@ if language_code=='en':
     # Iterate over each symbol
     for symbol in symbol_list:
         # Download data with updated start and end dates
-        data = yf.download(symbol, interval='1d', start="2023-06-27", end=today_str)
+        data = yf.download(symbol, interval='1d', start="2023-06-27", end=formatted_date)
         data['ticker'] = symbol
         df_sorted = data.sort_values(by='Date', ascending=False)
         df_head = df_sorted.head(2)
