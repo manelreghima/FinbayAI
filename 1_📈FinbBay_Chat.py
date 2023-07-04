@@ -308,8 +308,9 @@ if language_code=='en':
 
     # Create an empty dataframe
     df_empty = pd.DataFrame()
-    ticker=read_data()
+    ticker = read_data()
     symbol_list = ticker['symbol1'].tolist()
+    now = datetime.datetime.now()
 
     # Iterate over each symbol
     for symbol in symbol_list:
@@ -330,9 +331,8 @@ if language_code=='en':
         # Add df_head to the empty dataframe
         df_empty = df_empty.append(df_head)
 
-# Display the resulting dataframe in a table
-        st.table(df_empty)
-
+    # Display the resulting dataframe in a table
+    st.table(df_empty)
     st.markdown("---")
 
     # Add the disclaimer text at the bottom
