@@ -309,7 +309,7 @@ if language_code=='en':
     # Create an empty dataframe
     df_empty = pd.DataFrame()
     ticker=read_data()
-    symbol_list = ticker['symbol2'].tolist()
+    symbol_list = ticker['symbol1'].tolist()
 
     # Iterate over each symbol
     for symbol in symbol_list:
