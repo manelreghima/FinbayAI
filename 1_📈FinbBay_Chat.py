@@ -240,7 +240,7 @@ if language_code=='en':
     num_questions = len(questions)
     num_rows = (num_questions + num_columns - 1) // num_columns
     columns = st.columns(num_columns)
-
+    st.cache()
     # Add small_logo_images and buttons to the columns
     for i in range(num_questions):
         col_index = i % num_columns
