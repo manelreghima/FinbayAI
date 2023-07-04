@@ -301,6 +301,41 @@ if language_code=='en':
     
     st.plotly_chart(fig)
 
+
+
+
+    # Get today's date
+    today = datetime.date.today()
+
+    # Convert the dates to string format
+    today_str = today.strftime("%Y-%m-%d")
+
+    # Create an empty dataframe
+    df_empty = pd.DataFrame()
+    symbol_list = ticker['symbol2'].tolist()
+
+    # Iterate over each symbol
+    for symbol in symbol_list:
+        # Download data with updated start and end dates
+        data = yf.download(symbol, interval='1d', start="2023-06-27", end=today_str)
+        data['ticker'] = symbol
+        df_sorted = data.sort_values(by='Date', ascending=False)
+        df_head = df_sorted.head(2)
+
+        # Check if df_head has at least two rows
+        if len(df_head) >= 2:
+            # Calculate the percentage change between the two values
+            df_head['change'] = ((df_head.iloc[0]['Close'] - df_head.iloc[1]['Close']) / df_head.iloc[1]['Close']) * 100
+        else:
+            # Handle the case when df_head has less than two rows
+            df_head['change'] = None
+
+        # Add df_head to the empty dataframe
+        df_empty = df_empty.append(df_head)
+
+# Display the resulting dataframe in a table
+        st.table(df_empty)
+
     st.markdown("---")
 
     # Add the disclaimer text at the bottom
