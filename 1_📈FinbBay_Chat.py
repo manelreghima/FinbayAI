@@ -14,7 +14,6 @@ import pandas as pd
 from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
-now = datetime.now()
 st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
@@ -80,7 +79,7 @@ selected_language = st.sidebar.selectbox('Select a language', list(language_mapp
 
 # Get the language code based on the selected language
 language_code = language_mapping[selected_language]
-
+now = datetime.now()
 if language_code=='en':
 
     def extract_symbol(input):
@@ -302,37 +301,6 @@ if language_code=='en':
     
     st.plotly_chart(fig)
 
-
-
-
-
-    # Create an empty dataframe
-    df_empty = pd.DataFrame()
-    ticker = read_data()
-    symbol_list = ticker['symbol1'].tolist()
-    #now = datetime.datetime.now()
-
-    # Iterate over each symbol
-    for symbol in symbol_list:
-        # Download data with updated start and end dates
-        data = yf.download(symbol, interval='1d', start="2023-06-27", end=now.strftime("%Y-%m-%d"))
-        data['ticker'] = symbol
-        df_sorted = data.sort_values(by='Date', ascending=False)
-        df_head = df_sorted.head(2)
-
-        # Check if df_head has at least two rows
-        if len(df_head) >= 2:
-            # Calculate the percentage change between the two values
-            df_head['change'] = ((df_head.iloc[0]['Close'] - df_head.iloc[1]['Close']) / df_head.iloc[1]['Close']) * 100
-        else:
-            # Handle the case when df_head has less than two rows
-            df_head['change'] = None
-
-        # Add df_head to the empty dataframe
-        df_empty = pd.concat([df_empty, df_head])
-
-    # Display the resulting dataframe in a table
-    st.table(df_empty)
     st.markdown("---")
 
     # Add the disclaimer text at the bottom
