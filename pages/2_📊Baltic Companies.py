@@ -228,7 +228,7 @@ resp=create_description(company_description)
 now = datetime.now()
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
-    #message(resp.strip(), key='company_description') 
+    
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
             #symbol = extract_company_name(st.session_state['past'][i])
@@ -246,5 +246,5 @@ if st.session_state['generated']:
                 get_graph(symbol)
             except HTTPError as e:
                 print("An HTTPError occurred:", e)
-            get_graph(symbol)  
+              
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
