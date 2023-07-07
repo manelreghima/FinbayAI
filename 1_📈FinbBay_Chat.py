@@ -492,10 +492,8 @@ elif language_code=='et':
         for i in reversed(range(num_responses)):
             if i < len(st.session_state['generated']):
                 symbol = extract_company_name(st.session_state['past'][i])
-                
                 formatted_date = now.strftime("%Y-%m-%d")
                 formatted_time = now.strftime("%H:%M")
-                
                 prompt = f"(Need andmed pärinevad {formatted_time} {formatted_date}). "
                 answer = prompt+ st.session_state['generated'][i].strip()
                 message(answer, key=str(i))
