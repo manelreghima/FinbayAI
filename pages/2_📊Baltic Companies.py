@@ -241,6 +241,10 @@ if st.session_state['generated']:
             message(answer, key=str(i) + '_answer')
             
         if i < len(st.session_state['past']):
-           
+            try:
+                      
+                get_graph(symbol)
+            except HTTPError as e:
+                print("An HTTPError occurred:", e)
             get_graph(symbol)  
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
