@@ -226,12 +226,12 @@ def create_description(input):
 resp=create_description(company_description)
 
 now = datetime.now()
+
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
-    message(resp.strip(), key='company_description') 
+        
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
-            #symbol = extract_company_name(st.session_state['past'][i])
             message(st.session_state['generated'][i].strip(), key=str(i)) # Display the answer
             formatted_date = now.strftime("%Y-%m-%d")
             formatted_time = now.strftime("%H:%M")
@@ -239,14 +239,14 @@ if st.session_state['generated']:
             prompt = f"(This data is from {formatted_time} {formatted_date}). "
             answer = st.session_state['generated'][i].strip()+prompt
             message(answer, key=str(i))
-            
+
             if i < len(st.session_state['past']):
-                        ticker = yf.Ticker(symbol)
-                        try:
-                            ticker_info = ticker.info
-                            get_graph(symbol)
-                        except HTTPError as e:
-                            print("An HTTPError occurred:", e)
-                        
-                        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-    
+                
+                try:
+                    
+                    get_graph(symbol)
+                except HTTPError as e:
+                    print("An HTTPError occurred:", e)
+                    
+                message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
+        
