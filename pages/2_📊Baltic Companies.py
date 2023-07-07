@@ -240,9 +240,13 @@ if st.session_state['generated']:
             answer = st.session_state['generated'][i].strip()+prompt
             message(answer, key=str(i))
             
-        if i < len(st.session_state['past']):
-           
-            get_graph(symbol)  
-            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
-    
+            if i < len(st.session_state['past']):
+                        ticker = yf.Ticker(symbol)
+                        try:
+                            ticker_info = ticker.info
+                            get_graph(symbol)
+                        except HTTPError as e:
+                            print("An HTTPError occurred:", e)
+                        
+                        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
     
