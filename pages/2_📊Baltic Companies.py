@@ -232,7 +232,7 @@ if st.session_state['generated']:
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
             
-            message(st.session_state['generated'][i].strip(), key=str(i) + '_generated') # Display the answer
+            #message(st.session_state['generated'][i].strip(), key=str(i) + '_generated') # Display the answer
             formatted_date = now.strftime("%Y-%m-%d")
             formatted_time = now.strftime("%H:%M")
                 
@@ -243,4 +243,4 @@ if st.session_state['generated']:
         if i < len(st.session_state['past']):
             
             get_graph(symbol)  
-            #message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
+            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
