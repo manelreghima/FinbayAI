@@ -231,7 +231,7 @@ if st.session_state['generated']:
     
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
-            #symbol = extract_company_name(st.session_state['past'][i])
+            
             message(st.session_state['generated'][i].strip(), key=str(i) + '_generated') # Display the answer
             formatted_date = now.strftime("%Y-%m-%d")
             formatted_time = now.strftime("%H:%M")
@@ -241,10 +241,6 @@ if st.session_state['generated']:
             message(answer, key=str(i) + '_answer')
             
         if i < len(st.session_state['past']):
-            try:
-                      
-                get_graph(symbol)
-            except HTTPError as e:
-                print("An HTTPError occurred:", e)
-              
+            
+            get_graph(symbol)  
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
