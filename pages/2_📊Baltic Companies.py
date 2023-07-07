@@ -228,7 +228,7 @@ resp=create_description(company_description)
 now = datetime.now()
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
-    message(resp.strip(), key='company_description') 
+    #message(resp.strip(), key='company_description') 
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
             #symbol = extract_company_name(st.session_state['past'][i])
