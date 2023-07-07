@@ -243,4 +243,4 @@ if st.session_state['generated']:
         if i < len(st.session_state['past']):
             
             get_graph(symbol)  
-            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
+            #message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
