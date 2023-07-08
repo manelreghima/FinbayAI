@@ -14,11 +14,12 @@ import pandas as pd
 from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
+import base64
+
 st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
 )
-import base64
 
 def add_logo():
     # Read the image file
@@ -81,6 +82,10 @@ selected_language = st.sidebar.selectbox('Select a language', list(language_mapp
 language_code = language_mapping[selected_language]
 now = datetime.now()
 if language_code=='en':
+    def use_WebPilot (input):
+            # Generate a response
+        prompt =  'Using WebPilot, give me the historical revenue from this page:' + input
+        return llm(prompt)   
 
     def extract_symbol(input):
             # Generate a response
@@ -283,6 +288,7 @@ if language_code=='en':
                     try:
                         ticker_info = ticker.info
                         get_graph(symbol)
+                        use_WebPilot ('https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
                     except HTTPError as e:
                         print("An HTTPError occurred:", e)
                     
