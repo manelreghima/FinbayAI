@@ -82,10 +82,6 @@ selected_language = st.sidebar.selectbox('Select a language', list(language_mapp
 language_code = language_mapping[selected_language]
 now = datetime.now()
 if language_code=='en':
-    def use_WebPilot (input):
-            # Generate a response
-        prompt =  'Using WebPilot, give me the historical revenue from this page:' + input
-        return llm(prompt)   
 
     def extract_symbol(input):
             # Generate a response
@@ -305,7 +301,7 @@ if language_code=='en':
 
     
     st.plotly_chart(fig)
-    use_WebPilot ('https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
+
     st.markdown("---")
 
     # Add the disclaimer text at the bottom
