@@ -288,7 +288,6 @@ if language_code=='en':
                     try:
                         ticker_info = ticker.info
                         get_graph(symbol)
-                        use_WebPilot ('https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
                     except HTTPError as e:
                         print("An HTTPError occurred:", e)
                     
@@ -306,7 +305,7 @@ if language_code=='en':
 
     
     st.plotly_chart(fig)
-
+    use_WebPilot ('https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
     st.markdown("---")
 
     # Add the disclaimer text at the bottom
