@@ -320,11 +320,9 @@ if language_code=='en':
     ticker_data = load_ticker_data()
     symbol_list = ticker_data['symbol2'].tolist()
 
-    # Get today's date
-    today = datetime.date.today()
 
     # Convert the dates to string format
-    today_str = today.strftime("%Y-%m-%d")
+    today_str = now.strftime("%Y-%m-%d")
 
     # Create an empty dataframe
     df_empty = pd.DataFrame()
