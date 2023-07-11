@@ -343,8 +343,8 @@ if language_code=='en':
             # Handle the case when df_head has less than two rows
             df_head['change'] = None
 
-        # Add df_head to the empty dataframe
-        df_empty = df_empty.append(df_head)
+        # Concatenate df_head with the empty dataframe
+        df_empty = pd.concat([df_empty, df_head])
 
     # Filter the dataframe to include only today's rows
     df_change = df_empty.iloc[::2]
@@ -354,7 +354,7 @@ if language_code=='en':
 
     # Display the top 3 rows of the sorted dataframe using Streamlit
     st.write(df_sorted.head(3))
-
+    
 elif language_code=='et':
 
     def extract_symbol(input):
