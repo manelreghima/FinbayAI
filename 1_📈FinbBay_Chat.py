@@ -352,9 +352,12 @@ if language_code=='en':
     # Sort the resulting dataframe by 'change' column in descending order
     df_sorted = df_change.sort_values(by='change', ascending=False)
 
-    # Display the top 3 rows of the sorted dataframe using Streamlit
+    st.markdown(
+    f"<h2>TOP 3 by change</h2>",
+    unsafe_allow_html=True
+)
     st.write(df_sorted.head(3))
-    
+
 elif language_code=='et':
 
     def extract_symbol(input):
