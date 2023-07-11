@@ -14,12 +14,11 @@ import pandas as pd
 from requests.exceptions import HTTPError
 from streamlit_option_menu import option_menu
 from PIL import Image
-import base64
-
 st.set_page_config(
     page_title="Finbay AI",
     page_icon="data/finbay-logo.jpg",
 )
+import base64
 
 def add_logo():
     # Read the image file
