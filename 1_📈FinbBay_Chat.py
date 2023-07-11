@@ -309,6 +309,55 @@ if language_code=='en':
     st.markdown("DO YOUR OWN RESEARCH") 
     st.markdown("All content provided by Finbay Technology OÜ is for informational and educational purposes only and is not meant to represent trade or investment recommendations.")
 
+    
+
+    # Load the ticker data from the provided URL
+    @st.cache
+    def load_ticker_data():
+        ticker = pd.read_csv('https://huggingface.co/datasets/manelreghima/company_ticker/raw/main/company_ticker.csv')
+        return ticker
+
+    # Get the symbol list from the ticker data
+    ticker_data = load_ticker_data()
+    symbol_list = ticker_data['symbol2'].tolist()
+
+    # Get today's date
+    today = datetime.date.today()
+
+    # Convert the dates to string format
+    today_str = today.strftime("%Y-%m-%d")
+
+    # Create an empty dataframe
+    df_empty = pd.DataFrame()
+
+    # Iterate over each symbol
+    for symbol in symbol_list:
+        # Download data with updated start and end dates
+        data = yf.download(symbol, interval='1d', start="2023-06-27", end=today_str)
+        data['ticker'] = symbol
+        df_sorted = data.sort_values(by='Date', ascending=False)
+        df_head = df_sorted.head(2)
+
+        # Check if df_head has at least two rows
+        if len(df_head) >= 2:
+            # Calculate the difference between the two values
+            df_head['change'] = (df_head.iloc[0]['Close'] - df_head.iloc[1]['Close']) / df_head.iloc[1]['Close'] * 100
+        else:
+            # Handle the case when df_head has less than two rows
+            df_head['change'] = None
+
+        # Add df_head to the empty dataframe
+        df_empty = df_empty.append(df_head)
+
+    # Filter the dataframe to include only today's rows
+    df_change = df_empty.iloc[::2]
+
+    # Sort the resulting dataframe by 'change' column in descending order
+    df_sorted = df_change.sort_values(by='change', ascending=False)
+
+    # Display the top 3 rows of the sorted dataframe using Streamlit
+    st.write(df_sorted.head(3))
+
 elif language_code=='et':
 
     def extract_symbol(input):
