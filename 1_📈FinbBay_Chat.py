@@ -254,7 +254,7 @@ if language_code=='en':
         
             if columns[col_index].button(questions[i]):
                     process_question(questions[i])
-    st.title('njnjk')        
+    st.markdown(f"(This data is from {formatted_time} {formatted_date}). ")        
     container = st.container()
     with container:
         if st.sidebar.button("Start a New Chat"):
@@ -274,10 +274,8 @@ if language_code=='en':
         for i in reversed(range(num_responses)):
             if i < len(st.session_state['generated']):
                 symbol = extract_company_name(st.session_state['past'][i])
-                
-                
-                prompt = f"(This data is from {formatted_time} {formatted_date}). "
-                answer = st.session_state['generated'][i].strip()+prompt
+    
+                answer = st.session_state['generated'][i].strip()
                 message(answer, key=str(i))
 
                 if i < len(st.session_state['past']):
