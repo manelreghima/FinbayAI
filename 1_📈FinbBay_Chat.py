@@ -290,7 +290,7 @@ if language_code=='en':
                     message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
     
     
-    st.markdown("<h2>TOP 3 by change</h2>", unsafe_allow_html=True)
+    st.markdown("<h3>TOP 3 by change</h3>", unsafe_allow_html=True)
     # Load the ticker data from the provided URL
     @st.cache
     def load_ticker_data():
