@@ -289,27 +289,8 @@ if language_code=='en':
                     
                     message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
     
-    # Create the treemap figure
-    #color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
-    fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
-                 color='stock_price', hover_data=['sector', 'company_name', 'stock_price', 'market_cap'],
-                 color_continuous_scale='RdBu',
-                 color_continuous_midpoint=np.average(market_data['stock_price'], weights=market_data['market_cap']))
-
-    # Remove the 'id', 'parent', and 'label' from the hover tooltip for companies' symbols
-    fig.update_traces(hovertemplate='<b>%{customdata[0]}</b><br>%{label}<br>Stock Price: %{customdata[2]:.2f}(EUR)<br>Market Cap: %{customdata[3]:,.2f}(EUR)')
-
     
-    st.plotly_chart(fig)
-
-    st.markdown("---")
-
-    # Add the disclaimer text at the bottom
-    st.markdown("**Disclaimer:**")
-    st.markdown("DO YOUR OWN RESEARCH") 
-    st.markdown("All content provided by Finbay Technology OÜ is for informational and educational purposes only and is not meant to represent trade or investment recommendations.")
-
-
+    st.markdown("<h2>TOP 3 by change</h2>", unsafe_allow_html=True)
     # Load the ticker data from the provided URL
     @st.cache
     def load_ticker_data():
@@ -352,11 +333,29 @@ if language_code=='en':
     # Sort the resulting dataframe by 'change' column in descending order
     df_sorted = df_change.sort_values(by='change', ascending=False)
 
-    st.markdown(
-    f"<h2>TOP 3 by change</h2>",
-    unsafe_allow_html=True
-)
+    
     st.write(df_sorted.head(3))
+    # Create the treemap figure
+    #color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
+    fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
+                 color='stock_price', hover_data=['sector', 'company_name', 'stock_price', 'market_cap'],
+                 color_continuous_scale='RdBu',
+                 color_continuous_midpoint=np.average(market_data['stock_price'], weights=market_data['market_cap']))
+
+    # Remove the 'id', 'parent', and 'label' from the hover tooltip for companies' symbols
+    fig.update_traces(hovertemplate='<b>%{customdata[0]}</b><br>%{label}<br>Stock Price: %{customdata[2]:.2f}(EUR)<br>Market Cap: %{customdata[3]:,.2f}(EUR)')
+
+    
+    st.plotly_chart(fig)
+
+    st.markdown("---")
+
+    # Add the disclaimer text at the bottom
+    st.markdown("**Disclaimer:**")
+    st.markdown("DO YOUR OWN RESEARCH") 
+    st.markdown("All content provided by Finbay Technology OÜ is for informational and educational purposes only and is not meant to represent trade or investment recommendations.")
+
+
 
 elif language_code=='et':
 
