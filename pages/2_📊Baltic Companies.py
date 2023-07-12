@@ -217,7 +217,7 @@ with container:
 
     if submit_button and user_input:
         process_question(user_input) 
-st.markdown(f"(This data is from {formatted_time} {formatted_date}) ")   
+
 df_company = data[data['company']==str(choose)]
 symbol = str(df_company['symbol2'].iloc[0])
 ticker = yf.Ticker(symbol)
