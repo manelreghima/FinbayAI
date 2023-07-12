@@ -254,7 +254,7 @@ if language_code=='en':
         
             if columns[col_index].button(questions[i]):
                     process_question(questions[i])
-    st.markdown(f"(This data is from {formatted_time} {formatted_date}). ")        
+    st.markdown(f"(This data is from {formatted_time} {formatted_date}) ")        
     container = st.container()
     with container:
         if st.sidebar.button("Start a New Chat"):

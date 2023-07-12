@@ -212,7 +212,7 @@ with container:
 
     if submit_button and user_input:
         process_question(user_input) 
-
+st.markdown(f"(This data is from {formatted_time} {formatted_date}) ")   
 df_company = data[data['company']==str(choose)]
 symbol = str(df_company['symbol2'].iloc[0])
 ticker = yf.Ticker(symbol)
@@ -226,17 +226,15 @@ def create_description(input):
 resp=create_description(company_description)
 
 now = datetime.now()
+formatted_date = now.strftime("%Y-%m-%d")
+formatted_time = now.strftime("%H:%M")
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
     
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
             
-            formatted_date = now.strftime("%Y-%m-%d")
-            formatted_time = now.strftime("%H:%M")
-                
-            prompt = f"(This data is from {formatted_time} {formatted_date}). "
-            answer = st.session_state['generated'][i].strip()+prompt
+            answer = st.session_state['generated'][i].strip()
             message(answer, key=str(i) + '_answer')
             
         if i < len(st.session_state['past']):
