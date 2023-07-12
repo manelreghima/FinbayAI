@@ -332,9 +332,10 @@ if language_code=='en':
 
     # Sort the resulting dataframe by 'change' column in descending order
     df_sorted = df_change.sort_values(by='change', ascending=False)
-
-    
     st.write(df_sorted.head(3))
+
+    st.markdown("<h3>Bottom 3 by change</h3>", unsafe_allow_html=True)
+    st.write(df_sorted.tail(3))
     # Create the treemap figure
     #color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
     fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
