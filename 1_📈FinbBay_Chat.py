@@ -361,7 +361,7 @@ if language_code=='en':
     df_sorted_volume = df_empty.sort_values(by='Volume', ascending=False)
 
     # Display the resulting dataframe using Streamlit
-    st.write(df_sorted_volume)
+    st.write(df_sorted_volume.head(3))
 
     # Create the treemap figure
     #color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
