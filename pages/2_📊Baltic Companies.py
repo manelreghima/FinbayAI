@@ -232,7 +232,6 @@ if st.session_state['generated']:
     for i in reversed(range(num_responses)):
         if i < len(st.session_state['generated']):
             
-            #message(st.session_state['generated'][i].strip(), key=str(i) + '_generated') # Display the answer
             formatted_date = now.strftime("%Y-%m-%d")
             formatted_time = now.strftime("%H:%M")
                 
