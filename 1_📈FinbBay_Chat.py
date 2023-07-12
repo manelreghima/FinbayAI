@@ -336,6 +336,33 @@ if language_code=='en':
 
     st.markdown("<h3>Bottom 3 by change</h3>", unsafe_allow_html=True)
     st.write(df_sorted.tail(3))
+
+
+
+    st.markdown("<h3>TOP 3 by Volume</h3>", unsafe_allow_html=True)
+    # Create an empty list to store dataframes
+    dfs = []
+
+    # Iterate over each symbol
+    for symbol in symbol_list:
+        # Download data with updated start and end dates
+        data = yf.download(symbol, interval='1d', start="2023-06-27", end=today_str)
+        data['ticker'] = symbol
+        df_sorted = data.sort_values(by='Date', ascending=False)
+        df_head = df_sorted.head(1)
+
+        # Add df_head to the list
+        dfs.append(df_head)
+
+    # Concatenate all dataframes in the list
+    df_empty = pd.concat(dfs)
+
+    # Sort the resulting dataframe by 'Volume' column in descending order
+    df_sorted_volume = df_empty.sort_values(by='Volume', ascending=False)
+
+    # Display the resulting dataframe using Streamlit
+    st.write(df_sorted_volume)
+
     # Create the treemap figure
     #color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
     fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
