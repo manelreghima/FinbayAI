@@ -151,6 +151,7 @@ if language_code=='en':
 
 
 
+
     def extract_ticker_symbol(input_text):
         data=read_data()
         prompt = 'Extract ticker symbol from this text: ' + input_text
