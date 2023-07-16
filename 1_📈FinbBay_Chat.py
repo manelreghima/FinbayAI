@@ -53,8 +53,6 @@ def add_logo():
     st.markdown(css_style, unsafe_allow_html=True)
 add_logo()
 
-
-
 # Load environment variables from .env file
 load_dotenv()
 # Access the API key
@@ -115,48 +113,42 @@ if language_code=='en':
 
     
     def process_question(question):
-        data = read_data()
+        data=read_data()
         user_input = question
-        
-        gratitude_keywords = ["thank you", "thanks", "grateful"]
-        if any(keyword in user_input.lower() for keyword in gratitude_keywords):
-            output="You're welcome! I'm glad I could help. If you have any more questions or need further assistance, feel free to ask."
+        company_name = extract_company_name(user_input)
+        company_name = str(company_name).strip()
+        company_list = data['company'].values.tolist()
+    
+        if company_name in data['symbol1'].values:
+            df_company = data[data['symbol1']==company_name]
+            symbol = str(df_company['symbol2'].iloc[0])  
+        elif company_name in company_list:
+            df_company = data[data['company']==company_name]
+            symbol = str(df_company['symbol2'].iloc[0])     
         else:
-            company_name = extract_company_name(user_input)
-            company_name = str(company_name).strip()
-            company_list = data['company'].values.tolist()
-            if company_name in data['symbol1'].values:
-                df_company = data[data['symbol1'] == company_name]
-                symbol = str(df_company['symbol2'].iloc[0])
-            elif company_name in company_list:
-                df_company = data[data['company'] == company_name]
-                symbol = str(df_company['symbol2'].iloc[0])
+            symbol=company_name
+
+        ticker = yf.Ticker(symbol)
+        try:
+            ticker_info = ticker.info
+            
+            if 'error' in ticker_info:
+                print(f"An error occurred for ticker symbol '{symbol}': {ticker_info['error']}")
             else:
-                symbol = company_name
+                print(f"Ticker symbol '{symbol}' does not have an error in the info.")
+        except HTTPError as e:
+            print(f"Sorry, there is currently no data available for the company requested")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+        
+        text = str(ticker.info)
+        output = chat_query(user_input, text)
 
-            if symbol.lower() == "finbay":
-                output = "Finbay is a stock analysis platform designed for investors. The objective of Finbay is to assist investors in comprehending complex financial data. However, it's important to note that Finbay is not a financial advisor and does not provide recommendations regarding the purchase, sale, or transfer of any stocks."
-            else:
-                ticker = yf.Ticker(symbol)
-                try:
-                    ticker_info = ticker.info
-
-                    if 'error' in ticker_info:
-                        print(f"An error occurred for ticker symbol '{symbol}': {ticker_info['error']}")
-                    else:
-                        print(f"Ticker symbol '{symbol}' does not have an error in the info.")
-                except yf.utils.exceptions.HTTPError as e:
-                    print(f"Sorry, there is currently no data available for the company requested")
-                except Exception as e:
-                    print(f"An error occurred: {e}")
-
-                text = str(ticker_info)
-                output = chat_query(user_input, text)
-
-            # Assuming 'st.session_state.past' and 'st.session_state.generated'
-            # lists are already initialized
+        # Store the output
         st.session_state.past.append(user_input)
+        #st.session_state.generated.append(question)  # Append the question
         st.session_state.generated.append(output)
+
 
 
     def extract_ticker_symbol(input_text):
@@ -254,6 +246,7 @@ if language_code=='en':
         
             if columns[col_index].button(questions[i]):
                     process_question(questions[i])
+    
     st.markdown(f"(This data is from {formatted_time} {formatted_date}) ")        
     container = st.container()
     with container:
