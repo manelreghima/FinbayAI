@@ -81,8 +81,6 @@ selected_language = st.sidebar.selectbox('Select a language', list(language_mapp
 # Get the language code based on the selected language
 language_code = language_mapping[selected_language]
 now = datetime.now()
-formatted_date = now.strftime("%Y-%m-%d")
-formatted_time = now.strftime("%H:%M")
 if language_code=='en':
 
     def extract_symbol(input):
@@ -254,7 +252,7 @@ if language_code=='en':
         
             if columns[col_index].button(questions[i]):
                     process_question(questions[i])
-    st.markdown(f"(This data is from {formatted_time} {formatted_date}) ")        
+            
     container = st.container()
     with container:
         if st.sidebar.button("Start a New Chat"):
@@ -274,8 +272,11 @@ if language_code=='en':
         for i in reversed(range(num_responses)):
             if i < len(st.session_state['generated']):
                 symbol = extract_company_name(st.session_state['past'][i])
-    
-                answer = st.session_state['generated'][i].strip()
+                formatted_date = now.strftime("%Y-%m-%d")
+                formatted_time = now.strftime("%H:%M")
+                
+                prompt = f"(This data is from {formatted_time} {formatted_date}). "
+                answer = st.session_state['generated'][i].strip()+prompt
                 message(answer, key=str(i))
 
                 if i < len(st.session_state['past']):
@@ -288,80 +289,6 @@ if language_code=='en':
                     
                     message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
     
-    
-    st.markdown("<h3>TOP 3 by change</h3>", unsafe_allow_html=True)
-    # Load the ticker data from the provided URL
-    @st.cache
-    def load_ticker_data():
-        ticker = pd.read_csv('https://huggingface.co/datasets/manelreghima/company_ticker/raw/main/company_ticker.csv')
-        return ticker
-
-    # Get the symbol list from the ticker data
-    ticker_data = load_ticker_data()
-    symbol_list = ticker_data['symbol2'].tolist()
-
-
-    # Convert the dates to string format
-    today_str = now.strftime("%Y-%m-%d")
-
-    # Create an empty dataframe
-    df_empty = pd.DataFrame()
-
-    # Iterate over each symbol
-    for symbol in symbol_list:
-        # Download data with updated start and end dates
-        data = yf.download(symbol, interval='1d', start="2023-06-27", end=today_str)
-        data['ticker'] = symbol
-        df_sorted = data.sort_values(by='Date', ascending=False)
-        df_head = df_sorted.head(2)
-
-        # Check if df_head has at least two rows
-        if len(df_head) >= 2:
-            # Calculate the difference between the two values
-            df_head['change'] = (df_head.iloc[0]['Close'] - df_head.iloc[1]['Close']) / df_head.iloc[1]['Close'] * 100
-        else:
-            # Handle the case when df_head has less than two rows
-            df_head['change'] = None
-
-        # Concatenate df_head with the empty dataframe
-        df_empty = pd.concat([df_empty, df_head])
-
-    # Filter the dataframe to include only today's rows
-    df_change = df_empty.iloc[::2]
-
-    # Sort the resulting dataframe by 'change' column in descending order
-    df_sorted = df_change.sort_values(by='change', ascending=False)
-    st.write(df_sorted.head(3))
-
-    st.markdown("<h3>Bottom 3 by change</h3>", unsafe_allow_html=True)
-    st.write(df_sorted.tail(3))
-
-
-
-    st.markdown("<h3>TOP 3 by Volume</h3>", unsafe_allow_html=True)
-    # Create an empty list to store dataframes
-    dfs = []
-
-    # Iterate over each symbol
-    for symbol in symbol_list:
-        # Download data with updated start and end dates
-        data = yf.download(symbol, interval='1d', start="2023-06-27", end=today_str)
-        data['ticker'] = symbol
-        df_sorted = data.sort_values(by='Date', ascending=False)
-        df_head = df_sorted.head(1)
-
-        # Add df_head to the list
-        dfs.append(df_head)
-
-    # Concatenate all dataframes in the list
-    df_empty = pd.concat(dfs)
-
-    # Sort the resulting dataframe by 'Volume' column in descending order
-    df_sorted_volume = df_empty.sort_values(by='Volume', ascending=False)
-
-    # Display the resulting dataframe using Streamlit
-    st.write(df_sorted_volume.head(3))
-
     # Create the treemap figure
     #color_midpoint = np.average(market_data['price_change'], weights=market_data['market_cap'])           
     fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
@@ -381,8 +308,6 @@ if language_code=='en':
     st.markdown("**Disclaimer:**")
     st.markdown("DO YOUR OWN RESEARCH") 
     st.markdown("All content provided by Finbay Technology OÜ is for informational and educational purposes only and is not meant to represent trade or investment recommendations.")
-
-
 
 elif language_code=='et':
 
