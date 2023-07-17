@@ -9,6 +9,10 @@ from requests.exceptions import HTTPError
 from streamlit_chat import message
 import base64
 
+now = datetime.now()
+formatted_date = now.strftime("%Y-%m-%d")
+formatted_time = now.strftime("%H:%M")
+
 def add_logo():
     # Read the image file
     with open('data/finbay-logo2.png', 'rb') as f:
@@ -203,6 +207,8 @@ for i in range(num_questions):
         
         if columns[col_index].button(questions[i]):
                 process_question(questions[i])
+
+st.markdown(f"(This data is from {formatted_time} {formatted_date}) ")                  
 container = st.container()
 
 with container:
@@ -225,7 +231,6 @@ def create_description(input):
     return llm(prompt)
 resp=create_description(company_description)
 
-now = datetime.now()
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
     
@@ -233,11 +238,8 @@ if st.session_state['generated']:
         if i < len(st.session_state['generated']):
             
             #message(st.session_state['generated'][i].strip(), key=str(i) + '_generated') # Display the answer
-            formatted_date = now.strftime("%Y-%m-%d")
-            formatted_time = now.strftime("%H:%M")
-                
-            prompt = f"(This data is from {formatted_time} {formatted_date}). "
-            answer = st.session_state['generated'][i].strip()+prompt
+            
+            answer = st.session_state['generated'][i].strip()
             message(answer, key=str(i) + '_answer')
             
         if i < len(st.session_state['past']):
