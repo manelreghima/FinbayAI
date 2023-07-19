@@ -14,5 +14,5 @@ def webpilot(input):
     return llm(prompt)
 
 response_json = webpilot('https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
-df = pd.DataFrame(response_json)
+df = pd.DataFrame.from_dict(response_json)  # Convert response_json to a DataFrame
 st.write(df)
