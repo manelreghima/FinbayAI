@@ -1,18 +1,28 @@
-import openai
-import pandas as pd
-import re
-import os
-import streamlit as st
+
 
 from langchain.llms import OpenAI
+import os
+import streamlit as st
+import pandas as pd
 
 llm = OpenAI(temperature=0)
 
+@st.cache
 def webpilot(input):
     # Generate a response
-    prompt = 'Using WebPilot, give me the historical revenue from this page:' + input
+    prompt = 'Using WebPilot, give me the historical revenue in euro from this page as a json' + input
     return llm(prompt)
 
-response_json = webpilot('https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
-df = pd.DataFrame.from_dict(response_json)  # Convert response_json to a DataFrame
-st.write(df)
+# Page title
+st.title("WebPilot Revenue Viewer")
+
+# Input URL
+input_url = st.text_input("Enter URL:", value='https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
+
+# Retrieve historical revenue
+response_json = webpilot(input_url)
+df = pd.read_json(response_json)
+
+# Display DataFrame
+st.write("Historical Revenue Data:")
+st.dataframe(df)
