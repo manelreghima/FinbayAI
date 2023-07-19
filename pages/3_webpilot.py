@@ -17,7 +17,7 @@ def webpilot(input):
 st.title("WebPilot Revenue Viewer")
 
 # Input URL
-input_url = st.text_input("Enter URL:", value='https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
+input_url = 'https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL'
 
 # Retrieve historical revenue
 response_json = webpilot(input_url)
