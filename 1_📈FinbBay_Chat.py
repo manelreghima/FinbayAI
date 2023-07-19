@@ -89,7 +89,12 @@ if language_code=='en':
             # Generate a response
         prompt =  'Extract ticker symbol from this text:' + input
         return llm(prompt)  
-
+    
+    def webpilot(input):
+            # Generate a response
+        prompt =  'Using WebPilot, give me the historical revenue from this page:' + input
+        return llm(prompt)
+    
     def chat_query(prompt_prefix, text):
             # Generate a response
         prompt =  prompt_prefix + ': ' + text
@@ -374,7 +379,7 @@ if language_code=='en':
     st.plotly_chart(fig)
 
     st.markdown("---")
-
+    webpilot('https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
     # Add the disclaimer text at the bottom
     st.markdown("**Disclaimer:**")
     st.markdown("DO YOUR OWN RESEARCH") 
