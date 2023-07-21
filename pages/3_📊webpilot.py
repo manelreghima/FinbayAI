@@ -15,7 +15,7 @@ def webpilot(input):
 
 def graph(input):
     # Generate a response
-    prompt = 'based on this json data plot a bar plot using daigr.am' + input
+    prompt = 'based on this df plot a bar plot using daigr.am' + input
     return llm(prompt)
 # Page title
 st.title("WebPilot Revenue Viewer")
