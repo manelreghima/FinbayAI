@@ -1,9 +1,9 @@
+
+
 from langchain.llms import OpenAI
 import os
 import streamlit as st
 import pandas as pd
-import plotly.graph_objs as go
-import json  # Import the json module
 
 llm = OpenAI(temperature=0)
 
@@ -16,21 +16,7 @@ def webpilot(input):
 def graph(input):
     # Generate a response
     prompt = 'based on this json data plot a bar plot using daigr.am' + input
-    response_json = llm(prompt)
-    
-    # Convert the JSON response to a dictionary
-    data_dict = json.loads(response_json)
-    
-    # Extract the data for the bar plot
-    x_values = list(data_dict.keys())
-    y_values = list(data_dict.values())
-    
-    # Create a bar plot using Plotly
-    fig = go.Figure(data=[go.Bar(x=x_values, y=y_values)])
-    fig.update_layout(title="Historical Revenue Bar Plot")
-    
-    return fig
-
+    return llm(prompt)
 # Page title
 st.title("WebPilot Revenue Viewer")
 
@@ -44,7 +30,6 @@ df = pd.read_json(response_json)
 # Display DataFrame
 st.write("Historical Revenue Data:")
 st.dataframe(df)
-
-# Display Plotly chart
-fig = graph(response_json)
+fig=graph(df)
 st.plotly_chart(fig, use_container_width=True)
+
