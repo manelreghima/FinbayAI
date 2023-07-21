@@ -30,4 +30,6 @@ df = pd.read_json(response_json)
 # Display DataFrame
 st.write("Historical Revenue Data:")
 st.dataframe(df)
-st.pyplot(graph(response_json))
+fig=graph(response_json)
+st.plotly_chart(fig, use_container_width=True)
+
