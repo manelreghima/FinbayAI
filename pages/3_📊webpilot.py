@@ -13,6 +13,10 @@ def webpilot(input):
     prompt = 'Using WebPilot, give me the historical revenue in euro from this page as a json' + input
     return llm(prompt)
 
+def graph(input):
+    # Generate a response
+    prompt = 'based on this df plot a bar plot using daigr.am' + input
+    return llm(prompt)
 # Page title
 st.title("WebPilot Revenue Viewer")
 
@@ -26,3 +30,4 @@ df = pd.read_json(response_json)
 # Display DataFrame
 st.write("Historical Revenue Data:")
 st.dataframe(df)
+graph(df)
