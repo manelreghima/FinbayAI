@@ -2,7 +2,8 @@ from langchain.llms import OpenAI
 import os
 import streamlit as st
 import pandas as pd
-import plotly.graph_objs as go  # Import Plotly graph objects
+import plotly.graph_objs as go
+import json  # Import the json module
 
 llm = OpenAI(temperature=0)
 
