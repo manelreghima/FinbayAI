@@ -1,5 +1,3 @@
-
-
 from langchain.llms import OpenAI
 import os
 import streamlit as st
@@ -16,7 +14,12 @@ def webpilot(input):
 def graph(input):
     # Generate a response
     prompt = 'based on this dataframe plot a bar plot using daigr.am' + input
-    return llm(prompt)
+    response = llm(prompt)  # Get the response from OpenAI
+    # Assuming the response is a JSON representation of a DataFrame, load it into a DataFrame
+    df = pd.read_json(response)
+    # Create and return the bar plot using pandas plotting function
+    return df.plot(x='x_column_name', y='y_column_name', kind='bar')
+
 # Page title
 st.title("WebPilot Revenue Viewer")
 
@@ -30,4 +33,7 @@ df = pd.read_json(response_json)
 # Display DataFrame
 st.write("Historical Revenue Data:")
 st.dataframe(df)
-st.pyplot(graph(webpilot(input_url)))
+
+# Display the bar plot
+st.write("Bar Plot:")
+st.pyplot(graph(input_url))
