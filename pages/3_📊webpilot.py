@@ -30,4 +30,4 @@ df = pd.read_json(response_json)
 # Display DataFrame
 st.write("Historical Revenue Data:")
 st.dataframe(df)
-st.write(graph(response_json))
+st.pyplot(graph(response_json))
