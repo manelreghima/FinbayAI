@@ -11,9 +11,9 @@ def webpilot(input):
     prompt = 'Using WebPilot, give me the historical revenue in euro from this page as a json ' + input
     return llm(prompt)
 
-def graph(input):
+def graph(df):  # Corrected the function parameter here
     # Generate a response
-    prompt = 'based on this df plot a bar plot using daigr.am ' + input
+    prompt = 'based on this df plot a bar plot using daigr.am'
     return llm(prompt)
 
 # Page title
@@ -31,4 +31,4 @@ st.write("Historical Revenue Data:")
 st.dataframe(df)
 
 # Plot the graph
-graph(response_json)
+graph(df)  # Pass the DataFrame 'df' to the graph function
