@@ -9,4 +9,3 @@ python-dotenv
 langchain
 streamlit-option-menu
 googletrans
-daigram
