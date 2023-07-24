@@ -26,7 +26,7 @@ df = pd.read_json(response_json)
 
 # Display DataFrame
 st.write("Historical Revenue Data:")
-df['Year'] = df['Year'].str.replace(',', '').astype(int)
+df['Year'] = df['Year'].astype(str).str.replace(',', '').astype(int)
 st.dataframe(df)
 
 import plotly.express as px
