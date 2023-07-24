@@ -7,7 +7,7 @@ llm = OpenAI(temperature=0)
 @st.cache
 def webpilot(input):
     # Generate a response
-    prompt = 'Using WebPilot, give me the historical revenue in euro with a year column from this page as a json' + input
+    prompt = 'Using WebPilot, give me the historical revenue with a year column in euro from this page as a json' + input
     return llm(prompt)
 
 def graph(input):
@@ -26,6 +26,7 @@ df = pd.read_json(response_json)
 
 # Display DataFrame
 st.write("Historical Revenue Data:")
+df['Year'] = df['Year'].astype(int)
 st.dataframe(df)
 
 import plotly.express as px
