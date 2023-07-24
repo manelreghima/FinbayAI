@@ -61,7 +61,7 @@ load_dotenv()
 api_key = os.environ["OPENAI_API_KEY"]
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
-st.cache()
+@st.cache_data()
 def read_data():
     data = pd.read_csv('data/company_ticker.csv')
     return data
@@ -193,7 +193,7 @@ if language_code=='en':
         st.plotly_chart(fig1)
         st.plotly_chart(fig2)
 
-    @st.cache()
+    @st.cache_data()
     def get_market_data():
         data=read_data()
         column_list = data['symbol2'].values.tolist()
@@ -295,7 +295,7 @@ if language_code=='en':
     
     st.markdown("<h3>TOP 3 by change</h3>", unsafe_allow_html=True)
     # Load the ticker data from the provided URL
-    @st.cache
+    @st.cache_data()
     def load_ticker_data():
         ticker = pd.read_csv('https://huggingface.co/datasets/manelreghima/company_ticker/raw/main/company_ticker.csv')
         return ticker
