@@ -7,7 +7,7 @@ llm = OpenAI(temperature=0)
 @st.cache_data()
 def webpilot(input):
     # Generate a response
-    prompt = 'Using WebPilot, give me the historical revenue with a year column in euro from this page as a json' + input
+    prompt = 'Using WebPilot, give me the historical revenue in euro from this page as a json, also includ a column with the year' + input
     return llm(prompt)
 
 def graph(input):
