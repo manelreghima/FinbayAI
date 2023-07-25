@@ -23,7 +23,6 @@ input_url = 'https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL'
 # Retrieve historical revenue
 response_json = webpilot(input_url)
 df = pd.read_json(response_json)
-df['Year'] = df['Year'].str.replace(',', '')
 df['Year'] = df['Year'].astype(int)
 
 # Display DataFrame
