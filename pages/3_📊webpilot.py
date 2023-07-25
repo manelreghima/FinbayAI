@@ -31,7 +31,7 @@ st.dataframe(df)
 
 import plotly.express as px
 
-fig = px.bar(df, x='Year', y='Revenue (Euro)', title='Historical Revenue of AS LHV Group')
+fig = px.bar(df, x='Year', y='Revenue in Euro', title='Historical Revenue of AS LHV Group')
 
 # Display the plot in Streamlit
 st.plotly_chart(fig)
