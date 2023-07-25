@@ -32,9 +32,6 @@ st.dataframe(df)
 
 
 fig = px.bar(df, x='Revenue in Euro', y='Year', title='Historical Revenue of AS LHV Group')
-unique_years = df['Year'].unique()
 
-# Set y-axis ticks to only display the unique values from 'Year'
-fig.update_yaxes(tickvals=unique_years)
 # Display the plot in Streamlit
 st.plotly_chart(fig)
