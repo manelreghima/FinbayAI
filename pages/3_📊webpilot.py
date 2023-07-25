@@ -1,6 +1,7 @@
 from langchain.llms import OpenAI
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 
 llm = OpenAI(temperature=0)
 
@@ -29,9 +30,11 @@ df['Year'] = df['Year'].astype(int)
 st.write("Historical Revenue Data:")
 st.dataframe(df)
 
-import plotly.express as px
 
 fig = px.bar(df, x='Revenue in Euro', y='Year', title='Historical Revenue of AS LHV Group')
+unique_years = df['Year'].unique()
 
+# Set y-axis ticks to only display the unique values from 'Year'
+fig.update_yaxes(tickvals=unique_years)
 # Display the plot in Streamlit
 st.plotly_chart(fig)
