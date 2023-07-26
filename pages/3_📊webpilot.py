@@ -50,5 +50,5 @@ fig = px.bar(df_balance, x='Revenue in Euro', y='Year', title='Historical Revenu
 st.plotly_chart(fig)
 
 st.write("Cash flow statement")
-st.write(text)
+st.write(type(text))
 
