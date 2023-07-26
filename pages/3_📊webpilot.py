@@ -36,9 +36,6 @@ def Cash_flow_statement(input_url):
 
 
 
-# Page title
-st.title("WebPilot Revenue Viewer")
-
 # Input URL
 input_url = 'https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL'
 
@@ -52,18 +49,18 @@ df_balance = pd.read_json(response_json_balance)
 df['Year'] = df['Year'].astype(int)
 
 # Display DataFrame
-st.write("Income Statement - Historical Revenue Data:")
+st.title("Income Statement - Historical Revenue Data:")
 st.dataframe(df)
 fig = px.bar(df, x='Revenue in Euro', y='Year', title='Historical Revenue of AS LHV Group')
 # Display the plot in Streamlit
 st.plotly_chart(fig)
 
-st.write("Balance sheet - Historical Revenue Data:")
+st.title("Balance sheet - Historical Revenue Data:")
 st.dataframe(df_balance)
 fig = px.bar(df_balance, x='Revenue in Euro', y='Year', title='Historical Revenue of AS LHV Group')
 st.plotly_chart(fig)
 
-st.write("Cash flow statement")
+st.title("Cash flow statement")
 output_response = Cash_flow_statement(input_url)
 
 st.write(output_response)
