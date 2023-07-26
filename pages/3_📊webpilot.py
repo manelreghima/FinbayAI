@@ -15,6 +15,7 @@ def graph(input):
     # Generate a response
     prompt = 'based on this df plot a bar plot using daigr.am' + input
     return llm(prompt)
+
 # Page title
 st.title("WebPilot Revenue Viewer")
 
@@ -23,15 +24,18 @@ input_url = 'https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL'
 
 # Retrieve historical revenue
 response_json = webpilot(input_url)
+response_json_balance = webpilot(input_url)
+
 df = pd.read_json(response_json)
+df_balance = pd.read_json(response_json_balance)
 df['Year'] = df['Year'].astype(int)
 
 # Display DataFrame
-st.write("Historical Revenue Data:")
+st.write("Income Statement - Historical Revenue Data:")
 st.dataframe(df)
-
-
 fig = px.bar(df, x='Revenue in Euro', y='Year', title='Historical Revenue of AS LHV Group')
-
 # Display the plot in Streamlit
 st.plotly_chart(fig)
+
+st.write("Balance sheet - Historical Revenue Data:")
+st.dataframe(df)
