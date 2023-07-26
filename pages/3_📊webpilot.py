@@ -39,3 +39,6 @@ st.plotly_chart(fig)
 
 st.write("Balance sheet - Historical Revenue Data:")
 st.dataframe(df_balance)
+fig = px.bar(df_balance, x='Revenue in Euro', y='Year', title='Historical Revenue of AS LHV Group')
+# Display the plot in Streamlit
+st.plotly_chart(fig)
