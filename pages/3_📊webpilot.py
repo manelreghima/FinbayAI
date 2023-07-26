@@ -31,7 +31,7 @@ input_url = 'https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL'
 response_json = webpilot(input_url)
 response_json_balance = webpilot(input_url)
 
-text=Cash_flow_statement(input)
+text=Cash_flow_statement(input_url)
 
 df = pd.read_json(response_json)
 df_balance = pd.read_json(response_json_balance)
@@ -50,5 +50,5 @@ fig = px.bar(df_balance, x='Revenue in Euro', y='Year', title='Historical Revenu
 st.plotly_chart(fig)
 
 st.write("Cash flow statement")
-st.write(type(text))
+st.write(text)
 
