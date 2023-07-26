@@ -18,7 +18,7 @@ def graph(input):
 
 def Cash_flow_statement(input):
     # Generate a response
-    prompt = 'Using WebPilot, give me each of these items feature on the table at this url: ' + input
+    prompt = 'Using WebPilot, give me each of these items feature on the table at this url as save it as a string: ' + input
     return llm(prompt)
 
 # Page title
