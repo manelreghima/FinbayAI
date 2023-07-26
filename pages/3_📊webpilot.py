@@ -38,4 +38,4 @@ fig = px.bar(df, x='Revenue in Euro', y='Year', title='Historical Revenue of AS 
 st.plotly_chart(fig)
 
 st.write("Balance sheet - Historical Revenue Data:")
-st.dataframe(df)
+st.dataframe(df_balance)
