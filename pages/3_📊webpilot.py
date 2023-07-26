@@ -18,7 +18,7 @@ def graph(input):
 
 def Cash_flow_statement(input):
     # Generate a response
-    prompt = 'Using WebPilot, give me each of these items feature on the table at this url as a .txt file: ' + input
+    prompt = 'Using WebPilot, give me each of these items feature on the table at this url: ' + input
     return llm(prompt)
 
 # Page title
@@ -50,5 +50,5 @@ fig = px.bar(df_balance, x='Revenue in Euro', y='Year', title='Historical Revenu
 st.plotly_chart(fig)
 
 st.write("Cash flow statement")
-st.write(type(text))
+st.write(text)
 
