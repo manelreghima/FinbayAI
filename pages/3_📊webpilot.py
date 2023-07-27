@@ -82,9 +82,7 @@ balance_sheet_plot = create_plotly_bar_plot(df_balance, 'Historical Revenue of A
 
 # Display the plots in Streamlit
 st.title("Income Statement:")
-st.dataframe(df)
 st.plotly_chart(income_statement_plot)
 
 st.title("Balance sheet:")
-st.dataframe(df_balance)
 st.plotly_chart(balance_sheet_plot)
