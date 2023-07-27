@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 
-
 llm = OpenAI(temperature=0)
 
 @st.cache_data()
@@ -37,6 +36,11 @@ response_json_balance = webpilot(input_url)
 
 df = pd.read_json(response_json)
 df_balance = pd.read_json(response_json_balance)
+
+# Subtract initial revenue from all revenue values
+initial_revenue = df['Revenue in Euro'].iloc[0]
+df['Revenue in Euro'] -= initial_revenue
+df_balance['Revenue in Euro'] -= initial_revenue
 
 def create_daigram_bar_plot(df, title):
     # Prepare data for daigram
