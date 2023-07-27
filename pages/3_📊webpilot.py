@@ -70,7 +70,7 @@ def create_daigram_bar_plot(df, title):
     }
 
     # Generate a response
-    prompt = 'Create a bar plot using daigram' + str(data)
+    prompt = 'Create a bar plot using daigr.am' + str(data)
     return llm(prompt)  # Assuming llm generates the response using the given prompt
 
 # Create bar plots
