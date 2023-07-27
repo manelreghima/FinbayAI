@@ -61,16 +61,28 @@ def create_daigram_bar_plot(df, title):
     # Generate a response
     prompt = 'Create a bar plot using daigram' + str(data)
     return llm(prompt)  # Assuming llm generates the response using the given prompt
+import plotly.graph_objects as go
+
+def create_plotly_bar_plot(df, title):
+    # Create a bar plot
+    fig = go.Figure(data=[
+        go.Bar(name='Revenue in Euro', x=df['Year'], y=df['Revenue in Euro'])
+    ])
+
+    # Change the bar mode
+    fig.update_layout(barmode='group', title=title)
+
+    return fig
 
 # Create bar plots
-income_statement_plot = create_daigram_bar_plot(df, 'Historical Revenue of AS LHV Group')
-balance_sheet_plot = create_daigram_bar_plot(df_balance, 'Historical Revenue of AS LHV Group')
+income_statement_plot = create_plotly_bar_plot(df, 'Historical Revenue of AS LHV Group')
+balance_sheet_plot = create_plotly_bar_plot(df_balance, 'Historical Revenue of AS LHV Group')
 
 # Display the plots in Streamlit
 st.title("Income Statement:")
 st.dataframe(df)
-st.markdown(income_statement_plot)
+st.plotly_chart(income_statement_plot)
 
 st.title("Balance sheet:")
 st.dataframe(df_balance)
-st.markdown(balance_sheet_plot)
+st.plotly_chart(balance_sheet_plot)
