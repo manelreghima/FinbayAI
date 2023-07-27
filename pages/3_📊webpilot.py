@@ -21,7 +21,21 @@ def generate_plots_from_url(input_url):
     df = df.sort_values(by='Year', ascending=True)
     df_balance = df_balance.sort_values(by='Year', ascending=True)
 
-    
+    def create_plotly_bar_plot(df, title):
+        # Create a bar plot
+        fig = go.Figure(data=[
+            go.Bar(name='Revenue (Euro)', x=df['Year'], y=df['Revenue in Euro'])
+        ])
+
+        # Change the bar mode
+        fig.update_layout(barmode='group', title=title)
+
+        return fig
+
+    # Create bar plots
+    income_statement_plot = create_plotly_bar_plot(df, 'Historical Revenue of AS LHV Group')
+    balance_sheet_plot = create_plotly_bar_plot(df_balance, 'Historical Revenue of AS LHV Group')
+
     # Display the plots in Streamlit
     st.title("Income Statement:")
     st.dataframe(df)
