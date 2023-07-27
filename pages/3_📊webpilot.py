@@ -80,8 +80,8 @@ balance_sheet_plot = create_daigram_bar_plot(df_balance, 'Historical Revenue of 
 # Display the plots in Streamlit
 st.title("Income Statement:")
 st.dataframe(df)
-st.markdown(income_statement_plot)
+income_statement_plot
 
 st.title("Balance sheet:")
 st.dataframe(df_balance)
-st.markdown(balance_sheet_plot)
+balance_sheet_plot
