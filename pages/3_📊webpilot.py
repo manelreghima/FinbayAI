@@ -24,7 +24,7 @@ def generate_plots_from_url(input_url):
     def create_plotly_bar_plot(df, title):
         # Create a bar plot
         fig = go.Figure(data=[
-            go.Bar(name='Revenue (Euro)', x=df['Year'], y=df['Revenue in Euro'])
+            go.Bar(name='Revenue (Euro)', x=df['Year'], y=df['Revenue (Euro)'])
         ])
 
         # Change the bar mode
