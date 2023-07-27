@@ -37,6 +37,10 @@ response_json_balance = webpilot(input_url)
 df = pd.read_json(response_json)
 df_balance = pd.read_json(response_json_balance)
 
+# Convert 'Revenue in Euro' column to numeric
+df['Revenue in Euro'] = pd.to_numeric(df['Revenue in Euro'], errors='coerce')
+df_balance['Revenue in Euro'] = pd.to_numeric(df_balance['Revenue in Euro'], errors='coerce')
+
 # Subtract initial revenue from all revenue values
 initial_revenue = df['Revenue in Euro'].iloc[0]
 df['Revenue in Euro'] -= initial_revenue
