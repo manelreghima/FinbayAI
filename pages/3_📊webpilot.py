@@ -46,22 +46,42 @@ response_json_balance = webpilot(input_url)
 
 df = pd.read_json(response_json)
 df_balance = pd.read_json(response_json_balance)
-df['Year'] = df['Year'].astype(int)
 
-# Display DataFrame
+def create_daigram_bar_plot(df, title):
+    # Prepare data for daigram
+    data = {
+        "version": "1.0",
+        "model": {
+            "nestingLevels": [
+                {
+                    "name": "Year",
+                    "labels": df['Year'].tolist(),
+                    "aggregator": "sum"
+                }
+            ],
+            "data": df['Revenue in Euro'].tolist()
+        },
+        "view": {
+            "title": title,
+            "type": "Bar Chart",
+            "scale": "linear",
+            "notes": ""
+        }
+    }
+
+    # Generate a response
+    prompt = 'Create a bar plot using daigram' + str(data)
+    return llm(prompt)  # Assuming llm generates the response using the given prompt
+
+# Create bar plots
+income_statement_plot = create_daigram_bar_plot(df, 'Historical Revenue of AS LHV Group')
+balance_sheet_plot = create_daigram_bar_plot(df_balance, 'Historical Revenue of AS LHV Group')
+
+# Display the plots in Streamlit
 st.title("Income Statement:")
 st.dataframe(df)
-fig = px.bar(df, x='Revenue in Euro', y='Year', title='Historical Revenue of AS LHV Group')
-# Display the plot in Streamlit
-st.plotly_chart(fig)
+st.markdown(income_statement_plot)
 
 st.title("Balance sheet:")
 st.dataframe(df_balance)
-fig = px.bar(df_balance, x='Revenue in Euro', y='Year', title='Historical Revenue of AS LHV Group')
-st.plotly_chart(fig)
-
-st.title("Cash flow statement:")
-output_response = Cash_flow_statement(input_url)
-
-st.write(output_response)
-
+st.markdown(balance_sheet_plot)
