@@ -1,10 +1,12 @@
 from langchain.llms import OpenAI
 import streamlit as st
 import pandas as pd
+import plotly.graph_objects as go
+
 
 llm = OpenAI(temperature=0)
 
-@st.cache
+@st.cache_data()
 def webpilot(input):
     # Generate a response
     prompt = 'Using WebPilot, give me the historical revenue in euro from this page as a json, also include a column with the year' + input
@@ -61,7 +63,6 @@ def create_daigram_bar_plot(df, title):
     # Generate a response
     prompt = 'Create a bar plot using daigram' + str(data)
     return llm(prompt)  # Assuming llm generates the response using the given prompt
-import plotly.graph_objects as go
 
 def create_plotly_bar_plot(df, title):
     # Create a bar plot
