@@ -37,7 +37,8 @@ response_json_balance = webpilot(input_url)
 
 df = pd.read_json(response_json)
 df_balance = pd.read_json(response_json_balance)
-
+df = df.sort_values(by='Year', ascending=True)
+df_balance = df_balance.sort_values(by='Year', ascending=True)
 def create_daigram_bar_plot(df, title):
     # Prepare data for daigram
     data = {
