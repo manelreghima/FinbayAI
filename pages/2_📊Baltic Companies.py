@@ -262,15 +262,13 @@ def generate_plots_from_url(input_url):
         return fig
 
     # Create bar plots
-    income_statement_plot = create_plotly_bar_plot(df, 'Historical Revenue of '+str(choose))
-    balance_sheet_plot = create_plotly_bar_plot(df_balance, 'Historical Revenue of '+str(choose))
+    income_statement_plot = create_plotly_bar_plot(df, 'Income Statement - Historical Revenue of '+str(choose))
+    balance_sheet_plot = create_plotly_bar_plot(df_balance, 'Balance sheet - Historical Revenue of '+str(choose))
 
     # Display the plots in Streamlit
-    st.title("Income Statement:")
     st.dataframe(df)
     st.plotly_chart(income_statement_plot)
 
-    st.title("Balance sheet:")
     st.dataframe(df_balance)
     st.plotly_chart(balance_sheet_plot)
 
