@@ -253,7 +253,7 @@ def generate_plots_from_url(input_url):
     def create_plotly_bar_plot(df, title):
         # Create a bar plot
         fig = go.Figure(data=[
-            go.Bar(name='Revenue in Euro', x=df['Year'], y=df['Revenue in Euro'])
+            go.Bar(name='Revenue (Euro)', x=df['Year'], y=df['Revenue (Euro)'])
         ])
 
         # Change the bar mode
@@ -287,6 +287,6 @@ if st.session_state['generated']:
         if i < len(st.session_state['past']):
             
             get_graph(symbol)
-            input_url = 'https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL'
+            input_url = 'https://finance.yahoo.com/quote/'+str(symbol)+'/financials?p='+str(symbol) 
             generate_plots_from_url(input_url)
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
