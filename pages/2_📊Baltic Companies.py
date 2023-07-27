@@ -287,6 +287,7 @@ if st.session_state['generated']:
         if i < len(st.session_state['past']):
             
             get_graph(symbol)
+            
             input_url = 'https://finance.yahoo.com/quote/APG1L.VS/financials?p=APG1L.VS'
             generate_plots_from_url(input_url)
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
