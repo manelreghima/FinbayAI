@@ -232,11 +232,6 @@ def create_description(input):
 resp=create_description(company_description)
 
 
-from langchain.llms import OpenAI
-import streamlit as st
-import pandas as pd
-import plotly.graph_objects as go
-
 def generate_plots_from_url(input_url):
     llm = OpenAI(temperature=0)
 
@@ -276,13 +271,6 @@ def generate_plots_from_url(input_url):
 
     st.title("Balance sheet:")
     st.plotly_chart(balance_sheet_plot)
-
-# Input URL
-
-
-# Generate and display the plots using the function
-
-
 
 
 if st.session_state['generated']:
