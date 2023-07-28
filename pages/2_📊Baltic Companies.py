@@ -233,7 +233,7 @@ resp=create_description(company_description)
 
 
 def generate_plots_from_url(input_url):
-    llm = OpenAI(temperature=0)
+    #llm = OpenAI(temperature=0)
 
     @st.cache_data()
     def webpilot(input):
