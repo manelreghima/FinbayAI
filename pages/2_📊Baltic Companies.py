@@ -237,8 +237,9 @@ def webpilot(input):
     prompt = 'Using WebPilot, give me the historical revenue in euro from this page as a json, also include a column with the year ' + input
     return llm(prompt)
 
+@st.cache_data()
 def generate_income(input_url):
-    #llm = OpenAI(temperature=0)
+    llm = OpenAI(temperature=0)
 
     # Retrieve historical revenue
     response_json = webpilot(input_url)
@@ -268,7 +269,7 @@ def generate_income(input_url):
 
 
 def generate_balnace(input_url):
-    #llm = OpenAI(temperature=0)
+    llm = OpenAI(temperature=0)
 
     # Retrieve historical revenue
     response_json_balance = webpilot(input_url)
