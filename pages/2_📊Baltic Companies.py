@@ -239,7 +239,7 @@ def webpilot(input):
 
 @st.cache_data()
 def generate_income(input_url):
-    llm = OpenAI(temperature=0)
+    llm = OpenAI(temperature=1)
 
     # Retrieve historical revenue
     response_json = webpilot(input_url)
@@ -269,11 +269,9 @@ def generate_income(input_url):
 
 
 def generate_balnace(input_url):
-    llm = OpenAI(temperature=0)
-
+    llm = OpenAI(temperature=2)
     # Retrieve historical revenue
     response_json_balance = webpilot(input_url)
-
     df_balance = pd.read_json(response_json_balance)
     df_balance = df_balance.sort_values(by='Year', ascending=True)
 
