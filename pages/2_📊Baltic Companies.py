@@ -272,6 +272,21 @@ def generate_plots_from_url(input_url):
     st.dataframe(df_balance)
     st.plotly_chart(balance_sheet_plot)
 
+def Cash_flow_statement(input_url):
+    # Generate a response
+    prompt = 'Using WebPilot, give me each of these items feature on the table at this url: ' + input_url
+    response = llm(prompt)  # Assuming llm generates the response using the given prompt
+
+    # Save the response to a text file
+    output_file = "cash_flow_output.txt"
+    with open(output_file, 'w') as file:
+        file.write(response)
+
+    # Print the response to the console
+    print(response)
+
+    # Return the response (optional, you can remove this line if not needed)
+    return response
 
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
@@ -289,4 +304,8 @@ if st.session_state['generated']:
             get_graph(symbol)
             input_url = 'https://finance.yahoo.com/quote/'+symbol+'/financials?p='+symbol
             generate_plots_from_url(input_url)
+            output_response = Cash_flow_statement(input_url)
+            st.title("Cash flow statement")
+
+            st.write(output_response)
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
