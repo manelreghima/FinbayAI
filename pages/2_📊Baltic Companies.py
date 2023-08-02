@@ -231,24 +231,22 @@ def create_description(input):
     return llm(prompt)
 resp=create_description(company_description)
 
-
-def generate_plots_from_url(input_url):
-    #llm = OpenAI(temperature=0)
-
-    @st.cache_data()
-    def webpilot(input):
+@st.cache_data()
+def webpilot(input):
         # Generate a response
-        prompt = 'Using WebPilot, give me the historical revenue in euro from this page as a json, also include a column with the year ' + input
-        return llm(prompt)
+    prompt = 'Using WebPilot, give me the historical revenue in euro from this page as a json, also include a column with the year ' + input
+    return llm(prompt)
+
+def generate_income(input_url):
+    #llm = OpenAI(temperature=0)
 
     # Retrieve historical revenue
     response_json = webpilot(input_url)
-    response_json_balance = webpilot(input_url)
 
     df = pd.read_json(response_json)
-    df_balance = pd.read_json(response_json_balance)
+    
     df = df.sort_values(by='Year', ascending=True)
-    df_balance = df_balance.sort_values(by='Year', ascending=True)
+    
 
     def create_plotly_bar_plot(df, title):
         # Create a bar plot
@@ -263,30 +261,39 @@ def generate_plots_from_url(input_url):
 
     # Create bar plots
     income_statement_plot = create_plotly_bar_plot(df, 'Income Statement - Historical Revenue of '+str(choose))
-    balance_sheet_plot = create_plotly_bar_plot(df_balance, 'Balance sheet - Total Asset of '+str(choose))
 
     # Display the plots in Streamlit
     st.dataframe(df)
     st.plotly_chart(income_statement_plot)
 
+
+def generate_balnace(input_url):
+    #llm = OpenAI(temperature=0)
+
+    # Retrieve historical revenue
+    response_json_balance = webpilot(input_url)
+
+    df_balance = pd.read_json(response_json_balance)
+    df_balance = df_balance.sort_values(by='Year', ascending=True)
+
+    def create_plotly_bar_plot(df, title):
+        # Create a bar plot
+        fig = go.Figure(data=[
+            go.Bar(name='Revenue (Euro)', x=df['Year'], y=df['Revenue (Euro)'])
+        ])
+
+        # Change the bar mode
+        fig.update_layout(barmode='group', title=title)
+
+        return fig
+
+    # Create bar plots
+    balance_sheet_plot = create_plotly_bar_plot(df_balance, 'Balance sheet - Total Asset of '+str(choose))
+
+    # Display the plots in Streamlit
+
     st.dataframe(df_balance)
     st.plotly_chart(balance_sheet_plot)
-
-def Cash_flow_statement(input_url):
-    # Generate a response
-    prompt = 'Using WebPilot, give me each of these items feature on the table at this url: ' + input_url
-    response = llm(prompt)  # Assuming llm generates the response using the given prompt
-
-    # Save the response to a text file
-    output_file = "cash_flow_output.txt"
-    with open(output_file, 'w') as file:
-        file.write(response)
-
-    # Print the response to the console
-    print(response)
-
-    # Return the response (optional, you can remove this line if not needed)
-    return response
 
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
@@ -302,10 +309,8 @@ if st.session_state['generated']:
         if i < len(st.session_state['past']):
             
             get_graph(symbol)
-            input_url = 'https://finance.yahoo.com/quote/'+symbol+'/financials?p='+symbol
-            generate_plots_from_url(input_url)
-            output_response = Cash_flow_statement(input_url)
-            st.title("Cash flow statement")
-
-            st.write(output_response)
+            input_url_income = 'https://finance.yahoo.com/quote/'+symbol+'/financials?p='+symbol
+            input_url_balance='https://finance.yahoo.com/quote/'+symbol+'/balance-sheet?p='+symbol
+            generate_income(input_url_income)
+            generate_balnace(input_url_balance)
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
