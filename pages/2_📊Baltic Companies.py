@@ -225,11 +225,20 @@ ticker = yf.Ticker(symbol)
 company_info=ticker.info
 company_description = company_info.get("longBusinessSummary")
 
+
 def create_description(input):
-        # Generate a response
-    prompt =  'Correct and improve this text' + input
+    # Check if input is None
+    if input is None:
+        raise ValueError("Input cannot be None")
+
+    # Generate a response
+    prompt =  'Correct and improve this text: ' + input
     return llm(prompt)
-resp=create_description(company_description)
+
+if company_description is not None:
+    resp = create_description(company_description)
+else:
+    print("company_description is None")
 
 @st.cache_data()
 def webpilot(input):
