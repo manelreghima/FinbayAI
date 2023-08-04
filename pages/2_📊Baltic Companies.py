@@ -122,22 +122,13 @@ with st.sidebar:
 df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
 symbol1 = str(df_company['symbol1'].iloc[0])
+
 image_path='data/companies_logos/'+symbol1+'.png'
-
+col1, col2, col3 = st.columns(3)
+col2.image(image_path, width=250)
 #st.image('data/companies_logos/'+symbol1+'.png')
-
-import streamlit as st
-from PIL import Image
-import requests
-from io import BytesIO
-
-
-# URL to redirect to when the image is clicked
-redirect_url = "https://your_redirect_url.com"
-
-
-# Display the image as a clickable link
-st.markdown(f'<a href="{redirect_url}"> <img src="{image_path}" width="200" height="200"> </a>', unsafe_allow_html=True)
+redirect_url = "https://finance.yahoo.com/quote/"+symbol1
+col2.markdown(f'<a href="{redirect_url}"> <img src="{image_path}" width="200" height="200"> </a>', unsafe_allow_html=True)
 
 
 
