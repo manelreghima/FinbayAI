@@ -126,18 +126,18 @@ symbol1 = str(df_company['symbol1'].iloc[0])
 
 from st_clickable_images import clickable_images
 
-images = 'data/companies_logos/'+symbol1+'.png'
+images = ['data/companies_logos/'+symbol1+'.png']
 
 clicked = clickable_images(
     images,
-    titles=[],
+    titles=[f"Image #{str(i)}" for i in range(len(images))],
     div_style={"display": "flex", "justify-content": "center", "flex-wrap": "wrap"},
     img_style={"margin": "5px", "height": "200px"},
 )
 
 if clicked > -1:
-    if images[clicked] == images:
-        st.markdown(f"[Image #{clicked} clicked](https://finance.yahoo.com/quote/CPA1T)")
+    if images[clicked] == images[0]:  # Since there's only one image, we compare with images[0]
+        st.markdown(f"[Image #{clicked} clicked](https://finance.yahoo.com/quote/{symbol1})")  # I assume you want to link to the page of the symbol
     else:
         st.markdown(f"Image #{clicked} clicked")
 else:
