@@ -126,7 +126,7 @@ symbol1 = str(df_company['symbol1'].iloc[0])
 image_path='data/companies_logos/'+symbol1+'.png'
 col1, col2, col3 = st.columns(3)
 
-image_url = 'https://upload.wikimedia.org/wikipedia/commons/4/43/Cute_dog.jpg'
+image_url = 'https://raw.githubusercontent.com/manelreghima/FinbayAI/main/data/companies_logos/APG1L.png'
 redirect_url = "https://finance.yahoo.com/quote/"+symbol1
 col2.markdown(f'<a href="{redirect_url}"> <img src="{image_url}" width="250"> </a>', unsafe_allow_html=True)
 
