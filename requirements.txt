@@ -8,4 +8,5 @@ scikit-learn
 python-dotenv
 langchain
 streamlit-option-menu
-googletrans
+st_clickable_images
+

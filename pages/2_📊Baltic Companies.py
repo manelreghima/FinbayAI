@@ -123,22 +123,25 @@ df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
 symbol1 = str(df_company['symbol1'].iloc[0])
 
-# Ensure the symbol and image exist and are correct
 
-image_path='data/companies_logos/'+symbol1+'.png'
+from st_clickable_images import clickable_images
 
-col1, col2, col3 = st.columns(3)
+images = 'data/companies_logos/'+symbol1+'.png'
 
-# Ensure the image exists at this path
-try:
-    col2.image(image_path, width=250)
-except Exception as e:
-    st.error(f"Error: {e}")
+clicked = clickable_images(
+    images,
+    titles=[],
+    div_style={"display": "flex", "justify-content": "center", "flex-wrap": "wrap"},
+    img_style={"margin": "5px", "height": "200px"},
+)
 
-link = 'https://finance.yahoo.com/quote/DGR1R.RG'  # replace with your URL
-
-# Create a clickable image by using an HTML <a> tag with an <img> tag inside it
-col2.markdown(f'<a href="{link}" target="_blank"><img src="{image_path}" width="250"></a>', unsafe_allow_html=True)
+if clicked > -1:
+    if images[clicked] == images:
+        st.markdown(f"[Image #{clicked} clicked](https://finance.yahoo.com/quote/CPA1T)")
+    else:
+        st.markdown(f"Image #{clicked} clicked")
+else:
+    st.markdown("No image clicked")
 
 #st.image('data/companies_logos/'+symbol1+'.png')
 
