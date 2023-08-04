@@ -123,8 +123,12 @@ df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
 symbol1 = str(df_company['symbol1'].iloc[0])
 image_path='data/companies_logos/'+symbol1+'.png'
+link = 'https://finance.yahoo.com/quote/DGR1R.RG'  # replace with your URL
 col1, col2, col3 = st.columns(3)
-col2.image(image_path, width=250)
+
+# Create a clickable image by using an HTML <a> tag with an <img> tag inside it
+col2.markdown(f'<a href="{link}" target="_blank"><img src="{image_path}" width="250"></a>', unsafe_allow_html=True)
+
 #st.image('data/companies_logos/'+symbol1+'.png')
 
 
