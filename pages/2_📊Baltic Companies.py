@@ -264,7 +264,10 @@ def generate_income(input_url):
         fig = go.Figure(data=[
             go.Bar(name='Revenue (Euro)', x=df['Year'], y=df['Revenue (Euro)'])
         ])
-
+        fig.update_layout(
+        xaxis_title="Year",
+        yaxis_title="Income",
+)
         # Change the bar mode
         fig.update_layout(barmode='group', title=title)
 
@@ -290,7 +293,9 @@ def generate_balnace(input_url):
         fig = go.Figure(data=[
             go.Bar(name='Revenue (Euro)', x=df['Year'], y=df['Revenue (Euro)'])
         ])
-
+        fig.update_layout(
+        xaxis_title="Year",
+        yaxis_title="Balance",)
         # Change the bar mode
         fig.update_layout(barmode='group', title=title)
 
