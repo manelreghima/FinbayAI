@@ -128,7 +128,7 @@ col1, col2, col3 = st.columns(3)
 
 #st.image('data/companies_logos/'+symbol1+'.png')
 redirect_url = "https://finance.yahoo.com/quote/"+symbol1
-st.markdown(f'<a href="{redirect_url}"> <img src="{col2.image(image_path, width=250)}"> </a>', unsafe_allow_html=True)
+col2.markdown(f'<a href="{redirect_url}"> <img src="{st.image(image_path, width=250)}"> </a>', unsafe_allow_html=True)
 
 
 
