@@ -131,15 +131,18 @@ from PIL import Image
 import requests
 from io import BytesIO
 
+# URL of the image
+image_url = "https://github.com/manelreghima/FinbayAI/blob/1b240dae8c8946a9a4075cfe99ae9cc2e47a2e45/data/companies_logos/APG1L.png"
+
 # URL to redirect to when the image is clicked
 redirect_url = "https://your_redirect_url.com"
 
 # Fetch the image from the URL
-response = requests.get(image_path)
+response = requests.get(image_url)
 img = Image.open(BytesIO(response.content))
 
 # Display the image as a clickable link
-st.markdown(f'<a href="{redirect_url}"> <img src="{image_path}" width="200" height="200"> </a>', unsafe_allow_html=True)
+st.markdown(f'<a href="{redirect_url}"> <img src="{image_url}" width="200" height="200"> </a>', unsafe_allow_html=True)
 
 
 
