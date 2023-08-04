@@ -122,9 +122,18 @@ with st.sidebar:
 df_company = data[data['company']==choose]
 symbol = str(df_company['symbol2'].iloc[0])
 symbol1 = str(df_company['symbol1'].iloc[0])
+
+# Ensure the symbol and image exist and are correct
+
 image_path='data/companies_logos/'+symbol1+'.png'
+
 col1, col2, col3 = st.columns(3)
-col2.image(image_path, width=250)
+
+# Ensure the image exists at this path
+try:
+    col2.image(image_path, width=250)
+except Exception as e:
+    st.error(f"Error: {e}")
 
 link = 'https://finance.yahoo.com/quote/DGR1R.RG'  # replace with your URL
 
