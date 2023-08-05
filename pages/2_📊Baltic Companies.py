@@ -127,7 +127,7 @@ image_path='data/companies_logos/'+symbol1+'.png'
 col1, col2, col3 = st.columns(3)
 
 image_url = 'https://raw.githubusercontent.com/manelreghima/FinbayAI/main/data/companies_logos/'+symbol1+'.png'
-redirect_url = "https://finance.yahoo.com/quote/"+symbol1
+redirect_url = "https://finance.yahoo.com/quote/"+symbol
 col2.markdown(f'<a href="{redirect_url}"> <img src="{image_url}" width="250"> </a>', unsafe_allow_html=True)
 
 llm = OpenAI(temperature=0)
