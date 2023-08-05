@@ -201,6 +201,7 @@ if language_code=='en':
         sector_list = []
         market_cap_list = []
         stock_price_list=[]
+        links_list=[]
 
         for symbol in column_list:
             ticker = yf.Ticker(symbol)
@@ -210,8 +211,9 @@ if language_code=='en':
             sector = company_info.get("sector")
             company_name = company_info.get("longName")
             stock_price = company_info.get("currentPrice")
+            link='https://finance.yahoo.com/quote/'+symbol+'?p='+symbol+'&.tsrc=fin-srch'
 
-            
+            links_list.append(link)
             market_cap_list.append(market_cap)
             sector_list.append(sector)
             company_list.append(company_name)
@@ -222,6 +224,7 @@ if language_code=='en':
             'company_name': company_list,
             'sector': sector_list,
             'stock_price':stock_price_list,
+            'link':links_list,
             'market_cap': market_cap_list
         })
         
@@ -368,17 +371,17 @@ if language_code=='en':
     # Create the treemap figure
     
     fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
-                 color='stock_price', hover_data=['sector', 'company_name', 'stock_price', 'market_cap'],  
+                 color='stock_price', hover_data=['sector', 'company_name', 'stock_price', 'market_cap','link'],
                  color_continuous_scale='RdYlGn',
                  color_continuous_midpoint=np.average(market_data['stock_price'], weights=market_data['market_cap']))
 
-    fig.update_traces(hovertemplate='<b>%{customdata[0]}</b><br>%{label}<br>Stock Price: %{customdata[2]:.2f}(EUR)<br>Market Cap: %{customdata[3]:,.2f}(EUR)<br><a href="https://finance.yahoo.com/m/20cfd21d-be71-3d76-b865-75320437dc3b/more-firms-on-wall-street-are.html?.tsrc=fin-srch">More info</a>')
+    # Remove the 'id', 'parent', and 'label' from the hover tooltip for companies' symbols
+    fig.update_traces(hovertemplate='<b>%{customdata[0]}</b><br>%{label}<br>Stock Price: %{customdata[2]:.2f}(EUR)<br>Market Cap: %{customdata[3]:,.2f}(EUR) <br> Click to go to %{customdata[4]}<extra></extra>')
+
 
     st.plotly_chart(fig)
 
-
     st.markdown("---")
-    webpilot('https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
     # Add the disclaimer text at the bottom
     st.markdown("**Disclaimer:**")
     st.markdown("DO YOUR OWN RESEARCH") 
