@@ -379,7 +379,7 @@ if language_code=='en':
 
 
     st.markdown("---")
-    webpilot('https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
+    #webpilot('https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
     # Add the disclaimer text at the bottom
     st.markdown("**Disclaimer:**")
     st.markdown("DO YOUR OWN RESEARCH") 
