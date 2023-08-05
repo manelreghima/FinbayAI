@@ -43,6 +43,8 @@ def add_logo():
 
     # Apply the CSS style
     st.markdown(css_style, unsafe_allow_html=True)
+
+    # Add the hyperlink after applying the CSS changes
     redirect_url='https://finbay.io/'
     st.markdown(f'<a href="{redirect_url}"> <img src="data:image/png;base64,{encoded_image}" > </a>', unsafe_allow_html=True)
 
