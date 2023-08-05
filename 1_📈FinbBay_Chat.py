@@ -33,7 +33,10 @@ def add_logo():
     css_style = f"""
         <style>
         [data-testid='stSidebarNav'] {{
-            background-image: url(data:image/png;base64,{encoded_image});
+            background-image: <a href='https://finbay.io/'>
+            <img src='data:image/png;base64,{encoded_image}' />
+        </a>;
+        
             background-repeat: no-repeat;
             padding-top: 120px;
             background-position: 70px 20px;
@@ -48,9 +51,7 @@ def add_logo():
         }}
         </style>
 
-        <a href='https://finbay.io/'>
-            <img src='data:image/png;base64,{encoded_image}' />
-        </a>
+        
     """
 
 
