@@ -266,7 +266,7 @@ def generate_income(input_url):
         ])
         fig.update_layout(
         xaxis_title="Year",
-        yaxis_title="Income",
+        yaxis_title="Income (EUR)",
 )
         # Change the bar mode
         fig.update_layout(barmode='group', title=title)
@@ -295,7 +295,7 @@ def generate_balnace(input_url):
         ])
         fig.update_layout(
         xaxis_title="Year",
-        yaxis_title="Balance",)
+        yaxis_title="Total Assets (EUR)",)
         # Change the bar mode
         fig.update_layout(barmode='group', title=title)
 
