@@ -372,7 +372,7 @@ if language_code=='en':
                  color_continuous_midpoint=np.average(market_data['stock_price'], weights=market_data['market_cap']))
 
     # Updated hovertemplate to include hyperlink
-    fig.update_traces(hovertemplate='<b>%{customdata[0]}</b><br>%{label}<br>Stock Price: %{customdata[2]:.2f}<br>Market Cap: %{customdata[3]:,.2f}')
+    fig.update_traces(hovertemplate='<b>%{customdata[0]}</b><br><a href="https://finance.yahoo.com/quote/%{customdata[4]}">%{label}</a><br>Stock Price: %{customdata[2]:.2f}(EUR)<br>Market Cap: %{customdata[3]:,.2f}(EUR)')
 
     # Streamlit command to display the chart
     st.plotly_chart(fig)
