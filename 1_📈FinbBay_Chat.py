@@ -366,20 +366,20 @@ if language_code=='en':
     # Display the resulting dataframe using Streamlit
     st.write(df_sorted_volume.head(3))
     # Create the treemap figure
+    
     fig = px.treemap(market_data, path=['sector', 'symbol'], values='market_cap',
-                 color='stock_price', hover_data=['sector', 'company_name', 'stock_price', 'market_cap', 'symbol'],
+                 color='stock_price', hover_data=['sector', 'company_name', 'stock_price', 'market_cap'],
                  color_continuous_scale='RdYlGn',
                  color_continuous_midpoint=np.average(market_data['stock_price'], weights=market_data['market_cap']))
 
-    # Updated hovertemplate to include hyperlink
-    fig.update_traces(hovertemplate='<b>%{customdata[0]}</b><br><a href="https://finance.yahoo.com/quote/%{customdata[4]}">%{label}</a><br>Stock Price: %{customdata[2]:.2f}(EUR)<br>Market Cap: %{customdata[3]:,.2f}(EUR)')
+    # Remove the 'id', 'parent', and 'label' from the hover tooltip for companies' symbols
+    fig.update_traces(hovertemplate='<b>%{customdata[0]}</b><br>%{label}<br>Stock Price: %{customdata[2]:.2f}(EUR)<br>Market Cap: %{customdata[3]:,.2f}(EUR)')
 
-    # Streamlit command to display the chart
+    
     st.plotly_chart(fig)
 
-
     st.markdown("---")
-    #webpilot('https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
+    webpilot('https://finance.yahoo.com/quote/LHV1T.TL/financials?p=LHV1T.TL')
     # Add the disclaimer text at the bottom
     st.markdown("**Disclaimer:**")
     st.markdown("DO YOUR OWN RESEARCH") 
