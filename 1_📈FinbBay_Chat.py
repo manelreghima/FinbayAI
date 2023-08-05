@@ -21,6 +21,7 @@ st.set_page_config(
     page_icon="data/finbay-logo.jpg",
 )
 
+
 def add_logo():
     # Read the image file
     with open('data/finbay-logo2.png', 'rb') as f:
@@ -37,8 +38,8 @@ def add_logo():
                 position: relative;
                 width: 180px;
                 height: auto;
-                margin-top: 20px;
-                margin-left: 70px;
+                margin-top: 10px;
+                margin-left: 10px;
             " />
         </a>
     """
@@ -46,7 +47,6 @@ def add_logo():
     st.sidebar.markdown(html, unsafe_allow_html=True)
 
 add_logo()
-
 
 
 
