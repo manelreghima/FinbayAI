@@ -31,26 +31,29 @@ def add_logo():
     
     # Create the CSS style with the encoded image as the background
     css_style = f"""
-        
-        <a href="https://finbay.io/">
-            <img src="data:image/png;base64,{encoded_image}" 
-            <style>
-            [data-testid="stSidebarNav"] {{
-                background-image: url(data:image/png;base64,{encoded_image});
-                background-repeat: no-repeat;
-                padding-top: 120px;
-                background-position: 70px 20px;
-                background-size: 180px;
-            }}
-            [data-testid="stSidebarNav"]::before {{
-                margin-left: 20px;
-                margin-top: 20px;
-                font-size: 30px;
-                position: relative;
-                top: 100px;
-            }}
+        <style>
+        [data-testid='stSidebarNav'] {{
+            background-image: url(data:image/png;base64,{encoded_image});
+            background-repeat: no-repeat;
+            padding-top: 120px;
+            background-position: 70px 20px;
+            background-size: 180px;
+        }}
+        [data-testid='stSidebarNav']::before {{
+            margin-left: 20px;
+            margin-top: 20px;
+            font-size: 30px;
+            position: relative;
+            top: 100px;
+        }}
         </style>
+
+        <a href='https://finbay.io/'>
+            <img src='data:image/png;base64,{encoded_image}' />
+        </a>
     """
+
+
 
     # Apply the CSS style
     st.markdown(css_style, unsafe_allow_html=True)
