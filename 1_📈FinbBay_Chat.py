@@ -21,7 +21,6 @@ st.set_page_config(
     page_icon="data/finbay-logo.jpg",
 )
 
-
 def add_logo():
     # Read the image file
     with open('data/finbay-logo2.png', 'rb') as f:
@@ -30,22 +29,31 @@ def add_logo():
     # Encode the image data as base64
     encoded_image = base64.b64encode(image_data).decode()
     
-    # Create the HTML with the encoded image as the src of an img tag within an anchor tag
-    html = f"""
+    # Create the CSS style with the encoded image as the background
+    css_style = f"""
+        
         <a href="https://finbay.io/">
             <img src="data:image/png;base64,{encoded_image}" 
-            style="
+            <style>
+            [data-testid="stSidebarNav"] {{
+                background-image: url(data:image/png;base64,{encoded_image});
+                background-repeat: no-repeat;
+                padding-top: 120px;
+                background-position: 70px 20px;
+                background-size: 180px;
+            }}
+            [data-testid="stSidebarNav"]::before {{
+                margin-left: 20px;
+                margin-top: 20px;
+                font-size: 30px;
                 position: relative;
-                width: 180px;
-                height: auto;
-                margin-top: 10px;
-                margin-left: 10px;
-            " />
-        </a>
+                top: 100px;
+            }}
+        </style>
     """
-    # Apply the HTML
-    st.sidebar.markdown(html, unsafe_allow_html=True)
 
+    # Apply the CSS style
+    st.markdown(css_style, unsafe_allow_html=True)
 add_logo()
 
 
