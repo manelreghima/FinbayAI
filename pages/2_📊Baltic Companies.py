@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 from requests.exceptions import HTTPError
 from streamlit_chat import message
 import base64
-import openbb.stocks
+import openbb
 
 
 now = datetime.now()
@@ -329,6 +329,7 @@ if st.session_state['generated']:
             input_url_balance='https://finance.yahoo.com/quote/'+symbol+'/balance-sheet?p='+symbol
             generate_income(input_url_income)
             generate_balnace(input_url_balance)
+
             data = openbb.stocks.load(symbol=symbol, start_date='2020-06-01', weekly=True, verbose=False)
             openbb.stocks.candle(
                 data=data,
