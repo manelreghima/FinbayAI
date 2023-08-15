@@ -9,4 +9,4 @@ python-dotenv
 langchain
 streamlit-option-menu
 st_clickable_images
-
+openbb
