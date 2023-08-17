@@ -7,3 +7,4 @@ scikit-learn
 langchain
 streamlit-option-menu
 openbb[all]
+streamlit-aggrid
