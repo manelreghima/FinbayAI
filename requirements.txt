@@ -6,5 +6,4 @@ plotly
 scikit-learn
 langchain
 streamlit-option-menu
-openbb[all]
-streamlit-aggrid
+openbb-nightly[all]
