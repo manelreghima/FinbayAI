@@ -6,4 +6,4 @@ plotly
 scikit-learn
 langchain
 streamlit-option-menu
-openbb
+openbb==3.0.0
