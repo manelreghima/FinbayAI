@@ -8,15 +8,8 @@ import plotly.graph_objects as go
 from requests.exceptions import HTTPError
 from streamlit_chat import message
 import base64
-from openbb_terminal.sdk import openbb
-from typing import List
+#from openbb_terminal.sdk import openbb
 
-TICKER_EXCEPTIONS: List[str] = ["NDX", "RUT"]
-
-
-now = datetime.now()
-formatted_date = now.strftime("%Y-%m-%d")
-formatted_time = now.strftime("%H:%M")
 
 def add_logo():
     # Read the image file
@@ -49,6 +42,9 @@ def add_logo():
     # Apply the CSS style
     st.markdown(css_style, unsafe_allow_html=True)
 
+now = datetime.now()
+formatted_date = now.strftime("%Y-%m-%d")
+formatted_time = now.strftime("%H:%M")
 add_logo()    
 def read_data():
     data = pd.read_csv('data/company_ticker.csv')
