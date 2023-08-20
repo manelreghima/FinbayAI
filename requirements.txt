@@ -2,7 +2,11 @@ yfinance
 openai
 streamlit
 streamlit_chat
+prophet
 plotly
 scikit-learn
+python-dotenv
 langchain
 streamlit-option-menu
+st_clickable_images
+
