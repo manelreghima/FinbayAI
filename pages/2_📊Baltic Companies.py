@@ -9,6 +9,9 @@ from requests.exceptions import HTTPError
 from streamlit_chat import message
 import base64
 from openbb_terminal.sdk import openbb
+from typing import List
+
+TICKER_EXCEPTIONS: List[str] = ["NDX", "RUT"]
 
 
 now = datetime.now()
