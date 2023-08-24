@@ -8,9 +8,6 @@ import plotly.graph_objects as go
 from requests.exceptions import HTTPError
 from streamlit_chat import message
 import base64
-#from openbb_terminal.sdk import openbb
-#import openbb
-
 
 now = datetime.now()
 formatted_date = now.strftime("%Y-%m-%d")
