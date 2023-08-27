@@ -277,8 +277,8 @@ def generate_income(input_url):
     income_statement_plot = create_plotly_bar_plot(df, 'Income Statement - Historical Revenue of '+str(choose))
 
     # Display the plots in Streamlit
-    st.dataframe(df)
-    st.plotly_chart(income_statement_plot)
+    #st.dataframe(df)
+    #st.plotly_chart(income_statement_plot)
 
 
 def generate_balnace(input_url):
@@ -306,8 +306,8 @@ def generate_balnace(input_url):
 
     # Display the plots in Streamlit
 
-    st.dataframe(df_balance)
-    st.plotly_chart(balance_sheet_plot)
+    #st.dataframe(df_balance)
+    #st.plotly_chart(balance_sheet_plot)
 
 if st.session_state['generated']:
     num_responses = len(st.session_state['generated'])
@@ -328,9 +328,9 @@ if st.session_state['generated']:
             generate_income(input_url_income)
             generate_balnace(input_url_balance)
 
-            data = openbb.stocks.load(symbol=symbol, start_date='2020-06-01', weekly=True, verbose=False)
-            openbb.stocks.candle(
-                data=data,
-                symbol="APB Apranga - Weekly"
-            )
+            #data = openbb.stocks.load(symbol=symbol, start_date='2020-06-01', weekly=True, verbose=False)
+            #openbb.stocks.candle(
+            #    data=data,
+            #    symbol="APB Apranga - Weekly"
+            #)
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')  # Display the question
